@@ -23,6 +23,9 @@
   --neutral-200: #f8f9fa;
   --neutral-500: #6c757d;
   --btn-primary: #33b27b;
+
+  --background-span: #ffd8d8;
+  --color-span: #dc3f25;
 }
 *{
   margin: 0;
