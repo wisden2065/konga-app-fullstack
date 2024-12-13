@@ -1,7 +1,14 @@
 .prod-deal-card-cont{
     background-color: var(--neutral-100);
     /* width: max-content; */
+
     padding: 20px;
+    box-shadow: 0 4px 6px rgba(150, 150, 150, 0.1), /* Subtle shadow */
+    0 1px 3px rgba(223, 222, 222, 0.08);
+}
+.prod-deal-card-cont:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Subtle shadow */
+    0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .prod-deal-card-cont .prod-cont{
     display: grid;
@@ -11,6 +18,7 @@
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     color: var(--text-primary);
+    
 }
 .prod-deal-card-cont .prod-cont img{
     width: 90px;
@@ -20,15 +28,18 @@
     font-size: 14px;
     font-weight: 300;
 } 
-.prod-name .price .price{
-    margin-left: 10px;
+.prod-desc .price{
+    /* margin-left: 1000px; */
+    display: flex;
+    gap: 6px;
+
 }
 .price .discounted-price{
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 900;
 }
 .price .original-price{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     color: var(--text-secondary);
     /* display: flex; */
@@ -36,8 +47,13 @@
 }
 .price .discount{
     background-color: var(--background-span);
-    color: var(--span-color);
+    color: var(--color-span);
     border-radius: 5px;
     font-size: 11px;
     padding: 4px;
+}
+.prod-desc .saved{
+    color: var(--text-green);
+    font-size: 12px;
+    font-weight: 700;
 }

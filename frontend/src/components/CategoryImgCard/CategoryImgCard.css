@@ -1,0 +1,21 @@
+.category-card{
+    /* height: 200px; */
+    width: 100%;
+    background-color: var(--neutral-100);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-radius: 4px;
+    /* margin: 0 auto; */
+    /* margin: 0 20px; */
+}
+.img-cont{
+    background-color: var(--neutral-100);
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+.img-cont img{
+    width: 100%;
+    border-radius: 4px;
+}

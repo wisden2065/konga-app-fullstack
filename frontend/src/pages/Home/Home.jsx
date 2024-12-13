@@ -4,6 +4,8 @@ import slide1 from '../../assets/images/slider1.webp'
 import {images} from '../../assets/images/index'
 import { spanImages } from '../../assets/images/index'
 import ProdDealCard from '../../components/ProdDealCard/ProdDealCard'
+import SponsoredProdCard from '../../components/SponsoredProdCard/SponsoredProdCard'
+import CategoryImgCard from '../../components/CategoryImgCard/CategoryImgCard'
 const Home = () => {
   return (
     <>
@@ -42,7 +44,7 @@ const Home = () => {
                     <span><img src={spanImages.watchImg} alt="" /></span>
                 </div>
                 <div className='categories-cont'>
-                    <div>
+                    <div className='categories-cont-wrapper'>
                         <div className='product-head'>
                             <h4><span>Today's Deals</span> <a href="">See All Items</a></h4>
                         </div>
@@ -51,7 +53,33 @@ const Home = () => {
                                 <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='sponsored-categories-cont'>
+                    <div>
+                        <div className='sponsored-product-head'>
+                            <h4><span>Sponsored Products</span></h4>
+                        </div>
+                        <div className='product-cont-wrapper'>
+                            <div className='sponsored-product-cont'>
+                                <SponsoredProdCard />
+                                <SponsoredProdCard />
+                                <SponsoredProdCard />
+                                <SponsoredProdCard />
+                                <SponsoredProdCard />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='category-img'>
+                    <div className="category-img-wrapper">
+                        <div className="category-cont">
+                            <CategoryImgCard />
                         </div>
                     </div>
                 </div>

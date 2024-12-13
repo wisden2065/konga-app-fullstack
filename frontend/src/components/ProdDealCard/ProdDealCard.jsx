@@ -10,7 +10,7 @@ const ProdDealCard = () => {
         <section className='prod-cont'>
             <img src={prodThumbnails.starlink} alt='' />
             <div className='prod-desc'>
-                <h3 className='prod-name'>Starlink Standard Actuated Kit</h3>
+                    <h3 className='prod-name'>Starlink Standard Actuated Kit</h3>
                     <div className='price'>
                         <span className='discounted-price price'>
                             <FontAwesomeIcon icon={faNairaSign}/> 230,000
@@ -21,7 +21,7 @@ const ProdDealCard = () => {
                         <span className='discount price'>-40%</span>
                     </div>
                     <div>
-                        <span>
+                        <span className='saved'>
                             You save 
                             <FontAwesomeIcon icon={faNairaSign} /> 300,00
                         </span>
