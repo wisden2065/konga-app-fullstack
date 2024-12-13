@@ -31,8 +31,8 @@ const Navbar = () => {
                         Login / <br /> Signup
                     </a>
                     <div id="cart-cont">
-                            <FontAwesomeIcon icon={faCartShopping} />
-                            My Cart
+                            <FontAwesomeIcon icon={faCartShopping} className='icon'/>
+                            My <br />Cart
                             <span id="span">0</span>
                     </div>
                 </div>

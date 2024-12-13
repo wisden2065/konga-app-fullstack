@@ -27,6 +27,10 @@
 
   --background-span: #ffd8d8;
   --color-span: #dc3f25;
+
+  --box-shadow-light: 0 1px 3px rgba(126, 125, 125, 0.08);
+  --box-shadow-dark: 0 4px 6px rgba(4, 4, 4, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    
 }
 *{
   margin: 0;

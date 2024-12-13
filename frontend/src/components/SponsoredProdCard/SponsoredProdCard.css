@@ -4,8 +4,7 @@
     /* width: max-content; */
 
     /* padding: 20px; */
-    box-shadow: 0 4px 6px rgba(150, 150, 150, 0.1), /* Subtle shadow */
-    0 1px 3px rgba(126, 125, 125, 0.08);
+    box-shadow: var(--box-shadow-light);
 }
 .sponsored-product-head{
     background-color: transparent;
@@ -19,8 +18,7 @@
     border-radius: 3px 3px 0 0;
 }
 .sponsored-prod-card-cont:hover{
-    box-shadow: 0 4px 6px rgba(4, 4, 4, 0.1), /* Subtle shadow */
-    0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow-dark)
 }
 .prod-cont img{
     height: 300px;

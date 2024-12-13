@@ -29,6 +29,7 @@
     display: flex;
     align-items: center;
     padding: 1.2rem;
+    color: var(--neutral-100);
     
 }
 #input-cont{
@@ -79,13 +80,17 @@
 }
 #nav-section #cart-cont{
     background-color: var(--btn-primary);
-    height: 70%;
-    width: 9rem;
+    height: 60%;
+    width: 7rem;
     display: flex;
     align-items: center;
+    /* justify-content: center; */
     gap: 10px;
     position: relative;
     border-radius: 2px;
+    margin-left: 10px;
+}
+#cart-cont .icon{
     margin-left: 10px;
 }
 #cart-cont span{
@@ -98,7 +103,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 20px;
+    right: 10px;
 }
 /* style for second nav */
 #span{

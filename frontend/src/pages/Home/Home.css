@@ -115,6 +115,7 @@
     
   
 }
+
 .category-img .category-img-wrapper{
     /* display: grid;
     grid-template-columns: repeat(6, 1fr); */
@@ -123,6 +124,7 @@
 }
 .category-img-wrapper .category-cont{
     padding: 0 20px;
+    box-shadow: var(--box-shadow-light);
 }
 .category-card .img-cont{
     width: 100%;

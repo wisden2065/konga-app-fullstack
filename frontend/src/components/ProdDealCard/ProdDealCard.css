@@ -18,7 +18,6 @@
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     color: var(--text-primary);
-    
 }
 .prod-deal-card-cont .prod-cont img{
     width: 90px;
