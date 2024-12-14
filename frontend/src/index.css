@@ -13,7 +13,8 @@
   --background-dark: #ed017f;
   --background-accent: #e9ecef;
   --background-tertiary: #94004f;
-  --background-pseudo: rgba(0, 0, 0, 0.85);;
+  --background-pseudo: rgba(0, 0, 0, 0.85);
+  --background-headingLight: #f5a623;
 
   --success-color: #28a745;
   --error-color: #dc3545;
@@ -39,5 +40,6 @@
   outline: none;
   border: none;
   text-decoration: none;
+  list-style-type: none;
 }
 

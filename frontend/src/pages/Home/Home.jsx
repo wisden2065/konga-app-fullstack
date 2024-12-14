@@ -6,6 +6,12 @@ import { spanImages } from '../../assets/images/index'
 import ProdDealCard from '../../components/ProdDealCard/ProdDealCard'
 import SponsoredProdCard from '../../components/SponsoredProdCard/SponsoredProdCard'
 import CategoryImgCard from '../../components/CategoryImgCard/CategoryImgCard'
+import OfficialStores from '../../components/OfficialStores/OfficialStores'
+import { barners } from '../../assets/images/index'
+import Dealscard from '../../components/DealsCard/Dealscard'
+
+
+
 const Home = () => {
   return (
     <>
@@ -82,6 +88,41 @@ const Home = () => {
                             <CategoryImgCard />
                         </div>
                     </div>
+                </div>
+                <div className='featured-brands'>
+                    <div className='featured-brand-head'>
+                        Official Store
+                    </div>
+                    <div className="official-brands-wrapper">
+                            <OfficialStores />
+                    </div>
+                </div>
+                <div className="categories-cont">
+                    <div className='categories-cont-wrapper'>
+                        <div className='product-head' id='recommended-head'>
+                            <h4><span id='recommended'>Recommended for you</span> <a href="" id='all-recommended'>See All Items</a></h4>
+                        </div>
+                        <div className='product-cont-wrapper'>
+                            <div className='product-cont'>
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="barner1">
+                    <img src={barners.barner1} alt="" />
+                </div>
+                <div className="barner2">
+                    <a className='img-cont'><img src={barners.barnerii} alt="" /></a>
+                    <a className='img-cont'><img src={barners.barneriii} alt="" /></a>
+                </div>
+                <div className="deals-wrapper">
+                        <Dealscard />
                 </div>
             </section>
         </main>

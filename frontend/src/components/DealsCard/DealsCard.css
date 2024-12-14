@@ -1,0 +1,23 @@
+.deals-card-cont{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 15px;
+}
+.deals-card-cont li{
+    border-radius: 8px;
+    overflow: hidden;
+}
+.deals-card-cont li img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.deals-card-cont li h3{
+    margin-bottom: 20px;
+}
+.deals-card-cont li p{
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+.deals-card-cont li span{
+    color: var(--text-tertiary);
+}
