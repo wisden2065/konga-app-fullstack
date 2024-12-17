@@ -47,6 +47,8 @@ import kids_wear from './kids_wear.webp'
 import home_furnishing from './home_furnishing.webp'
 import tv_deals from './tv_deals.webp'
 
+import iphoneThumbnail from '../Products/iphone.webp'
+
 export const images = {sideImg1, sideImg2, sideImg3, sideImg4}
 
 export const spanImages = {storeImg, watchImg, flightImg, brandImg, blogImg, billsImg}
@@ -82,3 +84,5 @@ export const dealsProduct = [
         "Product Desc" : "Get the TV You Want With Bargain Deals!" 
     }
 ]
+
+export default iphoneThumbnail
