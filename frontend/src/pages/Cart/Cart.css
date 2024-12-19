@@ -38,6 +38,7 @@
 }
 #phones h1{
     margin-top: 10px;
+
 }
 
 .prod-detail-section{
@@ -59,9 +60,9 @@
 }
 .prod-detail-contain{
     display: grid;
-    background-color: #ffff;
+    /* background-color: #c42f2f; */
     grid-template-columns: repeat(2, 1fr);
-    /* z-index: 1000; */
+    /* z-index: -1000; */
     padding: 20px;
 
 }
@@ -70,6 +71,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    z-index: 1;
 }
 
 .prod-detail-contain .phone-contain .right{
@@ -82,17 +84,20 @@
     align-items: center;
     position: absolute;
     right: 5%; top: 50%;
+    /* z-index: -1000; */
 }
 .prod-detail-contain .phone-contain .right i{
     color: white;
 }
 .phone-contain img{
     height: 20rem;
+    /* z-index: -1; */
 }
 .thumbnail-cont{
     display: flex;
     justify-content: center;
     gap: 5px;
+    /* z-index: -1; */
 }
 .thumbnail-cont img{
     height: 100%;
@@ -118,8 +123,21 @@
     align-items: center;
     padding: 10px 10px;
 }
-.prod-detail .qty ul li:nth-child(2){
-    padding: 5px 15px;
+.qty ul{
+    display: flex;
+}
+.qty ul li{
+    padding: 3px 10px;
+}
+.prod-detail .qty ul li:nth-child(1){
+    /* padding: 5px 15px; */
+    border-radius: 4px 0 0 4px;
+
+}
+.prod-detail .qty ul li:nth-child(3){
+    /* padding: 5px 15px; */
+    border-radius: 0 4px 4px 0;
+
 }
 .prod-detail .bulkPurchase{
     background-color: #fef2f9;
@@ -138,6 +156,7 @@
 .add-to-cart{
     display: flex;
     align-items: center;
+    padding: 15px 0;
 }
 .add-to-cart button{
     background-color: #33b27b;
@@ -194,6 +213,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 15px 0;
+    margin-bottom: 15px;
 }
 .social-icon-cont{
     display: flex;
