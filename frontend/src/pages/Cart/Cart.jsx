@@ -12,7 +12,7 @@ const Cart = () => {
                 <div id="phones">
                   <div id="innerPhone">
                     <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> Phones and Tablets <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> Mobile Phones <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a href="" className='active-cat'>Smart Phones</a></a>
-                    <span id='filter'>1 - 4 of <span>1000 results</span></span>
+                    {/* <span id='filter'>1 - 4 of <span>1000 results</span></span> */}
                   </div>
                   <h1>iOS Phones</h1>
                 </div>
