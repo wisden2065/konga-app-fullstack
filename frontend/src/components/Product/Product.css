@@ -1,0 +1,123 @@
+#productCont{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5px;
+    row-gap: 20px;
+    margin-top: 10px;
+    background-color: green;
+}
+.productItem{
+    background-color: #ffff;
+    /* height: 350px; */
+    width: 230px;
+    padding: 50px 10px 10px 10px;
+    position: relative;
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+    /* text-align: center; */
+}
+.productItem:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+}
+.productItem .saveProduct{
+    background-color: #ededed;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5%; right: 5%;
+    padding: 8px;
+    cursor: pointer;
+}
+.productItem .saveProduct:hover{
+    background-color: #fba100;
+}
+.productItem .saveProduct i{
+    font-size: 12px;
+}
+.productItem .prodBtn{
+    text-align: center;
+}
+.productItem hr{
+    border: solid .5px #eeeded;
+    border-bottom: none;
+}
+.productItem button{
+    padding: 10px 40px;
+    border: solid 1px #ed017f;
+    background-color: white;
+    color: #f84ca2;
+    margin: 10px 0;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.prodBtn button:hover{
+    background-color: #ed017f;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.productItem p{
+    margin: 0;
+}
+.prodImg{
+    background-color: rgb(177, 176, 176);
+    height: 250px;
+    height: 220px;
+    margin-bottom: 20px;
+}
+.prodImg img{
+    height: 100%;
+    width: 100%;
+}
+.prodPrice{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0; margin: 0;
+}
+.prodPrice h3{
+    color: #b1015f;
+}
+.prodPrice h3 i{
+    font-size: 13px;
+}
+.prodPrice h3, 
+.prodPrice p{
+    margin: 0;
+} 
+.prodSpan{
+    background-color: rgba(248, 72, 72, 0.2);
+    padding: 2px;
+    border-radius: 10px;
+}
+.productItem .p{
+    color: green;
+    padding: 0; margin: 0;
+}
+.topSpan{
+    background-color: rgba(196, 14, 14, 0.2);
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    position: absolute;
+}
+.soldBy{
+    font-size: 12px;
+    color: #b1acaf;
+}
+.soldBy span{
+    color: rgb(117, 35, 194);
+}
+.ratingCont{
+    display: flex;
+    font-size: 14px;
+    gap: 5px;
+}
