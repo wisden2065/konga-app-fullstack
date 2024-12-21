@@ -11,6 +11,7 @@
 
   --background-light: #e084b2;
   --background-dark: #ed017f;
+  --background-body: #f2f2f2;
   --background-accent: #e9ecef;
   --background-tertiary: #94004f;
   --background-pseudo: rgba(0, 0, 0, 0.85);
@@ -43,3 +44,6 @@
   list-style-type: none;
 }
 
+body{
+  background-color: var(--background-body);
+}

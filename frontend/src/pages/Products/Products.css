@@ -1,5 +1,9 @@
-.all-products-cont{
+.current-prod-active{
+    background-color:var(--neutral-100);
     padding: 20px;
+}
+.all-products-cont{
+    /* padding: 20px; */
 }
 #innerPhone{
     /* background-color: aqua; */
@@ -39,6 +43,7 @@ ul{
 }
 #cont .active-sort{
     border: solid #ed017f .5px;
+    color: #ed017f;
 }
 #cont{
 
@@ -92,10 +97,10 @@ ul{
     display: unset;
 }
 #white{
-    background-color: #fff;
+    background-color: var(--neutral-100);
     width: 90%;
     margin-top: 15px;
-    padding: 5px;
+    padding: 10px;
 }
 .inputP{
     display: flex;
@@ -234,6 +239,10 @@ input[type='button']{
     padding: 5px 10px;  
     border: none;
 }
+hr{
+    background-color: #c2bfbf;
+    height: .5px;
+}
 #hr{
     height: 20px;
     /* background-color: red; */
@@ -272,4 +281,52 @@ input[type='button']{
     border: solid .2px blue;
     padding: 5px 10px;
     color: blue;
+}
+.price-filter{
+    width: 100%;
+    margin: 10px 0;
+}
+.price-filter h4{
+    margin: 10px 0;
+}
+.price-filter form{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 10px;
+    width: 200px;
+    /* background-color: #33b27b; */
+}
+.price-filter form div{
+    padding: 5px 10px;
+    width: 80px;
+    display: flex;
+    border: solid 1px rgb(223, 218, 218);
+    font-size: 13px;
+}
+.price-filter form div input{
+    width: 90%;
+    height: 100%;
+}
+.price-filter form button{
+    border: solid 1px #ed017f;
+    padding: 5px 10px;
+    color: #ed017f;
+    background-color: #fff;
+}
+.searchBrand-cont{
+    margin-top: 20px;
+    display: flex;
+    border: #b1acaf solid 1px;
+    padding: 5px;
+    justify-content: space-between;
+}
+.searchBrand-cont input{
+    width: 90%;
+    height: 100%;
+}
+.sort-checkbox{
+    margin: 20px 0;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
