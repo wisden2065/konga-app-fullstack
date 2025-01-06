@@ -106,7 +106,9 @@
 .thumbnail-cont .active{
     border: #fcb63a solid .3px;
 }
-
+.prod-detail{
+    padding: 10px 0;
+}
 .prod-detail hr{
     background-color: rgb(235, 234, 234);
     border: none;

@@ -34,7 +34,8 @@
     align-items: center;
     padding: 1.2rem;
     color: var(--neutral-100);
-    
+    cursor: pointer;
+
 }
 #input-cont{
     width: 45%;
@@ -95,6 +96,7 @@
     position: relative;
     border-radius: 2px;
     margin-left: 10px;
+    cursor: pointer;
 
 }
 #cart-cont .icon{
@@ -132,6 +134,13 @@
     /* width: 1900px; */
     /* position: relative; */
 }
+#secondNav div{
+    color: var(--neutral-100);
+}
+#secondNav div:hover{
+    background-color: var(--neutral-100);
+    color: var(--text-primary);
+}
 #secondNav .all-cat{
     display: flex;
     gap: 10px;
@@ -143,4 +152,5 @@
     align-items: center;
     padding: 5px;
     /* position: relative; */
+    cursor: pointer;
 }

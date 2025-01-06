@@ -1,11 +1,17 @@
 
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import Logo from '../../assets/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch} from '@fortawesome/free-solid-svg-icons'
+import {ProductContext} from '../../context/ProductContext'
 
 const Navbar = () => {
+    
+    // const [activeProdCat, setActiveProdCat] = useState('all')
+    const {activeProdCat, setActiveProdCat} = useContext(ProductContext)
+    console.log(activeProdCat)
+    const { cartItems, addToCart, removeFromCart } = useContext(ProductContext)
   return (
             <div id='nav-sect-wrapper'>
                 <div id="nav-section">
@@ -37,40 +43,73 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div id='secondNav'>
-                    <div className="inner all-cat">
+                    <div className="inner all-cat"
+                        onClick={()=>{
+                            setActiveProdCat('all');
+                            console.log("Current category:",activeProdCat)
+                        }}
+                    >
                         All category
                         <FontAwesomeIcon icon={faBars} />
-                </div>
-                <div className="inner drp">
-                    Computer and Accessories
-                </div>
-                
-                <div className="inner drp">
-                    Phones and tablets
-                </div>
-                
-                <div className="inner drp">
-                    Electronics
-                </div>
-                
-                <div className="inner drp">
-                    Konga fashion
-                </div>
-                
-                <div className="inner drp">
-                    Home and Kitchen
-                </div>
-                
-                <div className="inner drp">
-                    Baby, Kids and Toys
-                </div>
-                
-                <div className="inner drp">
-                    Beauty, Health and Personal Care
-                </div>
+                    </div>
+                    <div className='inner drp' 
+                        onClick={()=>{
+                            setActiveProdCat('laptops');
+                            console.log("Current category:",activeProdCat)
+                        }}
+                    >
+                        Computer and Accessories
+                    </div>
+                    <div href="" className='inner drp'
+                          onClick={()=>{
+                            setActiveProdCat('phones');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Phones and tablets
+                    </div>
+                    <div href='' className="inner drp"
+                          onClick={()=>{
+                            setActiveProdCat('electronics');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Electronics
+                    </div>
+                    <div href='' className="inner drp"
+                          onClick={()=>{
+                            setActiveProdCat('fashion');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Konga fashion
+                    </div>
+                    <div href='' className="inner drp"
+                          onClick={()=>{
+                            setActiveProdCat('kitchen');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Home and Kitchen
+                    </div>
+                    <div href='' className="inner drp"
+                          onClick={()=>{
+                            setActiveProdCat('kids');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Baby, Kids and Toys
+                    </div>
+                    <div href='' className="inner drp"
+                          onClick={()=>{
+                            setActiveProdCat('health');
+                            console.log(activeProdCat)
+                        }}
+                    >
+                        Beauty, Health and Personal Care
+                    </div>
                 </div>
             </div>
-            
   )
 }
 

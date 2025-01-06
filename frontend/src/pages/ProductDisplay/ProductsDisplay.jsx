@@ -1,14 +1,22 @@
 import { faChevronRight, faMinus, faNairaSign, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Products.css'
+import './ProductDisplay.css'
 import Product from '../../components/Product/Product'
+import { useContext } from 'react'
+import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
+import topBanner from '../../assets/images/productsPageBanner.webp'
+// C:\Users\HP\Desktop\konga clone\konga-app-fullstack\frontend\src\assets\images\producsPageBanner.webp
 
-const Products = () => {
+const Products = ({category}) => {
+    
+    const { activeProdCat, setActiveProdCat } = useContext(ProductContext)
+    const {product_list} = useContext(ProductContext);
+    console.log(activeProdCat)
   return (
     <div className='all-products-cont'>
         <div className='current-prod-active'>
             <div id="innerPhone">
-                <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a href="" className='active-cat'>Phones and Tablets</a></a>
+                <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <p  className='active-cat'>Phones and Tablets</p></a>
                 <span id='filter'>1 - 4 of <span>1000 results</span></span>
             </div>
             <div className='current-category'>
@@ -161,7 +169,7 @@ const Products = () => {
             </div>
             <div id="main">
                 <div id="top">
-                     <img src="pictures/PhonesTen.webp" alt="" />
+                     <img src={topBanner} alt="" />
                 </div>
                 <div id="productCont">
                     {/* <!-- dynamically insert productItem with JS -->
@@ -179,13 +187,18 @@ const Products = () => {
                             <p className="p">You save N11,300</p>
                             
                         </div> --> */}
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
+                        {console.log(category)}
+                        {console.log(activeProdCat)}
+                        {product_list.map((prod, index)=>{
+                                // {console.log(prod.Product_category)}
+                                // {console.log(activeProdCat)}
+                                // {console.log(category)}
+
+                            if( activeProdCat == 'all' || activeProdCat == prod.Product_category){
+                                // console.log('Category is all')
+                                return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image} />
+                            }
+                        })}
                 </div>
             </div>
         </div>
