@@ -4,13 +4,33 @@ import './ProductDisplay.css'
 import Product from '../../components/Product/Product'
 import { useContext } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
-import topBanner from '../../assets/images/productsPageBanner.webp'
+import topBanner from '../../assets/images/productsWebBanner.webp'
+import { product_list } from '../../assets/images/products'
+// import topBanner from '../../assets/images/productsPageBanner.webp'
 // C:\Users\HP\Desktop\konga clone\konga-app-fullstack\frontend\src\assets\images\producsPageBanner.webp
 
 const Products = ({category}) => {
     
     const { activeProdCat, setActiveProdCat } = useContext(ProductContext)
     const {product_list} = useContext(ProductContext);
+    const prodFilterDisplay = new Set();
+
+    function performFilter(){
+        product_list.map((prod)=>{
+            if(prod.Product_category == activeProdCat || activeProdCat == 'all'){
+                return prodFilterDisplay.add(prod.Product_Brand)
+            }
+    })}
+    const displayProductBrand =()=>{
+        console.log('New brand clicked!!')
+        product_list.map((prod, index)=>{
+        if( activeProdCat == 'all' || activeProdCat == prod.Product_category){
+            // console.log('Category is all')
+            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image} brand={prod.Product_Brand} />
+        }
+    })
+    }
+    performFilter()
     console.log(activeProdCat)
   return (
     <div className='all-products-cont'>
@@ -103,7 +123,7 @@ const Products = ({category}) => {
                             <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
                         </div>
                         <div className='sort-checkbox'>
-                            <div className="inputP">
+                            {/* <div className="inputP">
                                 <input type="checkbox" name="" id="" />
                                 <p>Samsung</p>
                             </div>
@@ -162,7 +182,19 @@ const Products = ({category}) => {
                             <div className="inputP">
                                 <input type="checkbox" name="" id="" />
                                 <p>Green</p>
-                            </div>
+                            </div> */}
+                            {/* Get all the products in the activeProdCat, loop through them an get the Product_brand key values */}
+
+                            {
+                                Array.from(prodFilterDisplay).map((prod, index)=>{
+                                    return <div className="inputP" key={index}>
+                                                    <input type="checkbox" name="" id="" 
+                                                        onClick={displayProductBrand}
+                                                    />
+                                                    <p>{prod}</p>
+                                            </div>
+                                })
+                            }
                         </div>
                     </div>
                 </div>

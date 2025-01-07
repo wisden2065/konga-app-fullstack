@@ -154,3 +154,10 @@
     /* position: relative; */
     cursor: pointer;
 }
+
+
+@media (max-width:1050px) {
+    .logo-cont .logo{
+        width: 140px;
+    }
+}
