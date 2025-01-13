@@ -2,8 +2,9 @@
     background-color:var(--neutral-100);
     padding: 20px;
 }
-.all-products-cont{
+#productCont{
     /* padding: 20px; */
+    /* overflow-x: hidden; */
 }
 #innerPhone{
     /* background-color: aqua; */
@@ -107,7 +108,7 @@ ul{
     justify-content: start;
     align-items: center;
     font-size: 12px;
-    width: 200px;
+    width: 100%;
     gap: 5px;
     margin: 0;
     padding: 0;
@@ -294,11 +295,12 @@ hr{
     display: flex;
     /* justify-content: space-between; */
     gap: 10px;
-    width: 200px;
+    width: 100%;
     /* background-color: #33b27b; */
 }
 .price-filter form div{
     padding: 5px 10px;
+
     width: 80px;
     display: flex;
     border: solid 1px rgb(223, 218, 218);
