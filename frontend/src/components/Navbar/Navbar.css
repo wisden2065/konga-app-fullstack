@@ -86,7 +86,7 @@
 }
 #nav-section #cart-cont{
     background-color: var(--btn-primary);
-    height: 60%;
+    height: 70%;
     width: 7rem;
     display: flex;
     align-items: center;
@@ -98,6 +98,9 @@
     margin-left: 10px;
     cursor: pointer;
 
+}
+#nav-section #cart-cont:hover{
+    background-color: var(--text-secondary);
 }
 #cart-cont .icon{
     margin-left: 10px;
@@ -124,6 +127,8 @@
     align-items: center;
     border-radius: 4px;
     color: var(--neutral-100);
+    font-size: 18px;
+    font-weight: 600;
 }
 #secondNav{
     display: flex;

@@ -6,9 +6,11 @@ import { useContext, useState } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
 
 
-const Product = ({name, price, category, image, brand}) => {
+const Product = ({name, price, category, image, brand, id}) => {
     const [cartItemCount, setCartItemCount] = useState(0);
-    const { activeProdCat, setActiveProdCat } = useContext(ProductContext)
+    const { activeProdCat, setActiveProdCat} = useContext(ProductContext);
+    const { addToCart, removeFromCart} = useContext(ProductContext);
+
 
         return <>
                     <div className="productItem" category={category} brand={brand} >
@@ -37,7 +39,7 @@ const Product = ({name, price, category, image, brand}) => {
                                         </div>
                                         <p>No reviews yet</p>
                                     </div>
-                                    <div className="prodBtn"><a><button>Add To Cart</button></a></div>
+                                    <div className="prodBtn"><a onClick={()=>{addToCart(id)}}><button>Add To Cart</button></a></div>
                               </div>
                     </div>  
                     {/* } */}
@@ -45,5 +47,6 @@ const Product = ({name, price, category, image, brand}) => {
             
         
 }
+
 
 export default Product

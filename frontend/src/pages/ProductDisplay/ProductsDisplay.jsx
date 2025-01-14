@@ -188,7 +188,7 @@ const Products = ({category}) => {
                             {/* {} */}
                         {product_list.map((prod, index)=>{
                             if(isActiveCheckBox){
-                                console.log('there is an active checkbox')
+                                // console.log('there is an active checkbox')
                                     // const brand = [...checked]
                                     let brands
                                     if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
@@ -196,20 +196,17 @@ const Products = ({category}) => {
                                         brands = checked.map((b, i)=>{
                                             if(prod.Product_Brand==b){
                                                 console.log(b);
-                                                return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} />
+                                                return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
                                             }
-                                            // return null
-
                                         })
-                                    
                                     }
                                     return <>{brands}</>
                             }
-                            
+                        
                             else{
                                 if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
                                     console.log('there is no active chekbox')
-                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image} />
+                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
                                 }
                             }
                         })}

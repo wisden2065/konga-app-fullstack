@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import Logo from '../../assets/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,7 +11,11 @@ const Navbar = () => {
     // const [activeProdCat, setActiveProdCat] = useState('all')
     const {activeProdCat, setActiveProdCat} = useContext(ProductContext)
     console.log(activeProdCat)
-    const { cartItems, addToCart, removeFromCart } = useContext(ProductContext)
+    const { cartItems, addToCart, removeFromCart, prodCount } = useContext(ProductContext)
+    useEffect(()=>{
+        console.log(cartItems)
+        // console.log(cartItems.length)
+    }, [cartItems])
   return (
             <div id='nav-sect-wrapper'>
                 <div id="nav-section">
@@ -39,7 +43,8 @@ const Navbar = () => {
                     <div id="cart-cont">
                         <FontAwesomeIcon icon={faCartShopping} className='icon'/>
                         My <br />Cart
-                        <span id="span">0</span>
+                        <span id="span">{prodCount}</span>
+                        {/* <span id="span">{Array.from(cartItems.keys).length}</span> */}
                     </div>
                 </div>
                 <div id='secondNav'>
