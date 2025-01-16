@@ -4,15 +4,26 @@ import { faHeart, faNairaSign, faStar } from '@fortawesome/free-solid-svg-icons'
 import iphoneThumbnail from '../../assets/images'
 import { useContext, useState } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
+import { useNavigate } from 'react-router-dom'
 
 
 const Product = ({name, price, category, image, brand, id}) => {
     const [cartItemCount, setCartItemCount] = useState(0);
     const { activeProdCat, setActiveProdCat} = useContext(ProductContext);
     const { addToCart, removeFromCart} = useContext(ProductContext);
+    const { seeProdDesc } = useContext(ProductContext);
+    const navigate = useNavigate()
 
 
-        return <>
+        return <div onClick={(e)=>{
+                                console.log(e.target)
+                                if(e.target.matches('.btn')){
+                                    addToCart(id)
+                                }
+                                else{
+                                    seeProdDesc(id)
+                                    navigate('/category/product')
+                                }}} id={id}>
                     <div className="productItem" category={category} brand={brand} >
                                 <div className="saveProduct"><FontAwesomeIcon icon={faHeart} style={{color: '#ffff'}} /></div>
                                 <span className="topSpan">-9%</span>
@@ -39,11 +50,11 @@ const Product = ({name, price, category, image, brand, id}) => {
                                         </div>
                                         <p>No reviews yet</p>
                                     </div>
-                                    <div className="prodBtn"><a onClick={()=>{addToCart(id)}}><button>Add To Cart</button></a></div>
+                                    <div className="prodBtn"><button className='btn'>Add To Cart</button></div>
                               </div>
                     </div>  
                     {/* } */}
-               </>
+               </div>
             
         
 }

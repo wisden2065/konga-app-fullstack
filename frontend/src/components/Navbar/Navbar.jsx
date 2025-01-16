@@ -5,6 +5,7 @@ import Logo from '../../assets/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch} from '@fortawesome/free-solid-svg-icons'
 import {ProductContext} from '../../context/ProductContext'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     
@@ -12,6 +13,8 @@ const Navbar = () => {
     const {activeProdCat, setActiveProdCat} = useContext(ProductContext)
     console.log(activeProdCat)
     const { cartItems, addToCart, removeFromCart, prodCount } = useContext(ProductContext)
+    const navigate = useNavigate()
+    
     useEffect(()=>{
         console.log(cartItems)
         // console.log(cartItems.length)
@@ -47,7 +50,13 @@ const Navbar = () => {
                         {/* <span id="span">{Array.from(cartItems.keys).length}</span> */}
                     </div>
                 </div>
-                <div id='secondNav'>
+                <div id='secondNav' onClick={
+                    (e)=>{
+                        if(e.target.matches('.inner')){
+                            navigate('/category/products')
+                        }
+                    }
+                }>
                     <div className="inner all-cat"
                         onClick={()=>{
                             setActiveProdCat('all');

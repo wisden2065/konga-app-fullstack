@@ -1,11 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  './Cart.css'
+import  './ProductDescription.css'
 import { faChevronDown, faChevronLeft, faChevronRight, faHandHoldingHeart, faHeart, faMinus, faNairaSign, faPersonWalking, faPersonWalkingArrowLoopLeft, faPlus, faStar, faTruck, faTruckFast } from '@fortawesome/free-solid-svg-icons'
 import iphoneThumbnail from '../../assets/images'
 import { faFacebook, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { useContext } from 'react'
+import { ProductContext } from '../../context/ProductContext'
 
 
 const Cart = () => {
+
+    const {seeProdDesc} = useContext(ProductContext)
+    console.log('In the Product Description page')
+    // seeProdDesc()
+    
+   
   return (
           <>
               <div id="phonesTablet">

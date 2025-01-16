@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { product_list } from "../assets/images/products";
+import { faPersonWalkingDashedLineArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 
 export const ProductContext = createContext(null)
@@ -40,6 +41,12 @@ const ProductContextProvider = (props)=>{
         }
    
     }
+    const seeProdDesc=(id)=>{
+        console.log('Product with id', id, 'clicked')
+        // product_list.filter((prod)=>{
+        //     return prod == prod.id
+        // })
+    }
 
     // const ProductContext = useContext(null);
     const contextValue = {
@@ -49,7 +56,8 @@ const ProductContextProvider = (props)=>{
         removeFromCart,
         activeProdCat,
         setActiveProdCat,
-        prodCount
+        prodCount,
+        seeProdDesc
     }
 
     return <ProductContext.Provider value={contextValue}>
