@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch} from '@fortawesome/free-solid-svg-icons'
 import {ProductContext} from '../../context/ProductContext'
 import { useNavigate } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
 
 const Navbar = () => {
     
@@ -124,6 +125,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            ||
+            <Skeleton />
   )
 }
 

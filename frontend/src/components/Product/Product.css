@@ -72,11 +72,24 @@
     margin: 0;
 }
 .prodImg{
-    background-color: rgb(177, 176, 176);
+    /* background-color: rgb(177, 176, 176); */
     height: 250px;
     height: 220px;
     margin-bottom: 20px;
+    animation: skeleton-loading 1s linear infinite alternate;
 }
+
+@keyframes skeleton-loading {
+    0%{
+        /* background-color: hsl(204, 4%, 76%); */
+        background-color: #efecec;
+    }
+    100%{
+        /* background-color: hsl(200, 20%, 95%); */
+        background-color: #ebebeb;
+    }
+}
+
 .prodImg img{
     height: 100%;
     width: 100%;
@@ -126,4 +139,18 @@
     display: flex;
     font-size: 14px;
     gap: 5px;
+}
+
+/* loading state */
+.skeleton{
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton {
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
 }

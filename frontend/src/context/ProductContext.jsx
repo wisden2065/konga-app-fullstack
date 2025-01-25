@@ -10,6 +10,7 @@ const ProductContextProvider = (props)=>{
     const [cartItems, setCartItems] = useState({});
     const [activeProdCat, setActiveProdCat] = useState('all')
     const [prodCount, setProdCount] = useState(0)
+    const [itemDesc, setItemDesc] = useState({})
 
     const addToCart =(itemId)=>{
         console.log('In add to cart function')
@@ -43,9 +44,10 @@ const ProductContextProvider = (props)=>{
     }
     const seeProdDesc=(id)=>{
         console.log('Product with id', id, 'clicked')
-        // product_list.filter((prod)=>{
-        //     return prod == prod.id
-        // })
+        const prodInProdDesc = product_list.filter((prod)=>{
+            return prod.id == id})
+        console.log(prodInProdDesc)
+        setItemDesc(prodInProdDesc)
     }
 
     // const ProductContext = useContext(null);
@@ -57,7 +59,8 @@ const ProductContextProvider = (props)=>{
         activeProdCat,
         setActiveProdCat,
         prodCount,
-        seeProdDesc
+        seeProdDesc,
+        itemDesc
     }
 
     return <ProductContext.Provider value={contextValue}>

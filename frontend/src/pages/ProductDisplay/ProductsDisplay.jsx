@@ -5,7 +5,14 @@ import Product from '../../components/Product/Product'
 import { useContext, useEffect, useRef, useState } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
 import topBanner from '../../assets/images/productsWebBanner.webp'
-import { product_list } from '../../assets/images/products'
+// import { product_list } from '../../assets/images/products'
+import {Helmet} from "react-helmet";
+import { getProducts } from '../../assets/images/products.js'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import loading from '../../../src/assets/images/loading.gif'
+
+
 
 const Products = ({category}) => {
     // holds the state of all the displayed checkbox-if checked or not 
@@ -17,11 +24,30 @@ const Products = ({category}) => {
     // checks if any of the checkbox is checked or not
     const [isActiveCheckBox, setActiveCheckBox] = useState(false);
 
+    // state to sort products by relevance
+    const [sortState, setSortState] = useState('relevance')
+
+
     // holds and sets the state and value of the current product category
     const { activeProdCat, setActiveProdCat } = useContext(ProductContext)
 
     // hold the values of all product list to be rendered in the this component
-    const {product_list} = useContext(ProductContext);
+    // const {product_list} = useContext(ProductContext);   // commented this to implement loading state --uncomment 
+
+
+    // loading states
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [product_list, setProductList] = useState([])
+
+    useEffect(()=>{
+        getProducts()
+            .then((prod)=>{
+                setProductList(prod)
+                setIsLoading(false)
+            })
+        
+    }, [])
 
     const performBrandFiltering=()=>{
 
@@ -39,183 +65,218 @@ const Products = ({category}) => {
     
     useEffect(()=>{
         performBrandFiltering() //::function invocation to dynamically update the available brands for a category
-        console.log('brand filtered')
         // isAnyChecked()
     }, [activeProdCat])
 
     // Handler for click on the dynamically updated product brands on click of any of the checkboxes in brand categories
     const handleChange =(brand)=>{
         // remove target checkbox from our array of checked list if target is already in the array
-        console.log(checked)
-        console.log('clicked brand:', brand)
         if(checked.includes(brand)){
-            console.log('Checked array includes',brand)
             setChecked(checked.filter(c=> c !== brand))
         }
         else{
-            console.log('Checked array does not include',brand)
             setChecked([...checked, brand])
         }
         // anyActiveCheckbox()
     }
-
     // find if there is any active checkbox
    useEffect(()=>{
-        console.log('Checking if there is any active checkbox.....')
-        console.log(checked)
         if(checked.length == 0){
             setActiveCheckBox(false)
-            console.log('No checkbox is active')
         }
         else if(checked.length > 0){
             setActiveCheckBox(true)
-            console.log('There is an active checkbox')
         }
     }, [checked])
   return (
-    <div className='all-products-cont'>
-        <div className='current-prod-active'>
-            <div id="innerPhone">
-                <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <p  className='active-cat'>Phones and Tablets</p></a>
-                <span id='filter'>1 - 4 of <span>1000 results</span></span>
-            </div>
-            <div className='current-category'>
-                <h1>Phones And Tablets</h1>
-                <div id="cont">
-                    <p>Sort By:</p>
-                    <ul>
-                        <li className="active-sort">Relevance</li>
-                        <li id="remove">Price - High To Low</li>
-                        <li>Price - Low To High</li>
-                    </ul>
+    <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <meta name='title' content='Prodcut Display - Apple'/>
+                <meta name='description' content='This page display all of the Apple IOs dat mdjfdkfdfd'/>
+                <title>Product Display - Apple</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
+
+            <div className='all-products-cont'>
+            <div className='current-prod-active'>
+                <div id="innerPhone">
+                    <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <p  className='active-cat'>Phones and Tablets</p></a>
+                    <span id='filter'>1 - 4 of <span>1000 results</span></span>
+                </div>
+                <div className='current-category'>
+                    <h1>Phones And Tablets</h1>
+                    <div id="cont">
+                        <p>Sort By:</p>
+                        <ul>
+                            <li className={sortState=='relevance'? "active-sort": ''}
+                                onClick={()=>{setSortState('relevance')}}
+                            >Relevance</li>
+                            <li id="remove" className={sortState=='high'? "active-sort": ''}
+                                onClick={()=>{setSortState('high')}}
+                            >Price - High To Low</li>
+                            <li className={sortState=='low'? "active-sort": ''}
+                                onClick={()=>{setSortState('low')}}
+                            >Price - Low To High</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <section id="sect">
-        <div className="browseCategory">
-            <div id="browseCont">
-                <div id="white">
-                    <div className="browseFlex">
-                        <h3>Browse Categories</h3> 
-                        <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                    </div>
-                    <ul id="tablets">
-                        <li>Mobile Phones and Accessories</li>
-                        <li>Mobile Phones</li>
-                        <li>Tablet Accessories</li>
-                        <li>Desk, Radio & Intercom Phones</li>
-                        <li>Tablets</li>
-                        <li>Phone & Tablet Bundles</li>
-                    </ul>
-                    <hr/>
-                    <div className="browseFlex">
-                        <h3>Price</h3>
-                        <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                        {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
-                        
-                    </div>
-                    <div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>Under N2000</p>
-                        </div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>N2000 - N5000</p>
-                        </div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>N5000 - N10000</p>
-                        </div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>N10000 - N20000</p>
-                        </div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>N20000 - N40000</p>
-                        </div>
-                        <div className="inputP">
-                            <input type="checkbox" name="" id="" />
-                            <p>Above N40000</p>
-                        </div>
-                        <div className='price-filter'>
-                            <h4>Custom Price Range</h4>
-                            <form action="">
-                                <div>
-                                    <FontAwesomeIcon icon={faNairaSign} />
-                                    <input type="text" placeholder='Min' name="" id="" />
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon icon={faNairaSign} />
-                                    <input type="text" placeholder='Max' name="" id="" />
-                                </div>
-                                <button>GO</button>
-                            </form>
-                        </div>
+            <section id="sect">
+            <div className="browseCategory">
+                <div id="browseCont">
+                    <div id="white">
                         <div className="browseFlex">
-                        <h3>Brand</h3>
-                        <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                        {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                            <h3>Browse Categories</h3> 
+                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
                         </div>
-                        <div className="searchBrand-cont">
-                            <input type="text" placeholder='Search Brand...' />
-                            <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
+                        <ul id="tablets">
+                            <li>Mobile Phones and Accessories</li>
+                            <li>Mobile Phones</li>
+                            <li>Tablet Accessories</li>
+                            <li>Desk, Radio & Intercom Phones</li>
+                            <li>Tablets</li>
+                            <li>Phone & Tablet Bundles</li>
+                        </ul>
+                        <hr/>
+                        <div className="browseFlex">
+                            <h3>Price</h3>
+                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                            {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                            
                         </div>
-                        <div className='sort-checkbox'>
-                            {console.log(currentFilteredBrands)}
-                            {
-                                
-                                Array.from(currentFilteredBrands).map((brand,index)=>{
-                                  
-                                    return <div className="inputP" key={index}>
-                                                    <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
-                                                        onChange={()=>{handleChange(brand)}}
-                                                    />
-                                                    <p>{brand}</p>
+                        <div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>Under N2000</p>
+                            </div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>N2000 - N5000</p>
+                            </div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>N5000 - N10000</p>
+                            </div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>N10000 - N20000</p>
+                            </div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>N20000 - N40000</p>
+                            </div>
+                            <div className="inputP">
+                                <input type="checkbox" name="" id="" />
+                                <p>Above N40000</p>
+                            </div>
+                            <div className='price-filter'>
+                                <h4>Custom Price Range</h4>
+                                <form action="">
+                                    <div>
+                                        <FontAwesomeIcon icon={faNairaSign} />
+                                        <input type="text" placeholder='Min' name="" id="" />
+                                    </div>
+                                    <div>
+                                        <FontAwesomeIcon icon={faNairaSign} />
+                                        <input type="text" placeholder='Max' name="" id="" />
+                                    </div>
+                                    <button>GO</button>
+                                </form>
+                            </div>
+                            <div className="browseFlex">
+                            <h3>Brand</h3>
+                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                            {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                            </div>
+                            <div className="searchBrand-cont">
+                                <input type="text" placeholder='Search Brand...' />
+                                <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
+                            </div>
+                            <div className='sort-checkbox'>
+                                {
+                                    
+                                    Array.from(currentFilteredBrands).map((brand,index)=>{
+                                    
+                                        return <div className="inputP" key={index}>
+                                                        <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
+                                                            onChange={()=>{handleChange(brand)}}
+                                                        />
+                                                        <p>{brand}</p>
+                                                </div>
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="main">
+                    <div id="top">
+                        <img src={topBanner} alt="" />
+                    </div>
+                    <div id="productCont">
+                            {product_list.length === 0?
+                                Array(10)
+                                .fill(0).map((_, i)=>{
+                                    // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
+                                    return  <div key={i}>
+                                                <div>
+                                                    <div className="prodImg">
+                                                        {/* {<Skeleton />} */}
+                                                    </div>
+                                                    <div className='prodDesc'>
+                                                        <p>{<Skeleton />}</p>
+                                                        <div className="prodPrice">
+                                                            <h3>{<Skeleton />}</h3>
+                                                            <p>{<Skeleton />}</p>
+                                                        </div>
+                                                        <p className="soldBy">{<Skeleton />}</p>
+                                                        <div className="ratingCont">
+                                                            <div>
+                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                            </div>
+                                                            <p>{<Skeleton />}</p>
+                                                        </div>
+                                                        <div className="prodBtn">{<Skeleton />}</div>
+                                                    </div>
+                                                </div>  
                                             </div>
                                 })
-                            }
-                        </div>
+                                :
+                                product_list.map((prod, index)=>{
+                                    if(isActiveCheckBox){
+                                            // const brand = [...checked]
+                                            let brands
+                                            if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                                brands = checked.map((b, i)=>{
+                                                    if(prod.Product_Brand==b){
+                                                        return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
+                                                        
+                                                    }
+                                                })
+                                            }
+                                            return <>{brands}</>
+                                    }
+                                
+                                    else{
+                                        if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
+                                        }
+                                    }
+                                })
+                        }
+                            
                     </div>
                 </div>
             </div>
-            <div id="main">
-                <div id="top">
-                     <img src={topBanner} alt="" />
-                </div>
-                <div id="productCont">
-                            {/* {} */}
-                        {product_list.map((prod, index)=>{
-                            if(isActiveCheckBox){
-                                // console.log('there is an active checkbox')
-                                    // const brand = [...checked]
-                                    let brands
-                                    if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                        console.log('before foreach loop')
-                                        brands = checked.map((b, i)=>{
-                                            if(prod.Product_Brand==b){
-                                                console.log(b);
-                                                return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
-                                            }
-                                        })
-                                    }
-                                    return <>{brands}</>
-                            }
-                        
-                            else{
-                                if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                    console.log('there is no active chekbox')
-                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
-                                }
-                            }
-                        })}
-                        
-                </div>
-            </div>
+        </section>
         </div>
-    </section>
-    </div>
+    </>
+
   )
 }
 

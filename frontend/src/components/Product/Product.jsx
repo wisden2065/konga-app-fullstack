@@ -5,6 +5,8 @@ import iphoneThumbnail from '../../assets/images'
 import { useContext, useState } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
 import { useNavigate } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
+
 
 
 const Product = ({name, price, category, image, brand, id}) => {
@@ -13,11 +15,12 @@ const Product = ({name, price, category, image, brand, id}) => {
     const { addToCart, removeFromCart} = useContext(ProductContext);
     const { seeProdDesc } = useContext(ProductContext);
     const navigate = useNavigate()
-
+    
 
         return <div onClick={(e)=>{
                                 console.log(e.target)
                                 if(e.target.matches('.btn')){
+                                    e.stopPropagation()
                                     addToCart(id)
                                 }
                                 else{
@@ -28,7 +31,7 @@ const Product = ({name, price, category, image, brand, id}) => {
                                 <div className="saveProduct"><FontAwesomeIcon icon={faHeart} style={{color: '#ffff'}} /></div>
                                 <span className="topSpan">-9%</span>
                                 <div className="prodImg">
-                                    <img src={image} />
+                                    <img src={image || <Skeleton />} /> 
                                 </div>
                               <div className='prodDesc'>
                                 <p>{name}</p>
@@ -53,7 +56,6 @@ const Product = ({name, price, category, image, brand, id}) => {
                                     <div className="prodBtn"><button className='btn'>Add To Cart</button></div>
                               </div>
                     </div>  
-                    {/* } */}
                </div>
             
         

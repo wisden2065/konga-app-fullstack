@@ -9,10 +9,9 @@ import { ProductContext } from '../../context/ProductContext'
 
 const Cart = () => {
 
-    const {seeProdDesc} = useContext(ProductContext)
+    const {seeProdDesc, itemDesc} = useContext(ProductContext)
     console.log('In the Product Description page')
-    // seeProdDesc()
-    
+    console.log(itemDesc[0])
    
   return (
           <>
@@ -32,17 +31,17 @@ const Cart = () => {
                           <div className="phone-plus-thumbnail-cont">
                               <div className="phone-contain">
                                   <span className="right"><FontAwesomeIcon icon={faChevronLeft} /></span>
-                                  <img src={iphoneThumbnail} alt="" />
+                                  <img src={itemDesc[0].Product_Image} alt="" />
                                   <span className="right"><FontAwesomeIcon  icon={faChevronRight}/></span>
                               </div>
                               <ul className="thumbnail-cont">
-                                  <li className="active"><img src={iphoneThumbnail} alt="" /></li>
-                                  <li><img src={iphoneThumbnail} alt="" /></li>
-                                  <li><img src="pictures/iphone.webp" alt="" /></li>
+                                  <li className="active"><img src={itemDesc[0].Product_Image} alt="" /></li>
+                                  <li><img src={itemDesc[0].Product_Image} alt="" /></li>
+                                  <li><img src={itemDesc[0].Product_Image} alt="" /></li>
                               </ul>
                           </div>
                           <div className="prod-detail">
-                              <h4>Apple iPhone 15 Pro 128GB White Titanium</h4>
+                              <h4>{itemDesc[0].Product_Name}</h4>
                               <p>Product Code: <span>356475</span></p>
                               <p>Brand: <span>Apple</span></p>
                               <hr />
@@ -319,8 +318,6 @@ const Cart = () => {
                         </div>
                     </div>
                   </div>
-                {/* </div> */}
-              {/* </div> */}
           </>
   )
 }

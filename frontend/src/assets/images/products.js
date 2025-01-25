@@ -1410,3 +1410,11 @@
         }
     ]
   
+    // function to fetch product data and simulate lazy load
+   export const getProducts =()=>{
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                resolve(product_list)
+            }, 3000)
+        })
+    } 
