@@ -24,7 +24,9 @@ const Navbar = () => {
             <div id='nav-sect-wrapper'>
                 <div id="nav-section">
                     <div className='logo-cont'>
-                        <img src={Logo} alt="App logo" className="logo" />                                 
+                        <img src={Logo} alt="App logo" className="logo"
+                            onClick={()=>{navigate('/')}}
+                        />                                 
                     </div>
                     <a id="store" className='menu-icons'>Store <br /> Locator</a>
                     <a id="sell">Sell on <br /> Konga</a>

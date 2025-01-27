@@ -66,7 +66,7 @@ const Products = ({category}) => {
     useEffect(()=>{
         performBrandFiltering() //::function invocation to dynamically update the available brands for a category
         // isAnyChecked()
-    }, [activeProdCat])
+    }, [activeProdCat, product_list])
 
     // Handler for click on the dynamically updated product brands on click of any of the checkboxes in brand categories
     const handleChange =(brand)=>{
@@ -254,7 +254,10 @@ const Products = ({category}) => {
                                             if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
                                                 brands = checked.map((b, i)=>{
                                                     if(prod.Product_Brand==b){
-                                                        return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
+                                                        // render product based on sortState- if sortState filter is off, that is; == 'relevance'
+                                                        if(sortState == 'relevance'){
+                                                            return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
+                                                        }
                                                         
                                                     }
                                                 })
@@ -264,10 +267,35 @@ const Products = ({category}) => {
                                 
                                     else{
                                         if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
-                                        }
+                                                    if(sortState == 'relevance'){
+                                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
+                                                    }
+                                                    else if(sortState == 'high'){
+                                                        console.log('sortState:', sortState)
+                                                        const sortedList = product_list.sort((a, b)=>{
+                                                           
+                                                            return a.Product_Price - b.Product_Price 
+                                                             
+                                                        })
+                                                        sortedList.map((list, i)=>{
+                                                            return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
+                                                        })
+                                                      
+                                                    }
+                                                    // else if(sortState == 'low'){
+                                                    //     const newList = product_list.sort((a, b)=>{
+                                                           
+                                                    //         return  b.Product_Price - a.Product_Price
+                                                             
+                                                    //     })
+                                                    //     newList.map((list, i)=>{
+                                                    //         return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
+                                                    //     })
+                                                    // }
+                                            }
                                     }
                                 })
+                           
                         }
                             
                     </div>

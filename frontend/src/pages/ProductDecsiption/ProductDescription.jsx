@@ -3,7 +3,7 @@ import  './ProductDescription.css'
 import { faChevronDown, faChevronLeft, faChevronRight, faHandHoldingHeart, faHeart, faMinus, faNairaSign, faPersonWalking, faPersonWalkingArrowLoopLeft, faPlus, faStar, faTruck, faTruckFast } from '@fortawesome/free-solid-svg-icons'
 import iphoneThumbnail from '../../assets/images'
 import { faFacebook, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ProductContext } from '../../context/ProductContext'
 
 
@@ -12,6 +12,8 @@ const Cart = () => {
     const {seeProdDesc, itemDesc} = useContext(ProductContext)
     console.log('In the Product Description page')
     console.log(itemDesc[0])
+    // state for the product description images
+    const [activeProdImg, setActiveProdImg] = useState('first') 
    
   return (
           <>
@@ -35,9 +37,18 @@ const Cart = () => {
                                   <span className="right"><FontAwesomeIcon  icon={faChevronRight}/></span>
                               </div>
                               <ul className="thumbnail-cont">
-                                  <li className="active"><img src={itemDesc[0].Product_Image} alt="" /></li>
-                                  <li><img src={itemDesc[0].Product_Image} alt="" /></li>
-                                  <li><img src={itemDesc[0].Product_Image} alt="" /></li>
+                                  <li className={activeProdImg == 'first'? 'active': ''} 
+                                    onClick={()=>{setActiveProdImg('first')}}>
+                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                  </li>
+                                  <li className={activeProdImg == 'second'? 'active': ''}
+                                    onClick={()=>{setActiveProdImg('second')}}>
+                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                  </li>
+                                  <li className={activeProdImg == 'third'? 'active': ''}
+                                    onClick={()=>{setActiveProdImg('third')}}>
+                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                  </li>
                               </ul>
                           </div>
                           <div className="prod-detail">

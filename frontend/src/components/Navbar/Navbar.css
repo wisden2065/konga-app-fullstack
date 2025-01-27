@@ -21,6 +21,7 @@
 }
 .logo-cont{
     margin-right: 20px;
+    cursor: pointer;
 }
 .logo-cont img{
     height: 55%;
