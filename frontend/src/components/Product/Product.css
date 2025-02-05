@@ -11,7 +11,7 @@
 .productItem{
     background-color: #ffff;
     /* height: 350px; */
-    width: minmax(auto, 250px);
+    width: minmax(auto, 350px);
     padding: 50px 10px 10px 10px;
     position: relative;
    

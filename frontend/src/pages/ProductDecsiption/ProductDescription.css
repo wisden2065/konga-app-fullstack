@@ -127,6 +127,7 @@
 }
 .qty ul{
     display: flex;
+    margin-left: 10px;
 }
 .qty ul li{
     padding: 3px 10px;

@@ -15,7 +15,11 @@ const Product = ({name, price, category, image, brand, id}) => {
     const { addToCart, removeFromCart} = useContext(ProductContext);
     const { seeProdDesc } = useContext(ProductContext);
     const navigate = useNavigate()
-    
+        
+        // function to truncate the length of a product name
+        const truncateProdName=(prodName, maxLength)=>{
+            return prodName.length > maxLength? prodName.substring(0, maxLength) + '...' : prodName;
+        }
 
         return <div onClick={(e)=>{
                                 console.log(e.target)
@@ -34,7 +38,7 @@ const Product = ({name, price, category, image, brand, id}) => {
                                     <img src={image || <Skeleton />} /> 
                                 </div>
                               <div className='prodDesc'>
-                                <p>{name}</p>
+                                <p><b>{truncateProdName(name, 23)}</b></p>
                                     <div className="prodPrice">
                                         <h3><FontAwesomeIcon icon={faNairaSign} />{price}</h3>
                                         <p>N <s>46,263</s></p>

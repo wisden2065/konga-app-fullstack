@@ -88,6 +88,21 @@ const Products = ({category}) => {
             setActiveCheckBox(true)
         }
     }, [checked])
+
+    const findBrand =(brand)=>{
+    //   only do this when the input search is not empty
+        if(brand != ''){
+            let brandsArray = Array.from(currentFilteredBrands);
+            let filter = brandsArray.filter((b)=>{
+                return b.toLowerCase().includes(brand.toLowerCase())
+            })
+            console.log(filter)
+            setCurrentFilteredBrands(filter)
+        }
+        else{
+            performBrandFiltering()
+        }
+    }
   return (
     <>
             <Helmet>
@@ -190,7 +205,7 @@ const Products = ({category}) => {
                             {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
                             </div>
                             <div className="searchBrand-cont">
-                                <input type="text" placeholder='Search Brand...' />
+                                <input type="text" onChange={(e)=>{findBrand(e.target.value)}} placeholder='Search Brand...' />
                                 <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
                             </div>
                             <div className='sort-checkbox'>
@@ -256,7 +271,7 @@ const Products = ({category}) => {
                                                     if(prod.Product_Brand==b){
                                                         // render product based on sortState- if sortState filter is off, that is; == 'relevance'
                                                         if(sortState == 'relevance'){
-                                                            return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image} index={index} id={prod.id} />
+                                                            return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
                                                         }
                                                         
                                                     }
@@ -267,18 +282,20 @@ const Products = ({category}) => {
                                 
                                     else{
                                         if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                            let sortedList;
                                                     if(sortState == 'relevance'){
-                                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image}  index={index} id={prod.id} />
+                                                        console.log('sortState:', sortState)
+                                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
                                                     }
                                                     else if(sortState == 'high'){
                                                         console.log('sortState:', sortState)
-                                                        const sortedList = product_list.sort((a, b)=>{
-                                                           
-                                                            return a.Product_Price - b.Product_Price 
+                                                        sortedList = product_list.sort((a, b)=>{
+                                                            return a.Product_Price - b.Product_Price
                                                              
                                                         })
+                                                        
                                                         sortedList.map((list, i)=>{
-                                                            return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
+                                                            return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image[0]}  index={index} id={list.id} />
                                                         })
                                                       
                                                     }
@@ -293,6 +310,7 @@ const Products = ({category}) => {
                                                     //     })
                                                     // }
                                             }
+                                            
                                     }
                                 })
                            

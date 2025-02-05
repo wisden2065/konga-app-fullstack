@@ -14,6 +14,10 @@ const Cart = () => {
     console.log(itemDesc[0])
     // state for the product description images
     const [activeProdImg, setActiveProdImg] = useState('first') 
+    // state for product quantity on view of a particular product
+    const [ prodQt, setProdQty ] = useState(1)
+    // state for picture thumbnails
+    const [currentThumbnail, setCurrentThumbnail] = useState(itemDesc[0].Product_Image[0])
    
   return (
           <>
@@ -33,21 +37,21 @@ const Cart = () => {
                           <div className="phone-plus-thumbnail-cont">
                               <div className="phone-contain">
                                   <span className="right"><FontAwesomeIcon icon={faChevronLeft} /></span>
-                                  <img src={itemDesc[0].Product_Image} alt="" />
+                                  <img src={currentThumbnail} alt="" />
                                   <span className="right"><FontAwesomeIcon  icon={faChevronRight}/></span>
                               </div>
                               <ul className="thumbnail-cont">
                                   <li className={activeProdImg == 'first'? 'active': ''} 
                                     onClick={()=>{setActiveProdImg('first')}}>
-                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                    <img src={itemDesc[0].Product_Image[0]} alt="" onClick={()=>{setCurrentThumbnail(itemDesc[0].Product_Image[0])}} />
                                   </li>
                                   <li className={activeProdImg == 'second'? 'active': ''}
                                     onClick={()=>{setActiveProdImg('second')}}>
-                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                    <img src={itemDesc[0].Product_Image[1]} alt="" onClick={()=>{setCurrentThumbnail(itemDesc[0].Product_Image[1])}}  />
                                   </li>
                                   <li className={activeProdImg == 'third'? 'active': ''}
                                     onClick={()=>{setActiveProdImg('third')}}>
-                                    <img src={itemDesc[0].Product_Image} alt="" />
+                                    <img src={itemDesc[0].Product_Image[2]} alt="" onClick={()=>{setCurrentThumbnail(itemDesc[0].Product_Image[2])}}  />
                                   </li>
                               </ul>
                           </div>
@@ -64,9 +68,9 @@ const Cart = () => {
                               <div className="qty">
                                   <p>Quantity:</p>
                                   <ul>
-                                      <li><FontAwesomeIcon icon={faMinus} color='#aca5a5' /></li>
-                                      <li>7</li>
-                                      <li><FontAwesomeIcon icon={faPlus} color='#aca5a5' /></li>
+                                      <li><FontAwesomeIcon icon={faMinus} color='#aca5a5' onClick={()=>{setProdQty((preQty)=>preQty -1) }}/></li>
+                                      <li><b>{prodQt}</b></li>
+                                      <li><FontAwesomeIcon icon={faPlus} color='#aca5a5' onClick={()=>{setProdQty((preQty)=>preQty +1)}} /></li>
                                       
                                   </ul>
                               </div>
