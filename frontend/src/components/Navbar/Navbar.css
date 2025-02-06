@@ -162,8 +162,105 @@
 }
 
 
-@media (max-width:1050px) {
-    .logo-cont .logo{
-        width: 140px;
+@media (max-width: 480px) {
+    #nav-sect-wrapper{
+        /* width: fit-content; */
+        /* margin: 0 auto; */
+        position: sticky;
+        top: 0;
+        left: 0; right: 0;
+        z-index: 11;
+    }
+    #nav-section{
+        background-color: var(--background-dark);
+        max-width: auto;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        position: relative;
+        color: var(--neutral-100);
+        text-align: center;
+        justify-content: space-between;
+        margin: 0 auto;
+        
+    }
+    .logo-cont{
+        /* width: 150px; */
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+    }
+    .logo-cont img{
+        /* height: 25%; */
+        width: 80px;
+       
+    }
+    .basket-sm{
+        display: flex;
+        gap: 20px;
+    }
+    #nav-section a{
+        display: none;
+    }
+    #input-cont{
+        display: none;
+    }
+   
+    #nav-section .help{
+       display: none;
+    }
+    #nav-section #cart-cont{
+    display: none;
+    
+    }
+    #nav-section #cart-cont:hover{
+        background-color: var(--text-secondary);
+    }
+    #cart-cont .icon{
+        margin-left: 10px;
+    }
+    #secondNav{
+        /* display: block; */
+        align-items: center;
+        justify-content: center;
+    }
+    #secondNav .inner{
+        display: none;
+    }
+    #secondNav .inputBox{
+        width: 80%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* text-align: center; */
+        background-color: #ffff;
+        padding: 0 5px;
+        border-radius: 4px;
+    }
+    #secondNav .inputBox input{
+        width: 95%;
+        background-color: #ffff;
+        border: none;
+        outline: none;
+    }
+    #nav-sect-wrapper .nav-icons{
+        background-color: rgb(243, 242, 242);
+        /* width: 200px */
+        /* height: 50px; */
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+    }
+    #nav-sect-wrapper .nav-icons a{
+        text-align: center;
+        color: gray;
+    }
+    #nav-sect-wrapper .nav-icons a span{
+        /* color: rgb(199, 198, 198); */
+        display: block;
+        font-size: 12px;
     }
 }

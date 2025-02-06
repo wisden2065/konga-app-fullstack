@@ -24,7 +24,7 @@ const Cart = () => {
               <div id="phonesTablet">
                 <div id="phones">
                   <div id="innerPhone">
-                    <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> Phones and Tablets <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> Mobile Phones <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a href="" className='active-cat'>Smart Phones</a></a>
+                    <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> {itemDesc[0].Product_category} <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /><a href="" className='active-cat'> {itemDesc[0].Product_Name}</a></a>
                     {/* <span id='filter'>1 - 4 of <span>1000 results</span></span> */}
                   </div>
                   <h1>iOS Phones</h1>
@@ -58,7 +58,7 @@ const Cart = () => {
                           <div className="prod-detail">
                               <h4>{itemDesc[0].Product_Name}</h4>
                               <p>Product Code: <span>356475</span></p>
-                              <p>Brand: <span>Apple</span></p>
+                              <p>Brand: <span>{itemDesc[0].Product_Brand}</span></p>
                               <hr />
                               <h4>
                                   <FontAwesomeIcon icon={faNairaSign} />

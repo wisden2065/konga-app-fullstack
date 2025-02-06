@@ -211,14 +211,27 @@ const Products = ({category}) => {
                             <div className='sort-checkbox'>
                                 {
                                     
+                                    product_list.length == 0?
+                                    Array(2).fill(0).map((_, i)=>{
+
+                                        return <div key={i}>
+                                                    <span><Skeleton width={30+'%'} count={5} /></span>
+                                                 </div>
+                                    })
+                                    :
                                     Array.from(currentFilteredBrands).map((brand,index)=>{
-                                    
-                                        return <div className="inputP" key={index}>
+                                        // if(product_list.length > 0){
+                                        //         console.log('empty')
+                                        // }
+                                        // console.log(Array.from(currentFilteredBrands).length)
+                                        
+                                             return <div className="inputP" key={index}>
                                                         <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
                                                             onChange={()=>{handleChange(brand)}}
                                                         />
                                                         <p>{brand}</p>
-                                                </div>
+                                                   </div>
+
                                     })
                                 }
                             </div>
