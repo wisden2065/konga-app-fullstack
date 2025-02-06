@@ -57,11 +57,11 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='product-cont'>
                                 <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
                             </div>
                         </div>
                     </div>
@@ -74,10 +74,10 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='sponsored-product-cont'>
                                 <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
+                                {/* <SponsoredProdCard /> */}
+                                {/* <SponsoredProdCard /> */}
+                                {/* <SponsoredProdCard /> */}
+                                {/* <SponsoredProdCard /> */}
                             </div>
                         </div>
                     </div>
@@ -105,11 +105,11 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='product-cont'>
                                 <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
                             </div>
                         </div>
                     </div>

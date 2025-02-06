@@ -697,3 +697,39 @@
     cursor: pointer;
 }
     
+@media (max-width:480px){
+    #footer-cont{
+        display: none;
+        height: 100px;
+       
+        
+    }
+    #footer-section{
+        /* position: relative; */
+        display: none;
+    }
+    #summary{
+        display: none;
+        
+    }
+    .footer-nav{
+        position: sticky;
+        bottom: 0; left: 0; right: 0;
+        background-color: #fff;
+        height: 80px;
+        /* width: 100px; */
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer-nav .icon-cont{
+        text-align: center;
+        padding: 10px 20px;
+        color: gray;
+    }
+    .footer-nav .icon-cont span{
+        display: block;
+    }
+    .icon-cont.active{
+        color: var( --background-dark);
+    }
+}
