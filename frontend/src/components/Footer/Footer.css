@@ -730,6 +730,6 @@
         display: block;
     }
     .icon-cont.active{
-        color: var( --background-dark);
+        color: var( --background-tertiary);
     }
 }
