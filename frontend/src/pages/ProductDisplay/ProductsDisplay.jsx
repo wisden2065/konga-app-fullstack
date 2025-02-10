@@ -114,7 +114,7 @@ const Products = ({category}) => {
             </Helmet>
 
             <div className='all-products-cont'>
-            <div className='current-prod-active'>
+            <div className='current-prod-active position-relative'>
                 <div id="innerPhone">
                     <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <p  className='active-cat'>Phones and Tablets</p></a>
                     <span id='filter'>1 - 4 of <span>1000 results</span></span>
@@ -135,204 +135,284 @@ const Products = ({category}) => {
                             >Price - Low To High</li>
                         </ul>
                     </div>
+                    <div className=''>
+                        <button class="btn filter-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffff" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                            </svg>
+                            <span className='text-light'> FILTER</span>
+                        </button>
+                        <button class="btn filter-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffff" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
+                            </svg>
+                            <span className='text-light'> SORT</span>
+                        </button>
+                        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="staticBackdropLabel">Browse Categories</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body bg-body-primary" >
+                                <div>
+                                <div id="">
+                                    <div className="browseFlex">
+                                        <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                                    </div>
+                                    <div className='price-filter'>
+                                        <h4>Custom Price Range</h4>
+                                        <form action="">
+                                            <div>
+                                                <FontAwesomeIcon icon={faNairaSign} />
+                                                <input type="text" placeholder='Min' name="" id="" />
+                                            </div>
+                                            <div>
+                                                <FontAwesomeIcon icon={faNairaSign} />
+                                                <input type="text" placeholder='Max' name="" id="" />
+                                            </div>
+                                            <button>GO</button>
+                                        </form>
+                                    </div>
+                                    <div className="browseFlex">
+                                    <h3>Brand</h3>
+                                    <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                                    {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                                    </div>
+                                    <div className="searchBrand-cont">
+                                        <input type="text" onChange={(e)=>{findBrand(e.target.value)}} placeholder='Search Brand...' />
+                                        <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
+                                    </div>
+                                    <div className='sort-checkbox'>
+                                        {
+                                            
+                                            product_list.length == 0?
+                                            Array(2).fill(0).map((_, i)=>{
+
+                                                return <div key={i}>
+                                                            <span><Skeleton width={30+'%'} count={5} /></span>
+                                                        </div>
+                                            })
+                                            :
+                                            Array.from(currentFilteredBrands).map((brand,index)=>{
+                                                // if(product_list.length > 0){
+                                                //         console.log('empty')
+                                                // }
+                                                // console.log(Array.from(currentFilteredBrands).length)
+                                                
+                                                    return <div className="inputP" key={index}>
+                                                                <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
+                                                                    onChange={()=>{handleChange(brand)}}
+                                                                />
+                                                                <p>{brand}</p>
+                                                        </div>
+
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
+                </div>
+
             </div>
             <section id="sect">
-            <div className="browseCategory">
-                <div id="browseCont">
-                    <div id="white">
-                        <div className="browseFlex">
-                            <h3>Browse Categories</h3> 
-                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                        </div>
-                        <ul id="tablets">
-                            <li>Mobile Phones and Accessories</li>
-                            <li>Mobile Phones</li>
-                            <li>Tablet Accessories</li>
-                            <li>Desk, Radio & Intercom Phones</li>
-                            <li>Tablets</li>
-                            <li>Phone & Tablet Bundles</li>
-                        </ul>
-                        <hr/>
-                        <div className="browseFlex">
-                            <h3>Price</h3>
-                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                            {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
-                            
-                        </div>
-                        <div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>Under N2000</p>
-                            </div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>N2000 - N5000</p>
-                            </div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>N5000 - N10000</p>
-                            </div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>N10000 - N20000</p>
-                            </div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>N20000 - N40000</p>
-                            </div>
-                            <div className="inputP">
-                                <input type="checkbox" name="" id="" />
-                                <p>Above N40000</p>
-                            </div>
-                            <div className='price-filter'>
-                                <h4>Custom Price Range</h4>
-                                <form action="">
-                                    <div>
-                                        <FontAwesomeIcon icon={faNairaSign} />
-                                        <input type="text" placeholder='Min' name="" id="" />
-                                    </div>
-                                    <div>
-                                        <FontAwesomeIcon icon={faNairaSign} />
-                                        <input type="text" placeholder='Max' name="" id="" />
-                                    </div>
-                                    <button>GO</button>
-                                </form>
-                            </div>
+                <div className="browseCategory">
+                    <div id="browseCont">
+                        <div id="white">
                             <div className="browseFlex">
-                            <h3>Brand</h3>
-                            <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
-                            {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                                <h3>Browse Categories</h3> 
+                                <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
                             </div>
-                            <div className="searchBrand-cont">
-                                <input type="text" onChange={(e)=>{findBrand(e.target.value)}} placeholder='Search Brand...' />
-                                <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
+                            <ul id="tablets">
+                                <li>Mobile Phones and Accessories</li>
+                                <li>Mobile Phones</li>
+                                <li>Tablet Accessories</li>
+                                <li>Desk, Radio & Intercom Phones</li>
+                                <li>Tablets</li>
+                                <li>Phone & Tablet Bundles</li>
+                            </ul>
+                            <hr/>
+                            <div className="browseFlex">
+                                <h3>Price</h3>
+                                <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                                {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                                
                             </div>
-                            <div className='sort-checkbox'>
-                                {
-                                    
-                                    product_list.length == 0?
-                                    Array(2).fill(0).map((_, i)=>{
+                            <div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>Under N2000</p>
+                                </div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>N2000 - N5000</p>
+                                </div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>N5000 - N10000</p>
+                                </div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>N10000 - N20000</p>
+                                </div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>N20000 - N40000</p>
+                                </div>
+                                <div className="inputP">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>Above N40000</p>
+                                </div>
+                                <div className='price-filter'>
+                                    <h4>Custom Price Range</h4>
+                                    <form action="">
+                                        <div>
+                                            <FontAwesomeIcon icon={faNairaSign} />
+                                            <input type="text" placeholder='Min' name="" id="" />
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon icon={faNairaSign} />
+                                            <input type="text" placeholder='Max' name="" id="" />
+                                        </div>
+                                        <button>GO</button>
+                                    </form>
+                                </div>
+                                <div className="browseFlex">
+                                <h3>Brand</h3>
+                                <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
+                                {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
+                                </div>
+                                <div className="searchBrand-cont">
+                                    <input type="text" onChange={(e)=>{findBrand(e.target.value)}} placeholder='Search Brand...' />
+                                    <FontAwesomeIcon icon={faSearch} style={{color: '#b1acaf'}} />
+                                </div>
+                                <div className='sort-checkbox'>
+                                    {
+                                        
+                                        product_list.length == 0?
+                                        Array(2).fill(0).map((_, i)=>{
 
-                                        return <div key={i}>
-                                                    <span><Skeleton width={30+'%'} count={5} /></span>
-                                                 </div>
+                                            return <div key={i}>
+                                                        <span><Skeleton width={30+'%'} count={5} /></span>
+                                                    </div>
+                                        })
+                                        :
+                                        Array.from(currentFilteredBrands).map((brand,index)=>{
+                                            // if(product_list.length > 0){
+                                            //         console.log('empty')
+                                            // }
+                                            // console.log(Array.from(currentFilteredBrands).length)
+                                            
+                                                return <div className="inputP" key={index}>
+                                                            <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
+                                                                onChange={()=>{handleChange(brand)}}
+                                                            />
+                                                            <p>{brand}</p>
+                                                    </div>
+
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="main">
+                        <div id="top">
+                            <img src={topBanner} alt="" />
+                        </div>
+                        <div id="productCont">
+                                {product_list.length === 0?
+                                    Array(10)
+                                    .fill(0).map((_, i)=>{
+                                        // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
+                                        return  <div key={i}>
+                                                    <div>
+                                                        <div className="prodImg">
+                                                            {/* {<Skeleton />} */}
+                                                        </div>
+                                                        <div className='prodDesc'>
+                                                            <p>{<Skeleton />}</p>
+                                                            <div className="prodPrice">
+                                                                <h3>{<Skeleton />}</h3>
+                                                                <p>{<Skeleton />}</p>
+                                                            </div>
+                                                            <p className="soldBy">{<Skeleton />}</p>
+                                                            <div className="ratingCont">
+                                                                <div>
+                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
+                                                                </div>
+                                                                <p>{<Skeleton />}</p>
+                                                            </div>
+                                                            <div className="prodBtn">{<Skeleton />}</div>
+                                                        </div>
+                                                    </div>  
+                                                </div>
                                     })
                                     :
-                                    Array.from(currentFilteredBrands).map((brand,index)=>{
-                                        // if(product_list.length > 0){
-                                        //         console.log('empty')
-                                        // }
-                                        // console.log(Array.from(currentFilteredBrands).length)
-                                        
-                                             return <div className="inputP" key={index}>
-                                                        <input type="checkbox" value={brand} name="chk" key={index} checked={checked.includes(brand)}
-                                                            onChange={()=>{handleChange(brand)}}
-                                                        />
-                                                        <p>{brand}</p>
-                                                   </div>
-
+                                    product_list.map((prod, index)=>{
+                                        if(isActiveCheckBox){
+                                                // const brand = [...checked]
+                                                let brands
+                                                if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                                    brands = checked.map((b, i)=>{
+                                                        if(prod.Product_Brand==b){
+                                                            // render product based on sortState- if sortState filter is off, that is; == 'relevance'
+                                                            if(sortState == 'relevance'){
+                                                                return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
+                                                            }
+                                                            
+                                                        }
+                                                    })
+                                                }
+                                                return <>{brands}</>
+                                        }
+                                    
+                                        else{
+                                            if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                                let sortedList;
+                                                        if(sortState == 'relevance'){
+                                                            console.log('sortState:', sortState)
+                                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
+                                                        }
+                                                        else if(sortState == 'high'){
+                                                            console.log('sortState:', sortState)
+                                                            sortedList = product_list.sort((a, b)=>{
+                                                                return a.Product_Price - b.Product_Price
+                                                                
+                                                            })
+                                                            
+                                                            sortedList.map((list, i)=>{
+                                                                return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image[0]}  index={index} id={list.id} />
+                                                            })
+                                                        
+                                                        }
+                                                        // else if(sortState == 'low'){
+                                                        //     const newList = product_list.sort((a, b)=>{
+                                                            
+                                                        //         return  b.Product_Price - a.Product_Price
+                                                                
+                                                        //     })
+                                                        //     newList.map((list, i)=>{
+                                                        //         return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
+                                                        //     })
+                                                        // }
+                                                }
+                                                
+                                        }
                                     })
-                                }
-                            </div>
+                            
+                            }
+                                
                         </div>
                     </div>
                 </div>
-                <div id="main">
-                    <div id="top">
-                        <img src={topBanner} alt="" />
-                    </div>
-                    <div id="productCont">
-                            {product_list.length === 0?
-                                Array(10)
-                                .fill(0).map((_, i)=>{
-                                    // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
-                                    return  <div key={i}>
-                                                <div>
-                                                    <div className="prodImg">
-                                                        {/* {<Skeleton />} */}
-                                                    </div>
-                                                    <div className='prodDesc'>
-                                                        <p>{<Skeleton />}</p>
-                                                        <div className="prodPrice">
-                                                            <h3>{<Skeleton />}</h3>
-                                                            <p>{<Skeleton />}</p>
-                                                        </div>
-                                                        <p className="soldBy">{<Skeleton />}</p>
-                                                        <div className="ratingCont">
-                                                            <div>
-                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                            </div>
-                                                            <p>{<Skeleton />}</p>
-                                                        </div>
-                                                        <div className="prodBtn">{<Skeleton />}</div>
-                                                    </div>
-                                                </div>  
-                                            </div>
-                                })
-                                :
-                                product_list.map((prod, index)=>{
-                                    if(isActiveCheckBox){
-                                            // const brand = [...checked]
-                                            let brands
-                                            if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                                brands = checked.map((b, i)=>{
-                                                    if(prod.Product_Brand==b){
-                                                        // render product based on sortState- if sortState filter is off, that is; == 'relevance'
-                                                        if(sortState == 'relevance'){
-                                                            return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
-                                                        }
-                                                        
-                                                    }
-                                                })
-                                            }
-                                            return <>{brands}</>
-                                    }
-                                
-                                    else{
-                                        if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                            let sortedList;
-                                                    if(sortState == 'relevance'){
-                                                        console.log('sortState:', sortState)
-                                                        return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
-                                                    }
-                                                    else if(sortState == 'high'){
-                                                        console.log('sortState:', sortState)
-                                                        sortedList = product_list.sort((a, b)=>{
-                                                            return a.Product_Price - b.Product_Price
-                                                             
-                                                        })
-                                                        
-                                                        sortedList.map((list, i)=>{
-                                                            return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image[0]}  index={index} id={list.id} />
-                                                        })
-                                                      
-                                                    }
-                                                    // else if(sortState == 'low'){
-                                                    //     const newList = product_list.sort((a, b)=>{
-                                                           
-                                                    //         return  b.Product_Price - a.Product_Price
-                                                             
-                                                    //     })
-                                                    //     newList.map((list, i)=>{
-                                                    //         return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
-                                                    //     })
-                                                    // }
-                                            }
-                                            
-                                    }
-                                })
-                           
-                        }
-                            
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
         </div>
     </>
 

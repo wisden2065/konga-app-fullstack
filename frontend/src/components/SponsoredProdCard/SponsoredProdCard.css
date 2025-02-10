@@ -21,7 +21,7 @@
     box-shadow: var(--box-shadow-dark)
 }
 .prod-cont img{
-    height: 300px;
+    height: 100%;
     width: 100%;
 }
 .prod-prices{
@@ -47,4 +47,24 @@
     border-radius: 5px;
     font-size: 11px;
     padding: 4px;
+}
+
+@media (max-width:480px){
+    .prod-cont{
+        padding: 10px;
+        font-size: 12px;
+    }
+    .prod-prices .discounted-price{
+        font-size: 16px;
+        display: flex;
+        /* font-weight: 900; */
+        color: var(--text-primary);
+    }
+    .prod-prices .original-price{
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--text-primary);
+        display: flex;
+        
+    }
 }

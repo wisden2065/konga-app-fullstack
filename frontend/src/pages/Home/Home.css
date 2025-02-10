@@ -108,6 +108,7 @@
     right: 0;
     transform: translate(0%, -50%);
     color: var(--neutral-100);
+
     font-size: small;
 }
 .product-cont-wrapper{
@@ -215,5 +216,32 @@
     }
     #categories .explore-categories{
         display: none;
+    }
+    .sponsored-product-head h4{
+        font-size: 18px;
+    }
+    .sponsored-product-cont{
+       display: flex;
+       overflow-x: scroll;
+       padding: 0;
+    }
+    .product-head h4{
+        width: 100%;
+        position: relative;
+        /* z-index: -1; */
+    }
+    .product-head h4 span{
+        font-size: 1rem;
+        z-index: -1;
+        color: var(--neutral-100);
+    }
+    .product-cont-wrapper{
+        padding: 10px 0px;
+    }
+    .product-cont{
+        display: flex;
+        flex-direction: row;
+        column-gap: 15px;
+        overflow: scroll;
     }
 }

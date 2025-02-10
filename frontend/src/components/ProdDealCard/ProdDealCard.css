@@ -13,15 +13,18 @@
 .prod-deal-card-cont .prod-cont{
     display: grid;
     grid-template-columns: 90px 200px;
+    /* grid-template-columns: (60px, 1fr) minmax(150px, 2fr); */
+    overflow-x: scroll;
 }
 .prod-deal-card-cont .prod-cont .prod-desc{
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+    /* display: flex; */
     color: var(--text-primary);
 }
 .prod-deal-card-cont .prod-cont img{
-    width: 90px;
-    height: 90px;
+    width: 100%;
+    height: 100%;
 }
 .prod-desc .prod-name{
     font-size: 14px;
@@ -55,4 +58,13 @@
     color: var(--text-green);
     font-size: 12px;
     font-weight: 700;
+}
+
+@media (max-width:480px){
+    .prod-deal-card-cont .prod-cont{
+        display: grid;
+        /* grid-template-columns: 90px 200px; */
+        grid-template-columns: (60px, 1fr) minmax(150px, 2fr);
+        overflow-x: scroll;
+    }
 }
