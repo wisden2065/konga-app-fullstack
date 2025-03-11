@@ -4,6 +4,7 @@ import android from '../../assets/android-logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
 import {faApple, faFacebook, faInstagram, faTwitter, faWhatsapp, faYoutube} from '@fortawesome/free-brands-svg-icons'
+import { NavLink } from 'react-router-dom'
 
 
 const Footer = () => {
@@ -12,52 +13,60 @@ const Footer = () => {
 
   return (
     <>
-           <div className='footer-nav'>
-             <a className={`icon-cont ${activeFooterTab == 'home'? 'active': ''}`}
-                onClick={()=>{setActiveFooterTab('home')}}
-             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-                </svg>
-                <span>Home</span>
-             </a>
-             <a className={`icon-cont ${activeFooterTab == 'deals'? 'active': ''}`}
-                onClick={()=>{setActiveFooterTab('deals')}}
-             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
-                    <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
-                    <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
-                </svg>
-                <span>Deals</span>
-             </a>
-             <a 
-                className={`icon-cont ${activeFooterTab == 'cart'? 'active': ''}`}
-                onClick={()=>{setActiveFooterTab('cart')}}
-             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-                </svg>
-                <span>Cart</span>
-             </a>
-             <a className={`icon-cont ${activeFooterTab == 'more'? 'active': ''}`}
-                onClick={()=>{setActiveFooterTab('more')}}
-             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
-                    <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
-                </svg>
-                <span>More</span>
-             </a>
-        </div>
+           <div className='footer-nav d-lg-none'>
+                <NavLink
+                    to='/'
+                    className={({isActive})=>(isActive?'icon-cont active':'icon-cont')}
+                    // onClick={()=>{setActiveFooterTab('home')}}
+                >
+               
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                    </svg>
+                    <span>Home</span>
+                </NavLink>
+                <NavLink 
+                    to='/category/products'
+                    className={({isActive})=>(isActive?'icon-cont active':'icon-cont')}
+                    // onClick={()=>{setActiveFooterTab('deals')}}
+                > 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                        <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
+                        <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
+                    </svg>
+                    <span>Deals</span>
+                </NavLink>
+                <NavLink
+                    className={({isActive})=>(isActive?'icon-cont active':'icon-cont')}
+                    to='/cart-items'
+                    // onClick={()=>{setActiveFooterTab('cart')}}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                    </svg>
+                    <span>Cart</span>
+                </NavLink>
+                <NavLink
+                    className={({isActive})=>isActive?'icon-cont active':'icon-cont'}
+                    to='/more-deals'
+                    
+                > 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
+                        <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
+                    </svg>
+                    <span>More</span>
+                </NavLink>
+           </div>
         
     <div id='footer-section'>
      
         <div id="summary">
             <div id="sum">
-                <h3>Phones and tablets</h3>
-                <h3>Buy Mobile Phones Online on Konga</h3>
-                <p>Communication and entertainment have been taken to another level with the invention of smartphones and its inbuilt innovative operating systems such as Android, iOS, Windows mobile and Blackberry platforms. With the availability of memory cards, you can store as much information as you want, be it official documents for keeps or those memorable moments you captured in videos and photos You can get to listen to downloaded songs with your mobile phone device and you could say it has replaced some of the portable music players in the market at the moment. Also get to enjoy movies on your phones either online with the use of the YouTube app installed or offline with the use of the large memory space included in the mobile phones. Online shopping is also made possible on mobile smartphones and with the Konga App installed, you can shop online without the use of a desktop computer. </p>
-                <h3>Where to Buy Smarphones in Nigeria</h3>
-                <p>The latest mobile phones & tablets help you capture moments that mean so much to you with the use of video camera, it helps you to work from anywhere and anytime with the availability of internet connection whereby you can work on word and excel documents then afterwards, send these documents as reports via email right on your phone while you are on the go. If you are more of an entertainment personality and not business, you are definitely not left out as modern phones come with powerful inbuilt cameras that can capture clear images in high definition so when your friends are taking all the selfies for the “looking good” moment, you can bring yours to the party as well. In case you are still not sure of what phone to buy, feel free to check Konga’s buying guide that will help make the right choices by going through the latest phone reviews and have a better choice made and also get to discover brands Microsoft Lumia, Samsung, Apple iphones, HTC,Infinix, and many more.Once you know what mobile device to go for, buy on Konga at the best prices in Nigeria and you will have no regrets doing so. Also shop on Konga for a wide range of other products from Laptops, Kitchen Appliances, Electronics, etc as well as flight tickets and vacation packages on Konga Travels</p>
+                <h3 style={{fontSize:'16px'}}>Phones and tablets</h3>
+                <h3 style={{fontSize:'16px'}}>Buy Mobile Phones Online on Konga</h3>
+                <p>Communication and entertainment have been taken to another level with the invention of smartphones and its inbuilt innovative operating systems such as Android, iOS, Windows mobile and Blackberry platforms. With the availability of memory cards, you can store as much information as you want, be it official documents for keeps or those memorable moments you captured in videos and photos You can get to listen to downloaded songs with your mobile phone device and you could say it has replaced some of the portable music players in the market at the moment.</p>
+                <h3 style={{fontSize:'16px'}}>Where to Buy Smarphones in Nigeria</h3>
+                <p>The latest mobile phones & tablets help you capture moments that mean so much to you with the use of video camera, it helps you to work from anywhere and anytime with the availability of internet connection whereby you can work on word and excel documents then afterwards, send these documents as reports via email right on your phone while you are on the go. If you are more of an entertainment personality and not business, you are definitely not left out as modern phones come with powerful inbuilt cameras that can capture clear images in high definition so when your friends are taking all the selfies for the “looking good” moment, you can bring yours to the party as well. </p>
             </div>
         </div>
         <div id="footer-cont">

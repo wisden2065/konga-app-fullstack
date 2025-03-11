@@ -55,17 +55,17 @@ const Cart = () => {
                                   </li>
                               </ul>
                           </div>
-                          <div className="prod-detail">
+                          <div className="prod-detail" style={{padding:0}}>
                               <h4>{itemDesc[0].Product_Name}</h4>
                               <p>Product Code: <span>356475</span></p>
                               <p>Brand: <span>{itemDesc[0].Product_Brand}</span></p>
                               <hr />
-                              <h4>
+                              <h4 style={{margin:0}}>
                                   <FontAwesomeIcon icon={faNairaSign} />
-                                  <span>1,50002</span>
+                                  <span>{itemDesc[0].Product_Price}</span>
                               </h4>
                               <hr />
-                              <div className="qty">
+                              <div className="qty" style={{padding:0}}>
                                   <p>Quantity:</p>
                                   <ul>
                                       <li><FontAwesomeIcon icon={faMinus} color='#aca5a5' onClick={()=>{setProdQty((preQty)=>preQty -1) }}/></li>
@@ -74,7 +74,7 @@ const Cart = () => {
                                       
                                   </ul>
                               </div>
-                              <div className="bulkPurchase">
+                              <div className="bulkPurchase" style={{margin:0}}>
                                   <p>Call us for Bulk Purchases:</p>
                                   <p><span>07056783634</span></p>
                               </div>
@@ -91,7 +91,7 @@ const Cart = () => {
                               <hr />
                               <h3>Buy Protection for your device</h3>
                               <div className="protect-plan">
-                                  <p>Select Konga Protect Plan</p>
+                                  Select Konga Protect Plan
                                   <FontAwesomeIcon icon={faChevronDown} style={{color: '#b1afaf'}} />
                               </div>
                               <hr />
@@ -99,7 +99,7 @@ const Cart = () => {
                                   <div className="delivery-icon-cont">
                                       {/* <i className="fa-solid fa-truck-fast"></i> */}
                                       <FontAwesomeIcon icon={faTruck} />
-                                      <p>Pickup & Pay on Collection Available</p>
+                                      Pickup & Pay on Collection Available
                                   </div>
                               </div>
                               <p>Share With Friends</p>

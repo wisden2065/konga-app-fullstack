@@ -10,11 +10,11 @@ const SponsoredProdCar = () => {
             <img src={prodThumbnails.starlink} alt='' />
             <p>Professional Measuring Wheel.</p>
             <div className='prod-prices'>
-                <span className='discounted-price'>
+                <span className='discounted-price d-flex align-items-center'>
                       <FontAwesomeIcon icon={faNairaSign} />
                       <b>123,000</b>
                 </span>
-                <span className='original-price'>
+                <span className='original-price d-flex align-items-center'>
                       <FontAwesomeIcon icon={faNairaSign} />
                       <b>123,000</b>
                 </span>

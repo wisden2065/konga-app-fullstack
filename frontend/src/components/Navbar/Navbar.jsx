@@ -31,8 +31,6 @@ const Navbar = () => {
                             onClick={()=>{navigate('/')}}
                         />                                 
                     </div>
-                    <a id="store" className='menu-icons'>Store <br /> Locator</a>
-                    <a id="sell">Sell on <br /> Konga</a>
                     <div id="input-cont">
                         <input type="text" placeholder="Search for products, brands and Categories..." className="place" />
                         <div className="searchCont">

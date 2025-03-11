@@ -5,10 +5,10 @@ import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const Dealscard = () => {
   return (
-    <div >
+    <div id='deals-card-cont-wrapper'>
          <ul className='deals-card-cont'>
             {dealsProduct.map((product, index)=>{
-                return <li key={index}>
+                return <li  key={index}>
                             <img src={product['Product Image']} alt="" />
                             <h3>{product['Product Name']}</h3>
                             <p>{product['Product Desc']}</p>

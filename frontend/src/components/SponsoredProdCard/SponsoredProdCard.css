@@ -3,14 +3,15 @@
     /* background-color: aquamarine; */
     /* width: max-content; */
 
-    /* padding: 20px; */
+    padding: 20px;
     box-shadow: var(--box-shadow-light);
+    
 }
 .sponsored-product-head{
     background-color: transparent;
     color: var(--text-primary);
     height: 50px;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -30,7 +31,7 @@
     align-items: center;
 }
 .prod-prices .discounted-price{
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 900;
     color: var(--text-primary);
 }

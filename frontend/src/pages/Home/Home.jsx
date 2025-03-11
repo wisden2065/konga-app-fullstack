@@ -60,15 +60,15 @@ const Home = () => {
                                 <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
+                                {/* <ProdDealCard /> */}
+                                {/* <ProdDealCard /> */}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='sponsored-categories-cont'>
                     <div>
-                        <div className='sponsored-product-head'>
+                        <div className='sponsored-product-head' style={{backgroundColor:'#62468f', color:'white'}}>
                             <h4><span>Sponsored Products</span></h4>
                         </div>
                         <div className='product-cont-wrapper'>
@@ -105,10 +105,10 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='product-cont'>
                                 <ProdDealCard />
-                                {/* <ProdDealCard /> */}
-                                {/* <ProdDealCard /> */}
-                                {/* <ProdDealCard /> */}
-                                {/* <ProdDealCard /> */}
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
+                                <ProdDealCard />
                                 {/* <ProdDealCard /> */}
                             </div>
                         </div>

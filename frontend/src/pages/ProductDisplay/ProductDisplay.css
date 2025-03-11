@@ -162,7 +162,7 @@ ul{
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 90;
 }
 .drop-down-wrapper{
     position: relative;
@@ -196,7 +196,7 @@ ul{
     width: 50vw;
     height: 100vh;
     background-color: #fff;
-    z-index: 10002;
+    z-index: 1000;
     right: 0;
     top: 0;
 }
@@ -354,8 +354,14 @@ hr{
 }
 
 @media (max-width: 480px){
+    .current-category{
+        /* position: sticky; */
+        /* top: 0; left: 0; right: 0; */
+      
+    }
     .current-category h1{
         font-size: 14px;
+    
     }
     #innerPhone a,
     #innerPhone span{
@@ -397,5 +403,8 @@ hr{
         /* width: 100%; */
         top: 0;
         /* bottom: 100px; */
+    }
+    .filter-banner{
+        z-index: 90;
     }
 }

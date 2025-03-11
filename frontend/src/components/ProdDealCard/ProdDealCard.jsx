@@ -12,16 +12,16 @@ const ProdDealCard = () => {
             <div className='prod-desc'>
                     <h3 className='prod-name'>Starlink Standard Actuated Kit</h3>
                     <div className='price'>
-                        <span className='discounted-price price'>
+                        <span className='discounted-price price d-flex align-items-center'>
                             <FontAwesomeIcon icon={faNairaSign}/> 230,000
                         </span>
-                        <span className='original-price price'>
+                        <span className='original-price price d-flex align-items-center'>
                             <FontAwesomeIcon icon={faNairaSign}/> 230,000
                         </span>
-                        <span className='discount price'>-40%</span>
+                        <span className='discount price d-flex flex-0'>-40%</span>
                     </div>
                     <div>
-                        <span className='saved'>
+                        <span className='saved d-flex align-items-center'>
                             You save 
                             <FontAwesomeIcon icon={faNairaSign} /> 300,00
                         </span>

@@ -11,6 +11,7 @@ import { getProducts } from '../../assets/images/products.js'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import loading from '../../../src/assets/images/loading.gif'
+import { useParams } from 'react-router-dom'
 
 
 
@@ -35,11 +36,17 @@ const Products = ({category}) => {
     // const {product_list} = useContext(ProductContext);   // commented this to implement loading state --uncomment 
 
 
-    // loading states
+    // initial product array empty on mount
+    const [product_list, setProductList] = useState([]);
+    // loading states- simulating lazy loading
     const [isLoading, setIsLoading] = useState(true)
 
-    const [product_list, setProductList] = useState([])
+    // extracts the product Category form the url parameter if we have a route like '/category/fashion'
+    const {health, laptops, kitchen, kids} = useParams()
 
+
+
+    // loads the produscts to the product array
     useEffect(()=>{
         getProducts()
             .then((prod)=>{
@@ -49,26 +56,29 @@ const Products = ({category}) => {
         
     }, [])
 
+    // finds all the products in the current selected Product brand category 
     const performBrandFiltering=()=>{
 
         const filteredBrands = new Set();
         product_list.map((prod)=>{
-            if(prod.Product_category == activeProdCat || activeProdCat == 'all'){
-                filteredBrands.add(prod.Product_Brand)
+            if(prod.Product_category == health){
+                // filteredBrands.add(prod.Product_Brand)
+                console.log('Yes param is health!')
             }
+            if(prod.Product_category == activeProdCat || activeProdCat == 'all' ){
+                filteredBrands.add(prod.Product_Brand);
+            }
+          
         setCurrentFilteredBrands(filteredBrands)
     })}
 
-    //::function invocation to dynamically update the available brands for a category
-    // avoid product brand duplicate
-    // performBrandFiltering() 
-    
+//    call the above function anytime a state changes
     useEffect(()=>{
         performBrandFiltering() //::function invocation to dynamically update the available brands for a category
         // isAnyChecked()
     }, [activeProdCat, product_list])
 
-    // Handler for click on the dynamically updated product brands on click of any of the checkboxes in brand categories
+    // Dynamically updated product brands on click of any of the checkboxes in brand categories
     const handleChange =(brand)=>{
         // remove target checkbox from our array of checked list if target is already in the array
         if(checked.includes(brand)){
@@ -115,12 +125,12 @@ const Products = ({category}) => {
 
             <div className='all-products-cont'>
             <div className='current-prod-active position-relative'>
-                <div id="innerPhone">
-                    <a>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <p  className='active-cat'>Phones and Tablets</p></a>
+                <div className='' id="innerPhone" >
+                    <a className='d-flex align-items-center gap-2 text-center text-body-tertiary'>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a  className='active-cat'>Phones and Tablets</a></a>
                     <span id='filter'>1 - 4 of <span>1000 results</span></span>
                 </div>
                 <div className='current-category'>
-                    <h1>Phones And Tablets</h1>
+                    <h3 style={{fontWeight:700, fontSize:`clamp(1rem, 2vw, 2rem)`}}>{activeProdCat == 'all'?'All Products Category':activeProdCat.charAt(0).toUpperCase()+activeProdCat.slice(1) + ' Category'}</h3>
                     <div id="cont">
                         <p>Sort By:</p>
                         <ul>
@@ -135,20 +145,20 @@ const Products = ({category}) => {
                             >Price - Low To High</li>
                         </ul>
                     </div>
-                    <div className=''>
+                    <div className='filter-banner'>
                         <button class="btn filter-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                            <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffff" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="12" height="16" fill="#ffff" class="bi bi-funnel-fill" viewBox="0 0 16 16">
                                 <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
                             </svg>
                             <span className='text-light'> FILTER</span>
                         </button>
                         <button class="btn filter-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffff" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="#ffff" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
                             </svg>
                             <span className='text-light'> SORT</span>
                         </button>
-                        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+                        <div class="offcanvas offcanvas-start w-75" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
                             <div class="offcanvas-header">
                                 <h5 class="offcanvas-title" id="staticBackdropLabel">Browse Categories</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -221,8 +231,8 @@ const Products = ({category}) => {
                 <div className="browseCategory">
                     <div id="browseCont">
                         <div id="white">
-                            <div className="browseFlex">
-                                <h3>Browse Categories</h3> 
+                            <div className="browseFlex align-items-center">
+                                <h3 style={{fontSize:'16px'}}>Browse Categories</h3> 
                                 <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
                             </div>
                             <ul id="tablets">
@@ -234,8 +244,8 @@ const Products = ({category}) => {
                                 <li>Phone & Tablet Bundles</li>
                             </ul>
                             <hr/>
-                            <div className="browseFlex">
-                                <h3>Price</h3>
+                            <div className="browseFlex align-items-center">
+                                <h3 style={{fontSize:'16px'}}>Price</h3>
                                 <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
                                 {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
                                 
@@ -266,21 +276,21 @@ const Products = ({category}) => {
                                     <p>Above N40000</p>
                                 </div>
                                 <div className='price-filter'>
-                                    <h4>Custom Price Range</h4>
+                                    <h4 style={{fontSize:'16px'}}>Custom Price Range</h4>
                                     <form action="">
-                                        <div>
+                                        <div className='d-flex align-items-center' >
                                             <FontAwesomeIcon icon={faNairaSign} />
                                             <input type="text" placeholder='Min' name="" id="" />
                                         </div>
-                                        <div>
+                                        <div  className='d-flex align-items-center'>
                                             <FontAwesomeIcon icon={faNairaSign} />
                                             <input type="text" placeholder='Max' name="" id="" />
                                         </div>
                                         <button>GO</button>
                                     </form>
                                 </div>
-                                <div className="browseFlex">
-                                <h3>Brand</h3>
+                                <div className="browseFlex" >
+                                <h3 style={{fontSize:'16px'}}>Brand</h3>
                                 <span><FontAwesomeIcon icon={faMinus} style={{color: "#050505"}} /></span>
                                 {/* <span><i className="fa-solid fa-minus" style="color: #050505;"></i></span> */}
                                 </div>
