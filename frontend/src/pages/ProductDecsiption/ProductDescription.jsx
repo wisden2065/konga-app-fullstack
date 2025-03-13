@@ -30,7 +30,7 @@ const Cart = () => {
                   <h1>iOS Phones</h1>
                 </div>
               </div>
-              <div>
+              <div className='product'>
                 <div className="prod-detail-section">
                   <div className="prod-detail-wrapper">
                       <div className="prod-detail-contain">
@@ -74,19 +74,10 @@ const Cart = () => {
                                       
                                   </ul>
                               </div>
-                              <div className="bulkPurchase" style={{margin:0}}>
-                                  <p>Call us for Bulk Purchases:</p>
-                                  <p><span>07056783634</span></p>
-                              </div>
                               <hr />
                               <div className="add-to-cart">
                                   <button>Add To Cart</button>
-                                  <div className="icon-save-cont">
-                                      <div className="icon-cont">
-                                          <FontAwesomeIcon icon={faHeart} style={{color:'white'}}/>
-                                      </div>
-                                      <p>Save for later</p>
-                                  </div>
+                                  
                               </div>
                               <hr />
                               <h3>Buy Protection for your device</h3>
@@ -119,7 +110,7 @@ const Cart = () => {
                               </div>
                           </div>
                       </div>
-                      <div id="shippn-info-wrapper">
+                      <div className='' id="shippn-info-wrapper">
                           <div className="prod-shippn-info">
                               <h4>Delivery & Returns</h4>
                               <hr/>
@@ -172,9 +163,8 @@ const Cart = () => {
                               </div>
                               <div id="merchant-record">
                                   <div className="sales">
-                                      <h4>Number of Sales</h4>
-                                      <h2>30</h2>
-                                      <p>Successful sales</p>
+                                      
+                                      <p> <b>30</b> Successful sales</p>
                                   </div>
                                   <div id="bar-cont">
                                       <p>Product Quality:</p>
@@ -208,7 +198,7 @@ const Cart = () => {
                                       </div>
                                   </div>
                               </div>
-                              <div>
+                              <div className='merchant-review-cont'>
                                   <p>Merchant reviews(50)</p>
                                   <h4>5/5</h4>
                                   <div className="rating">
@@ -224,115 +214,53 @@ const Cart = () => {
                           </div>
               
                       </div>
-                    </div>
-                      </div>
-                      <div className="prod-detail-section">
+                  </div>
+                </div>
+                <div className="see_more-section">
                       <div className="simi-prod">
                           {/* <!-- <span className="left"><i className="fa-solid fa-chevron-left"></i></span> --> */}
                           <h4>Customers who viewed this also viewed</h4>
                           <div className="prod-cont">
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                              </div>
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                              </div>
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                              </div>
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                              </div>
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                              </div>
-                              <div className="prod">
-                                  <div>
-                                      <img src={iphoneThumbnail} alt="" />
-                                      <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                  </div>
-                                  <p>Iphone 13 Pro</p>
-                                  <span className="right"><FontAwesomeIcon icon={faChevronRight} /></span>
-                              </div>
+                            {
+                                Array(6).fill(0).map((prod)=>{
+                                    return  <div className="prod">
+                                                <div>
+                                                    <img src={iphoneThumbnail} alt="" />
+                                                    <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
+                                                </div>
+                                                <p>Iphone 13 Pro</p>
+                                                <span className="right"><FontAwesomeIcon icon={faChevronRight} /></span>
+                                            </div>
+                                })
+                            }
+                             
                           </div>
                           
-                      </div>
+                       </div>
                     </div>
-                    <div className="prod-detail-section">
+                    <div className="see_more-section">
                         <div className="simi-prod">
                             {/* <!-- <span className="left"><i className="fa-solid fa-chevron-left"></i></span> --> */}
                             <h4>Recent viewed items</h4>
                             <div className="prod-cont">
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt="" />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                </div>
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt="" />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                </div>
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt="" />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                </div>
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt="" />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                </div>
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt="" />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                </div>
-                                <div className="prod">
-                                    <div>
-                                        <img src={iphoneThumbnail} alt=""  />
-                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
-                                    </div>
-                                    <p>Iphone 13 Pro</p>
-                                    <span className="right"><FontAwesomeIcon icon={faChevronRight} /></span>
-                                </div>
-                                
+
+                                {
+                                    Array(6).fill(0).map((prod)=>{
+                                        return   <div className="prod">
+                                                    <div>
+                                                        <img src={iphoneThumbnail} alt="" />
+                                                        <h4><FontAwesomeIcon icon={faNairaSign} /> 130000</h4>
+                                                    </div>
+                                                    <p>Iphone 13 Pro</p>
+                                                </div>
+                                    })
+                                }
+                              
                             </div>
                             
                         </div>
                     </div>
-                  </div>
+              </div>
           </>
   )
 }
