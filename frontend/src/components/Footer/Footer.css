@@ -35,6 +35,7 @@
     background-color: #2e2e2e;
     height: 30%;
     display: flex;
+    flex-wrap: wrap;
     width: 95%;
     color: #b5b5b5;
     gap: 30px;
@@ -55,6 +56,7 @@
 }
 .ash-cont .deals{
     margin-left: 30px;
+    /* background-color: red; */
 }
 .ash-inner .icon-cont{
     background-color: white;
@@ -110,9 +112,13 @@
 }
 .nav-links-cont{
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     width: 95%;
     margin-top: 30px;
+}
+.nav-links-cont h4{
+    font-size: 16px;
 }
 
 
@@ -120,7 +126,7 @@
 
 #icons-cont-wrapper{
     margin-top: 16px;
-    width: 400px;
+    /* width: 400px; */
 }
 #download-on-store-cont{
     /* background-color: yellow; */
@@ -131,7 +137,8 @@
 #google-store{
     background-color: #000000;
     border-radius: 4px;
-    width: 150px;
+    /* width: 150px; */
+    width: minmax(100px, 150px);
     height: auto;
     display: flex;
     align-items: center;
@@ -142,7 +149,7 @@
 #apple-store{
     background-color: #000000;
     border-radius: 6px;
-    width: 150px;
+    /* width: 150px; */
     height: auto;
     display: flex;
     align-items: center;
@@ -175,6 +182,7 @@
 #__socials h3{
     margin-bottom: 0;
     font-weight: medium;
+    font-size: 16px;
 }
 #all-icons-cont{
     display: flex;
@@ -697,7 +705,7 @@
     cursor: pointer;
 }
     
-@media (max-width:480px){
+@media (max-width:799px){
     #footer-cont{
         display: none;
         height: 100px;
@@ -732,4 +740,8 @@
     .icon-cont.active{
         color: var( --background-tertiary);
     }
+}
+
+@media (min-width:799px) and (max-width:1110px) {
+    
 }
