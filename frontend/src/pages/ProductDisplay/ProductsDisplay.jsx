@@ -126,7 +126,7 @@ const Products = ({category}) => {
             <div className='all-products-cont'>
             <div className='current-prod-active position-relative'>
                 <div className='' id="innerPhone" >
-                    <a className='d-flex align-items-center gap-2 text-center text-body-tertiary'>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a  className='active-cat'>Phones and Tablets</a></a>
+                    <a className='d-flex align-items-center gap-2 text-center text-body-tertiary'>Home <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 8 + 'px'}} /> <a  className='active-cat'>{activeProdCat == 'all'? activeProdCat.charAt(0).toUpperCase() + activeProdCat.slice(1) + ' Products': activeProdCat.charAt(0).toUpperCase() + activeProdCat.slice(1)}</a></a>
                     <span id='filter'>1 - 4 of <span>1000 results</span></span>
                 </div>
                 <div className='current-category'>

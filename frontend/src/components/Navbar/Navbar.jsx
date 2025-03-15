@@ -1,11 +1,11 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import Logo from '../../assets/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch} from '@fortawesome/free-solid-svg-icons'
+import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {ProductContext} from '../../context/ProductContext'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 
 const Navbar = () => {
@@ -15,11 +15,21 @@ const Navbar = () => {
     console.log(activeProdCat)
     const { cartItems, addToCart, removeFromCart, prodCount } = useContext(ProductContext)
     const navigate = useNavigate()
-    
+    const dropdown = useRef() 
+    const closeDown = useRef()
     useEffect(()=>{
         console.log(cartItems)
         // console.log(cartItems.length)
-    }, [cartItems])
+    }, [cartItems]);
+
+    const toggleDropDown = ()=>{
+       console.log(dropdown.current)
+       console.log(dropdown.current.classList)
+       dropdown.current.classList.toggle('show')
+    }
+    const closeDropDown =()=>{
+        dropdown.current.classList.remove('show')
+    }
   return (
             <div id='nav-sect-wrapper'>
                 <div id="nav-section">
@@ -44,7 +54,7 @@ const Navbar = () => {
                         Help 
                         <FontAwesomeIcon icon={faChevronDown} style={{color:'white'}} />
                     </a>
-                    <a href="">
+                    <a href="#" onClick={()=>{toggleDropDown()}}>
                         Login / <br /> Signup
                     </a>
                     <div id="cart-cont">
@@ -62,6 +72,47 @@ const Navbar = () => {
                         </svg>
                     </div>
                 </div>
+                {/* <!-- dropdown for signup --> */}
+                <div ref={dropdown} className="drop-down-wrapper" id="drop">
+                    <div className="drop-down-container">
+                        <div className="drop-down">
+                            <div id="login">
+                                <div>
+                                    <h2 style={{fontSize:'18px'}}>Login</h2>
+                                </div>
+                                <span id="closeBtn" style={{color:'grey', cursor:'pointer'}} onClick={()=>{closeDropDown()}}>
+                                    <FontAwesomeIcon icon={faXmark}  />Close
+                                </span>
+                            </div>
+                        </div>
+                        <div id="form-container">
+                            <form action="">
+                                <div className="input-wrapper">
+                                    <label for="email">Email Address or Phone Number</label> <br/>
+                                    <input type="text" placeholder="Enter email address or phone number" />
+                                </div>
+                                <br />
+                                <div className="input-wrapper">
+                                    <label for="password">Password</label> <br />
+                                    <input type="text" placeholder="Enter Password" />
+                                </div> <br />
+                                <div className="input-wrapper">
+                                    <input type="button" value="Login" />
+                                </div>
+                                <div id="hr">
+                                    <hr />
+                                    <span className="circle">OR</span>
+                                </div>
+                                <div id="btn-link">
+                                    <span><input className='' type="button" value="Login with Google" /></span>
+                                    
+                                    <span><input className='' type="button" value="Login with Apple" /></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div id='secondNav' onClick={
                     (e)=>{
                         if(e.target.matches('.inner')){

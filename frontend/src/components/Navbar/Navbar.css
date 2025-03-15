@@ -179,7 +179,138 @@
     cursor: pointer;
 }
 
+/* dropdown */
+.drop-down-wrapper{
+    position: relative;
+    display: none;
+}
+.drop-down-wrapper.show{
+    display: block;
+}
+.drop-down-wrapper::before{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.85);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+}
+.drop-down-container{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 50%;
+    height: 100vh;
+    background-color: #24e24a;
+    z-index: 10002;
+    right: 0;
+    top: 0;
+}
+.drop-down{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+drop-down  span{
+    text-decoration: none;
+    border: solid .5px rgb(94, 92, 92);
+    padding: 2px 10px;
+    gap: 5px;
 
+}
+.drop-down #login{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #ed017f; */
+    align-items: center;
+    width: 150%;
+    height: 80px;
+    box-shadow: 5px 2px 3px 1px #b1acaf;
+    padding: 0 20px;
+}
+.drop-down h2, 
+.drop-down span{
+    color: black;
+    text-decoration: none;
+    /* width: max-content; */
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+#login span{
+    height: 20px;
+    border: solid .5px grey;
+    padding: 5px;
+    border-radius: 3px;
+}
+#form-container{
+    display: flex;
+    justify-content: center;
+    /* background-color: #ed017f; */
+    width: 100%;
+}
+#form-container form{
+    margin-top: 30px;
+    width: 90%;
+    /* background-color: #7e2525; */
+}
+.input-wrapper input{
+    border: solid .2px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 5px 0;
+    text-indent: 10px;
+}
+input[type='button']{
+    background-color: #33b27b;
+    color: white;
+    padding: 5px 10px;  
+    border: none;
+}
+#hr{
+    height: 20px;
+    /* background-color: red; */
+    padding: 4px 0;
+    margin-top: 20px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    position: relative;
+}
+#hr .circle{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: solid .5px grey;
+    top: 1px;
+    left: 50%;
+    background-color: white;
+}
+#hr span{
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#hr hr{
+    background-color: #c2bfbf;
+}
+#btn-link{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+#btn-link input{
+    background-color: transparent;
+    border: solid .1px #4d8cfa;
+    padding: 5px 10px;
+    color: #4d8cfa;
+    font-size: 14px;
+}
 @media (max-width: 799px) {
     #nav-sect-wrapper{
         /* width: fit-content; */
