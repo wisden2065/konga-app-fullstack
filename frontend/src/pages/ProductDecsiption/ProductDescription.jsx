@@ -3,21 +3,78 @@ import  './ProductDescription.css'
 import { faChevronDown, faChevronLeft, faChevronRight, faHandHoldingHeart, faHeart, faMinus, faNairaSign, faPersonWalking, faPersonWalkingArrowLoopLeft, faPlus, faStar, faTruck, faTruckFast } from '@fortawesome/free-solid-svg-icons'
 import iphoneThumbnail from '../../assets/images'
 import { faFacebook, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../../context/ProductContext'
+import React from 'react'
 
 
 const Cart = () => {
+  
 
-    const {seeProdDesc, itemDesc} = useContext(ProductContext)
+    const {itemDesc} = useContext(ProductContext)
     console.log('In the Product Description page')
     console.log(itemDesc[0])
     // state for the product description images
     const [activeProdImg, setActiveProdImg] = useState('first') 
     // state for product quantity on view of a particular product
-    const [ prodQt, setProdQty ] = useState(1)
+    const [ currentProd, setCurrentProd ] = useState({
+                                                id: itemDesc[0]['id'],
+                                                count: 1
+                                            })
     // state for picture thumbnails
     const [currentThumbnail, setCurrentThumbnail] = useState(itemDesc[0].Product_Image[0])
+
+    // addToCart functionality from the shared context
+    const {addToCart, cartItems, setCartItems} = useContext(ProductContext)
+ 
+    useEffect(()=>{
+        console.log('Value of cart from useEffect',cartItems)
+        console.log('Value of current prod from useEffect',currentProd)
+    }, [cartItems, currentProd])
+
+    const findProdAndIncrement = (id)=>{
+
+        // increase the number of item for this current product in description page
+        setCurrentProd((preProd)=>({...preProd, ['count']:preProd.count +1}))
+
+        setCartItems((prev)=>({...prev, ['id']:id, ['count']:currentProd['count']}))
+        
+        if(cartItems[id]){
+            console.log('Product found in cart with id', id);
+            setCartItems((prev)=>{
+                return({...prev, ['count']:prev['count']+1})
+            })
+        }
+        else{
+            console.log('Product not yet in cart')
+            setCartItems((prev)=>{({...prev, currentProd})
+            })
+        }
+    }
+
+    const findProdAndDecrement = (id)=>{
+        setCurrentProd((preProd)=>({...preProd, ['count']:preProd['count'] -1}));
+        if(cartItems[id]){
+            console.log('Product found in cart with id', id)
+          
+
+        }
+        else{
+            console.log('Product not yet in cart')
+              setCartItems((prev)=>{
+                return {...prev, currentProd}
+            })
+        }
+    }
+
+    const pushToCartBasket =(id)=>{
+        if(!cartItems[id]){
+            addToCart(id)
+        }
+        else{
+            console.log('Product already exist in cart')
+        }
+    }
    
   return (
           <>
@@ -68,15 +125,15 @@ const Cart = () => {
                               <div className="qty" style={{padding:0}}>
                                   <p>Quantity:</p>
                                   <ul>
-                                      <li><FontAwesomeIcon icon={faMinus} color='#aca5a5' onClick={()=>{setProdQty((preQty)=>preQty -1) }}/></li>
-                                      <li><b>{prodQt}</b></li>
-                                      <li><FontAwesomeIcon icon={faPlus} color='#aca5a5' onClick={()=>{setProdQty((preQty)=>preQty +1)}} /></li>
+                                      <li><FontAwesomeIcon icon={faMinus} color='#aca5a5' onClick={()=>{findProdAndDecrement(itemDesc[0]['id'])}}/></li>
+                                      <li><b>{currentProd.count}</b></li>
+                                      <li><FontAwesomeIcon icon={faPlus} color='#aca5a5' onClick={()=>{findProdAndIncrement(itemDesc[0]['id'])}} /></li>
                                       
                                   </ul>
                               </div>
                               <hr />
                               <div className="add-to-cart">
-                                  <button>Add To Cart</button>
+                                  <button onClick={()=>{pushToCartBasket(itemDesc[0].id)}}>Add To Cart</button>
                                   
                               </div>
                               <hr />
