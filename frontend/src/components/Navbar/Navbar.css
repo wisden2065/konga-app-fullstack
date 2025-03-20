@@ -23,6 +23,10 @@
 #nav-section a{
     font-size: 12px;
 }
+#nav-section a:hover{
+    background-color: white;
+    color: var(--background-dark);
+}
 .logo-cont{
     margin-right: 20px;
     cursor: pointer;
@@ -158,10 +162,10 @@
     /* width: 1900px; */
     /* position: relative; */
 }
-#secondNav div{
+#secondNav > div{
     color: var(--neutral-100);
 }
-#secondNav div:hover{
+#secondNav > div:hover{
     background-color: var(--neutral-100);
     color: var(--text-primary);
 }
@@ -311,6 +315,174 @@ input[type='button']{
     color: #4d8cfa;
     font-size: 14px;
 }
+
+/* dropDown for second Nav */
+
+.inner:hover .dropDown-wrapper{
+    display: block;
+}
+
+.dropDown-wrapper{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+.dropDown{
+    display: grid;
+    grid-template-columns: 20% auto;
+    height: 70vh;
+}
+.dropDown::before{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    height: 30%;
+    /* width: 100vw; */
+    top: 100%;
+    left: 0; right: 0;
+}
+.dropDown .items{
+    overflow-y: scroll;
+}
+.items{
+    scrollbar-width: thin;
+    background-color: #fff;
+    scrollbar-color: rgb(203, 202, 202) transparent;
+    /* scrollbar-arrow-color: transparent; */
+}
+.items p{
+    padding: 10px;
+    margin: 0;
+}
+.inner img{
+    height: 20px;
+}
+.left{ background-color: rgb(237, 237, 240)!important;
+   
+    padding-top: 10px;
+}
+
+.left p{
+    color: #000000;
+    /* background-color: white; */
+}
+.left .selected{
+    background-color: #fff;
+
+    color: #b1015f;
+}
+
+.items::-webkit-scrollbar{
+    background-color: #242424;
+    width: 4px;
+}
+.right{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    /* overflow-y: scroll; */
+    background-color: #ffffff !important;
+}
+.right .first{
+    background-color: rgb(255, 255, 255) !important;
+    color: #000000 !important;
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    /* grid-template-rows: 200px; */
+    padding: 30px;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    /* padding-right: 100px; */
+}
+.right .second{
+    /* background-color: white; */
+    /* background-color: #4c1633; */
+    padding: 30px 30px 0 0;
+}
+.right h4{
+    margin: 0;
+    font-size: 14px;
+    /* background-color: #24e24a; */
+}
+.para{
+    padding-left: 0 !important;
+    /* background-color: #4d8cfa; */
+}
+.para:hover{
+    color: #da0f7b;
+    /* padding-left: 5px !important; */
+}
+.right .second img{
+    height: 350px;
+    width: 100%;
+    /* display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important; */
+}
+.left .dropDown .left p{
+    /* background-color: red; */
+}
+/* style for all category with hamburger menu ends here */
+
+/* style for dropdown on second navbar starts here */
+.navDrop-wrapper{
+    position: absolute;
+    background-color: #fff;
+    top: 100%; right: 0; left: 0;
+    /* height: max-content; */
+    display: none;
+}
+.navDrop{
+    position: relative;
+    height: 70vh;
+    /* background-color: #b1015f; */
+    overflow-y: scroll;
+    /* display: grid; */
+    /* grid-template-columns: 4fr 1fr; */
+    /* text-align: center; */
+}
+.navDrop-wrapper.visible{
+    display: block;
+}
+.navDrop-wrapper::before{
+    content: '';
+    height: 30%; 
+    background-color: rgba(0, 0, 0, 0.85);
+    left: 0; right: 0; top: 100%;
+    position: absolute;
+}
+.navDrop .cont{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    /* background-color: #18764d; */
+    padding: 30px;
+    color: black;
+}
+.navDrop .cont .first{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* overflow-y: scroll; */
+}
+.cont .first div h4{
+    margin: 0 !important;
+    color: black !important;
+}
+.cont .first div p{
+    padding-left: 0px !important;
+}
+.navDrop .cont .second{
+    /* background-color: #94004f; */
+}
+.cont .second img{
+    height: 350px;
+    /* height: 300%; */
+    width: 100%;
+}
+
+
+
+
 @media (max-width: 799px) {
     #nav-sect-wrapper{
         /* width: fit-content; */
@@ -515,7 +687,7 @@ input[type='button']{
         padding: 10px;
         /* position: relative; */
         cursor: pointer;
-        overflow-x: scroll;
+        /* overflow-x: scroll; */
     }
     
     .footer-nav{

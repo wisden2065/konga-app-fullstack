@@ -1,0 +1,305 @@
+{
+    "computers": {
+       "items": [
+          {
+             "title": "Laptops",
+             "details": ["Mini Laptops and Netbooks", "Notebooks", "Ultrabooks", "Hybrid PCs", "Macbooks", "PC Gaming"]
+          },
+          {
+             "title": "Desktop and Monitors",
+             "details": ["CPUs", "All In Ones", "Desktop Bundles"]
+          },
+          {
+             "title": "Computing Accessories",
+             "details": ["Computer Peripherals", "Bags, Cases, Covers & Sleeves", "Laptop & Desktop Accessories", "Storage Devices"]
+          },
+          {
+           "title": "Printers, Scanners and Accessories",
+           "details":["Computer, Printers & Copiers", "Scanners", "Inks, Toners & Catridges"]
+          },
+          {
+           "title": "Wifi & Networking",
+           "details":["Switches", "Routers", "Modem & Mifi", "Networking Peripherals"]
+          },
+          {
+           "title": "PC Gaming",
+           "details":["PC Games", "PC Gaming Accessories"]
+          },
+          {
+           "title": "Computer Software",
+           "details":["Office & Business", "Operating Systems", "Security & Utilities", "Projectors & Accessories", "Video Projectors", "Projector Lamps", "Projector Lenses", "Mounting Equipment", "Projection Screens", "Projector Bags & Cases", "Remote Controls", "Other Projector Accessories"]
+          },
+          {
+           "title": "Projectors & Accessories",
+           "details":["Video Projectors", "Projector Lamps", "Projector Lenses", "Mounting Equipment", "Projection Screens", "Projector Bags & Cases", "Remote Controls", "Other Projector Accessories"]
+          }
+          
+       ],
+       "image": "computing.webp"
+       
+    },
+    "phones": {
+       "items": [
+          {
+             "title": "Mobile Phones",
+             "details": ["Smart Phones", "Feature Phones"]
+          },
+          {
+             "title": "Mobile Phone Accessories",
+             "details": ["Cables", "Cases & Covers", "Screen Protectors", "Chargers & Power Banks", "Earphones & Headsets", "Smartwatches & Bands", "Clips, Holders & Stands", "Batteries"]
+          },
+          {
+             "title": "Desktop and Monitors",
+             "details": ["Android", "iOS", "Windows", "Other OS'"]
+          },
+          {
+             "title": "Tablet Accessories",
+             "details": ["Cases & Covers", "Holders & Stands", "Other Accessories"]
+          },
+          {
+             "title": "Shop By Price",
+             "details": ["Up to 10,000", "Up to 20,000", "Up to 30,000", "Up to 40,000", "Up to 50,000", "Up to 60,000", "60,000 & Above"]
+          },
+          {
+             "title": "Desk, Radio & Intercom Phones",
+             "details": ["Desk, Radio & Intercom Phones Accessories", "Panasonic", "Walkie Talkie", "Desk Phones", "Intercom Phones"]
+          }
+       ],
+       "image": "phonesntab.webp"
+        },
+       "electronics": {
+       "items": [
+          {
+             "title": "Televisions",
+             "details": ["Smart TVs", "LED TVs", "Curved TVs", "OLED TVs", "Plasma TVs"]
+          },
+          {
+             "title": "DVD Players and Recorders",
+             "details": ["DVD Players", "DVD Recorders"]
+          },
+          {
+             "title": "Cameras & Photo",
+             "details": ["Digital Cameras", "Professional & SLR Cameras", "Camcorders & Video Cameras", "Camera Lenses & Accessories", "CCTV Cameras"]
+          },
+          {
+             "title": "Accessories",
+             "details": ["TV Audio", "Headphones", "Television Accessories", "Camera Lenses & Accessories", "Other Accessories", "Gaming Accessories"]
+          },
+          {
+             "title": "Home Theatres & Audio Systems",
+             "details": ["Home Theatre", "HiFi Systems", "MP3 Players & Speakers"]
+          },
+          {
+             "title": "Games and Consoles",
+             "details": ["PS3", "Xbox One", "Xbox 360", "Nintendo Wii", "PS4", "Sony PSP", "PS Vita", "Nintendo 3DS"]
+          }
+       ],
+       "image": "electronics.webp"
+     },
+       "fashion": {
+       "items": [
+          {
+             "title": "Women's Wear",
+             "details": ["Dresses", "Tops", "Trousers", "Jumpsuits & Playsuits", "Suits & Blazers", "Cardigans", "Islamic Wear", "Swimwear", "Shorts", "Skirts", "Co-ordinates", "Skirt & Dress Suits", "Lingerie & Sleepwear", "Women's Plus Size", "Ready to Wear"]
+          },
+          {
+             "title": "Women's Wedges",
+             "details": ["Womens New Arrival", "Boots & Platforms", "Ballerinas & Flats", "Women's Sandals and Slippers", "Men's New Arrival", "Heels", "Sandals & Slippers", "Wedges", "Sport Shoes", "Shoes & Bags"]
+          },
+          {
+             "title": "Women's Accessories",
+             "details": ["Bags", "Belts", "Purses & Clutches", "Wallets", "Jewellery", "Hats & Scarves", "Scarves"]
+          }
+       ],
+       "image": "fashion.webp"
+     },
+       "kitchen": {
+       "items": [
+          {
+             "title": "Large Appliances",
+             "details": ["Air Conditioners & Coolers", "Fans", "Freezers", "Dishwashers", "Washers & Dryers", "Refrigerators", "Cookers & Ovens", "Water Dispensers", " Vacuum Cleaners"]
+          },
+          {
+             "title": "Small Appliances",
+             "details": ["Blenders, Juicers & Mixers", "Hot Plates & Burners", "Irons & Steamers", "Processors & Mincers", "Toasters & Sandwich Makers", "Deep Fryers & Rice Cookers", "Electric Kettles", "Microwaves", "Yam Pounder"]
+          },
+          {
+             "title": "Home Furnishings",
+             "details": ["Bed & Bathroom Furnishings", "Curtains & Blinds", "Decor", "Light Fixtures", "Rugs & Carpets", "Bathroom Wares", "Housekeeping & Pet Supplies"]
+          },
+          {
+             "title": "Kitchen & Dining",
+             "details": ["Cook and Bakeware", "Dining", "Cooker Hoods & Ventilators"]
+          },
+          {
+             "title": "Top Brands",
+             "details": ["LG", "Samsung", "Polystar", "Scanfrost", "Hisense", "Saisho", "Haier Thermocool", "Master Chef"]
+          },
+          {
+             "title": "Top Brands",
+             "details": ["LG", "Samsung", "Polystar", "Scanfrost", "Hisense", "Saisho", "Haier Thermocool", "Master Chef"]
+          },
+          {
+             "title": "Kids' Home Store",
+             "details": ["Kids' Bath", "Kids' Bedding", "Kids' Furniture", "Kids' Room Decor"]
+          }
+       ],
+       "image": "kitchen.webp"
+     },
+       "kids": {
+       "items": [
+          {
+             "title": "Fashion for Girls",
+             "details": ["Sets", "Dresses", "Tops, Jackets, & Sweatshirts", "Denim, Trousers & Leggings", "Girl's Shorts & Skirts", "Underwear & Socks", "Watches", "Shoes", "Sleepwear", "Bodysuits & Playsuits"]
+          },
+          {
+             "title": "Fashion for Boys",
+             "details": ["Boys Swimwear", "Polos & T-Shirts", "Sets", "Watches", "Denim & Trousers", "Sleepwear", "Shoes", "Shirts"]
+          },
+          {
+             "title": "Home Furnishings",
+             "details": ["Bed & Bathroom Furnishings", "Curtains & Blinds", "Decor", "Light Fixtures", "Rugs & Carpets", "Bathroom Wares", "Housekeeping & Pet Supplies"]
+          }
+         
+       ],
+        "image": "kidsntoys.jpeg"
+     },
+       "beauty": {
+       "items": [
+          {
+             "title": "Makeup & Body Art",
+             "details": ["Face MakeUp", "Eye MakeUp", "Lips", "Makeup Accessories", "Nails", "Makeup Set", "Body Art"]
+          },
+          {
+             "title": "Fashion for Boys",
+             "details": ["Boys Swimwear", "Polos & T-Shirts", "Sets", "Watches", "Denim & Trousers", "Sleepwear", "Shoes", "Shirts"]
+          },
+          {
+             "title": "Home Furnishings",
+             "details": ["Bed & Bathroom Furnishings", "Curtains & Blinds", "Decor", "Light Fixtures", "Rugs & Carpets", "Bathroom Wares", "Housekeeping & Pet Supplies"]
+          }
+         
+       ],
+        "image": "personalcare.webp"
+       },
+       "drinks": {
+       "items": [
+          {
+             "title": "Food",
+             "details": ["Breakfast & Cereals", "Rice, Pasta & Noodles", "Flour & Grains", "Cooking Ingredients", "Baking Ingredients", "Snacks & Confectioneries", "Smoked Meat & Fish"]
+          },
+          {
+             "title": "Agric Products",
+             "details": ["Meat, Poultry & Fish", "Fruits & Vegetables", "Seafood", "Livestock", "Flowers", "Animal Feed", "Agricultural Tools & Accessories"]
+          },
+          {
+             "title": "Alcoholic Beverages",
+             "details": ["Wine", "Spirits", "Decor", "Liqueurs & Creams", "Champagne", "Beer", "Coolers & Cocktails"]
+          }
+         
+       ],
+        "image": "drinks.jpeg"
+     }
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
