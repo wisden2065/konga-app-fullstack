@@ -18,12 +18,16 @@ const Navbar = () => {
 
     // ref to container where the text is display on hover of the nav links
     const sideDisplayText = useRef()
+    // ref to container where the text is display on hover of the nav links
+    const sideDisplayText2 = useRef()
 
     // ref to the container where the image will be displayed  on hover
     const imgCont = useRef(null)
+
     // ref to menu all category
-    const allCat = useRef(null)
-    const imgContNav = useRef()
+    const allCatBtn = useRef(null)
+    // ref to all links in second Navbar
+    const drop = useRef([])
     const dropdown = useRef() 
     const closeDown = useRef()
     // ref to all the side bar p elements in dropdown
@@ -55,7 +59,7 @@ const Navbar = () => {
     //stores dropdownData for product categories to be populated on mount of navbar
     let dropDownData = {};  
 
-    // load data from dropDown.json as soon as navbar mounts
+    // load data from dropDown.json as soon as navbar mounts & add mouseenter event listener
     useEffect(()=>{
             async function fetchPrdData(){
                 try{
@@ -78,7 +82,8 @@ const Navbar = () => {
             navItems.current.forEach((element)=>{
               
             })
-            // add a hover listener to all categories 
+            // add a hover listener to all categories
+            // allCatBtn.current.onmouseenter =(e)=>(handleMouseEnter(e))
 
             // add event listener to the side bar p elements
             dropDownSideP.current.forEach((elem)=>{
@@ -86,7 +91,13 @@ const Navbar = () => {
                 elem.onmouseenter= ()=> (handleMouseEnter(elem));
                 
             })
-            allCat.current.onmouseenter = ()=> (handleMenu('computers'))
+
+            allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
+
+            // mouseenter event to all links in second navbar
+            drop.current.forEach((d)=>{
+                d.onmouseenter = (e)=>(handleMouseEnter(e))
+            })
         
     }, [])
 
@@ -107,22 +118,35 @@ const Navbar = () => {
    
     // handle mouseEnter event
     const handleMouseEnter =(ele)=>{
-        dropDownSideP.current.forEach(p=>{
-            p.classList.remove('selected')
-        })
-        console.log(ele);
-        ele.classList.add('selected')
-        // generate and insert html for each hovered p with the class name
-        let className = ele.classList[0];
-        console.log(ele.className)
-        console.log(ele.classList)
-        console.log(className)
-        sideDisplayText.current.innerHTML = generateContent(className)
-        // sideDisplayText.current.dangerouslySetInnerHTML = {__html: generateContent(className)}
+        if(ele.target?.className.includes('inner')){
+            console.log('Navbar hovered')
+            // generate and insert html for each hovered p with the class name
+            let className = ele.target.classList[0];
+            sideDisplayText2.current.innerHTML = generateContent(className)
+            // sideDisplayText.current.dangerouslySetInnerHTML = {__html: generateContent(className)}
+        }
+        else{
+            
+            console.log('In Handle mouse enter')
+
+            dropDownSideP.current.forEach(p=>{
+                p.classList.remove('selected')
+            })
+            ele.classList.add('selected')
+            // generate and insert html for each hovered p with the class name
+            let className = ele.classList[0];
+            console.log(ele.className)
+            console.log(ele.classList)
+            console.log(className)
+            sideDisplayText.current.innerHTML = generateContent(className)
+            // sideDisplayText.current.dangerouslySetInnerHTML = {__html: generateContent(className)}
+            }
+
        
     }
   
     // state to track the current image
+    const [currentDropDownImg2, setCurrentDropDownImg2] = useState(null)
     const [currentDropDownImg, setCurrentDropDownImg] = useState(null)
     const [currentClassName,setCurrentClassName] = useState(null)
 
@@ -158,6 +182,7 @@ const Navbar = () => {
             if(dropDownData[c]?.image){
 
                 setCurrentDropDownImg(`/${dropDownData[c].image}`)
+                setCurrentDropDownImg2(`/${dropDownData[c].image}`)
 
                 if(currentDropDownImg){
                     console.log('Current dropDown image is true')
@@ -219,7 +244,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* <!-- dropdown for signup --> */}
-                <div ref={allCat} className="drop-down-wrapper" id="drop">
+                <div className="drop-down-wrapper" id="drop">
                     <div className="drop-down-container">
                         <div className="drop-down">
                             <div id="login">
@@ -271,7 +296,7 @@ const Navbar = () => {
                                     setActiveProdCat('all');
                                 console.log("Current category:",activeProdCat)
                             }}
-                            ref={allCat}
+                            ref={allCatBtn}
                         >
                         All category
                         <FontAwesomeIcon icon={faBars} />
@@ -296,80 +321,81 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='inner drp' 
+                    <div className='computers inner drp' 
                         onClick={()=>{
                             setActiveProdCat('laptops');
                             console.log("Current category:",activeProdCat)
                         }}
-                        ref={(el)=>(navItems.current[1] = el)}
+                        ref={(e)=>drop.current[0]=e}
                     >
                         Computer and Accessories
                         <div className="navDrop-wrapper">
                             <div className="navDrop">
                                 <div className="cont">
-                                    <div className="first"></div>
-                                    <div className="second"></div>
+                                    <div ref={sideDisplayText2} className="first"></div>
+                                    <div className="second">
+                                        <img src={currentDropDownImg2} alt="" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div href="" className='inner drp'
+                    <div href="" className='phones inner drp'
                           onClick={()=>{
                             setActiveProdCat('phones');
                             console.log(activeProdCat)
                         }}
 
-                        ref={(el)=>(navItems.current[2] = el)}
+                        ref={(e)=>drop.current[1]=e}
                     >
                         Phones and tablets
                     </div>
-                    <div href='' className="inner drp"
+                    <div href='' className="electronics inner drp"
                           onClick={()=>{
                             setActiveProdCat('electronics');
                             console.log(activeProdCat)
                         }}
 
-                        ref={(el)=>(navItems.current[3] = el)}
+                        ref={(e)=>drop.current[2]=e}
                     >
                         Electronics
                     </div>
-                    <div href='' className="inner drp"
+                    <div href='' className="fashion inner drp"
                           onClick={()=>{
                             setActiveProdCat('fashion');
                             console.log(activeProdCat)
                         }}
 
-                        ref={(el)=>(navItems.current[4] = el)}
+                        ref={(e)=>drop.current[3]=e}
                     >
                         Konga fashion
                     </div>
-                    <div href='' className="inner drp"
+                    <div href='' className="kitchen inner drp"
                           onClick={()=>{
                             setActiveProdCat('kitchen');
                             console.log(activeProdCat)
                         }}
-
-                        ref={(el)=>(navItems.current[5] = el)}
+                        ref={(e)=>drop.current[4]=e}
                     >
                         Home and Kitchen
                     </div>
-                    <div href='' className="inner drp"
+                    <div href='' className="kids inner drp"
                           onClick={()=>{
                             setActiveProdCat('kids');
                             console.log(activeProdCat)
                         }}
-                        ref={(el)=>(navItems.current[6] = el)}
+                        ref={(e)=>drop.current[5]=e}
                     >
                         Baby, Kids and Toys
                     </div>
-                    <div href='' className="inner drp"
+                    <div href='' className="beauty inner drp"
                           onClick={()=>{
                             setActiveProdCat('health');
                             console.log(activeProdCat)
                         }}
 
-                        ref={(el)=>(navItems.current[7] = el)}
+                        ref={(e)=>drop.current[6]=e}
                     >
                         Beauty, Health and Personal Care
                     </div>

@@ -316,11 +316,6 @@ input[type='button']{
     font-size: 14px;
 }
 
-/* dropDown for second Nav */
-
-.inner:hover .dropDown-wrapper{
-    display: block;
-}
 
 .dropDown-wrapper{
     position: absolute;
@@ -395,6 +390,10 @@ input[type='button']{
     grid-row-gap: 20px;
     /* padding-right: 100px; */
 }
+.cont .first h4{
+    font-size: 16px;
+    font-weight: 700;
+}
 .right .second{
     /* background-color: white; */
     /* background-color: #4c1633; */
@@ -402,7 +401,8 @@ input[type='button']{
 }
 .right h4{
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 700;
     /* background-color: #24e24a; */
 }
 .para{
@@ -425,7 +425,16 @@ input[type='button']{
 }
 /* style for all category with hamburger menu ends here */
 
+
 /* style for dropdown on second navbar starts here */
+/* dropDown for second Nav */
+
+.inner:hover .dropDown-wrapper{
+    display: block;
+}
+#secondNav:has(.drp:hover) .navDrop-wrapper{
+    display: block;
+}
 .navDrop-wrapper{
     position: absolute;
     background-color: #fff;
@@ -436,10 +445,11 @@ input[type='button']{
 .navDrop{
     position: relative;
     height: 70vh;
+    width: 100%;
     /* background-color: #b1015f; */
     overflow-y: scroll;
-    /* display: grid; */
-    /* grid-template-columns: 4fr 1fr; */
+    display: flex;
+    justify-content: center;
     /* text-align: center; */
 }
 .navDrop-wrapper.visible{
@@ -461,12 +471,14 @@ input[type='button']{
 }
 .navDrop .cont .first{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
     /* overflow-y: scroll; */
 }
 .cont .first div h4{
     margin: 0 !important;
     color: black !important;
+    font-size: 16px;
 }
 .cont .first div p{
     padding-left: 0px !important;
