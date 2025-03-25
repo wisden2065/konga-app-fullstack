@@ -4,13 +4,12 @@ import './ProductDisplay.css'
 import Product from '../../components/Product/Product'
 import { useContext, useEffect, useRef, useState } from 'react'
 import ProductContextProvider, { ProductContext } from '../../context/ProductContext'
-import topBanner from '../../assets/images/productsWebBanner.webp'
+import topBanner from '../../assets/images/ProductsWebBanner.webp'
 // import { product_list } from '../../assets/images/products'
 import {Helmet} from "react-helmet";
 import { getProducts } from '../../assets/images/products.js'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import loading from '../../../src/assets/images/loading.gif'
 import { useParams } from 'react-router-dom'
 
 
@@ -113,6 +112,25 @@ const Products = ({category}) => {
             performBrandFiltering()
         }
     }
+
+    // Pagination
+    const PAGE_SIZE = 24;  //size for number of Products per page
+    const totalNoOfProducts = product_list.length;
+    const numOfPages = Math.ceil(totalNoOfProducts / PAGE_SIZE);
+    console.log("Number of Pages", numOfPages)
+    // state for current page
+    const [currentPage, setCurrentPage] = useState(0);
+    const start = currentPage * PAGE_SIZE;
+    const end = (currentPage +1) * PAGE_SIZE;
+    // const [currentProd, setCurrentProd] = useState([product_list.slice(currentPage, PAGE_SIZE)])
+    // as soon as currentPage changes we update the UI
+    useEffect(()=>{
+
+        // setCurrentProd(currentPage, PAGE_SIZE)
+        console.log('Current Page:',currentPage)
+        // console.log('Current Page:',typeof(currentPage.target?.innerHTML))
+    },[currentPage])
+
   return (
     <>
             <Helmet>
@@ -365,7 +383,7 @@ const Products = ({category}) => {
                                                 </div>
                                     })
                                     :
-                                    product_list.map((prod, index)=>{
+                                    product_list.slice(start, end).map((prod, index)=>{
                                         if(isActiveCheckBox){
                                                 // const brand = [...checked]
                                                 let brands
@@ -402,16 +420,6 @@ const Products = ({category}) => {
                                                             })
                                                         
                                                         }
-                                                        // else if(sortState == 'low'){
-                                                        //     const newList = product_list.sort((a, b)=>{
-                                                            
-                                                        //         return  b.Product_Price - a.Product_Price
-                                                                
-                                                        //     })
-                                                        //     newList.map((list, i)=>{
-                                                        //         return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image}  index={index} id={list.id} />
-                                                        //     })
-                                                        // }
                                                 }
                                                 
                                         }
@@ -419,6 +427,16 @@ const Products = ({category}) => {
                             
                             }
                                 
+                        </div>
+                        <div>
+                            <h4>Pagination</h4>
+                            <div className='d-flex justify-content-center align-items-center'>
+                                {
+                                    [...Array(numOfPages).keys()].map((pag)=>{
+                                        return <span onClick={()=>{setCurrentPage(parseInt(pag))}} style={{background:'#ed017f', width:'20px', height:'30px', padding:'5px', margin:'10px', borderRadius:'4px', color:'white', cursor:'pointer'}}>{pag}</span>
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

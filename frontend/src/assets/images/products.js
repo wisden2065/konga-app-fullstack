@@ -7,9 +7,9 @@
  import samsungA052 from './samsungA052.webp'
  import samsungA053 from './samsungA053.jpg'
 
- import note50 from './Note 50.jpeg'
- import note502 from './Note502.webp'
- import note503 from './Note503.jpg'
+ import note50 from './note50.jpeg'
+ import note502 from './note502.webp'
+ import note503 from './note503.jpg'
 
  import macBookPro from './macBookPro.webp'
  import macBookPro2 from './macBookPro2.jpeg'
@@ -23,7 +23,7 @@
  import dellXPS152 from './dellXPS152.jpg'
  import dellXPS153 from './dellXPS153.jpg'
 
- import intel2176 from './itel 2176.jpeg'
+ import intel2176 from './itel 2167.jpeg'
  import intel21762 from './intel21762.png'
  import intel21763 from './intel21763.jpeg'
 
@@ -89,9 +89,9 @@
 
  import tecnoSpark from './Tecno Spark 30c.jpeg'
 
- import xbox from './Xbox Series X.jpeg'
- import xbox2 from './Xbox2.jpg'
- import xbox3 from './Xbox3.jpg'
+ import xbox from './xbox.jpeg'
+ import xbox2 from './xbox2.jpg'
+ import xbox3 from './xbox3.jpg'
 
  import zte from './ZTE Blade A55.jpeg'
  import zte2 from './zte2.jpg'
@@ -178,7 +178,7 @@
  import microsoftSurfaceLaptop2 from './microsoftSurfaceLaptop2.webp'
  import microsoftSurfaceLaptop3 from './microsoftSurfaceLaptop2.jpg'
 
- import microsoftXbox  from './Microsoft Xbox Elite COntroller.jpeg'
+ import microsoftXbox  from './Microsoft Xbox Elite Controller.jpeg'
  import microsoftXbox2  from './microsoftXbox2.jpg'
  import microsoftXbox3  from './microsoftXbox3.jpg'
 
@@ -202,7 +202,7 @@
  import samsungTabS82 from './samsungTabS82.webp'
  import samsungTabS83 from './samsungTabS83.webp'
 
- import sonnyWHHeadphone from './Sony WH-CH710N HeadPhones.jpeg'
+ import sonnyWHHeadphone from './Sony WH-CH710N Headphones.jpeg'
  import sonnyWHHeadphone2 from './sonnyWHHeadphone2.jpg'
  import sonnyWHHeadphone3 from './sonnyWHHeadphone3.png'
 
@@ -235,7 +235,7 @@
  import adidasJacket3 from './adidasJacket3.avif'
 
  import adidasRunners from './Adidas Ultraboost Running Shoes.jpeg'
- import adidasRunners2 from './adidasrunners2.avif'
+ import adidasRunners2 from './adidasRunners2.avif'
  import adidasRunners3 from './adidasRunners3.avif'
 
  import casioWatch from './Casio G-Shock Watch.jpeg'
@@ -282,7 +282,7 @@
  import leviJeans2 from './leviJeans2.jpg'
  import leviJeans3 from './leviJeans3.jpg'
 
- import nikeAirMAx from './Nike Air max 270.jpeg'
+ import nikeAirMAx from './Nike Air Max 270.jpeg'
  import nikeAirMAx2 from './nikeAirMAx2.png'
  import nikeAirMAx3 from './nikeAirMAx3.jpg'
 
@@ -294,7 +294,7 @@
  import raySunGlass2 from './raySunGlass2.webp'
 //  import raySunGlass3 from './raySunGlass3.JPEG'
 
- import raymondSuit from './Raymond formal Suit.jpeg'
+ import raymondSuit from './Raymond Formal Suit.jpeg'
  import raymondSuit2 from './raymondSuit2.jpg'
  import raymondSuit3 from './raymondSuit3.avif'
 
@@ -347,8 +347,8 @@
  import lgDoubleDoor3 from './lgDoubleDoor3.jpg'
 
  import nutriBulletBlender from './NutriBullet Blender.jpeg'
- import nutriBulletBlender2 from './nutriBullet Blender2.jpg'
- import nutriBulletBlender3 from './nutriBullet Blender3.webp'
+ import nutriBulletBlender2 from './NutriBullet Blender2.jpg'
+ import nutriBulletBlender3 from './NutriBullet Blender3.webp'
 
  import panasonicMicrowave from './Panasonic Microwave Oven.jpeg'
  import panasonicMicrowave2 from './panasonicMicrowave2.webp'
@@ -443,7 +443,7 @@
  import ravensburgerPuzzle2 from './ravensburgerPuzzle2.jpg'
  import ravensburgerPuzzle3 from './ravensburgerPuzzle3.webp'
 
- import razorKickScooter from './Razor A Kick scooter.jpeg'
+ import razorKickScooter from './Razor A Kick Scooter.jpeg'
  import razorKickScooter2 from './razorKickScooter2.jpg'
  import razorKickScooter3 from './razorKickScooter3.jpg'
 
