@@ -1,4 +1,4 @@
-import { faChevronRight, faL, faMinus, faNairaSign, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight, faL, faMinus, faNairaSign, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ProductDisplay.css'
 import Product from '../../components/Product/Product'
@@ -42,18 +42,38 @@ const Products = ({category}) => {
 
     // extracts the product Category form the url parameter if we have a route like '/category/fashion'
     const {health, laptops, kitchen, kids} = useParams()
-
+      // Pagination
+      const PAGE_SIZE = 24;  //size for number of Products per page
+      const totalNoOfProducts = product_list.length;
+      const numOfPages = Math.ceil(totalNoOfProducts / PAGE_SIZE);
+      console.log("Number of Pages", numOfPages)
+      // state for current page
+      const [currentPage, setCurrentPage] = useState(0);
+      const start = currentPage * PAGE_SIZE;
+      const end = (currentPage +1) * PAGE_SIZE;
+  
+      // change page with arrow Next
+      const goToNext = ()=>{
+          console.log(currentPage)
+           setCurrentPage(prev=>prev + 1)
+      }
+      const goToPrev = ()=>{
+          setCurrentPage(prev=>prev -1)
+      }
 
 
     // loads the produscts to the product array
     useEffect(()=>{
+        setIsLoading(true)
+
         getProducts()
             .then((prod)=>{
                 setProductList(prod)
                 setIsLoading(false)
             })
+        window.scrollTo(0, 200)
         
-    }, [])
+    }, [currentPage])
 
     // finds all the products in the current selected Product brand category 
     const performBrandFiltering=()=>{
@@ -113,15 +133,8 @@ const Products = ({category}) => {
         }
     }
 
-    // Pagination
-    const PAGE_SIZE = 24;  //size for number of Products per page
-    const totalNoOfProducts = product_list.length;
-    const numOfPages = Math.ceil(totalNoOfProducts / PAGE_SIZE);
-    console.log("Number of Pages", numOfPages)
-    // state for current page
-    const [currentPage, setCurrentPage] = useState(0);
-    const start = currentPage * PAGE_SIZE;
-    const end = (currentPage +1) * PAGE_SIZE;
+  
+
     // const [currentProd, setCurrentProd] = useState([product_list.slice(currentPage, PAGE_SIZE)])
     // as soon as currentPage changes we update the UI
     useEffect(()=>{
@@ -351,7 +364,7 @@ const Products = ({category}) => {
                             <img src={topBanner} alt="" />
                         </div>
                         <div id="productCont">
-                                {product_list.length === 0?
+                                {product_list.length === 0 || isLoading?
                                     Array(10)
                                     .fill(0).map((_, i)=>{
                                         // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
@@ -429,13 +442,24 @@ const Products = ({category}) => {
                                 
                         </div>
                         <div>
-                            <h4>Pagination</h4>
                             <div className='d-flex justify-content-center align-items-center'>
                                 {
-                                    [...Array(numOfPages).keys()].map((pag)=>{
-                                        return <span onClick={()=>{setCurrentPage(parseInt(pag))}} style={{background:'#ed017f', width:'20px', height:'30px', padding:'5px', margin:'10px', borderRadius:'4px', color:'white', cursor:'pointer'}}>{pag}</span>
+                                    !currentPage == 0
+                                    &&
+                                    <span onClick={()=>goToPrev()} style={{background:'#ed017f', width:'', height:'30px', padding:'5px', margin:'10px', borderRadius:'4px', color:'white', cursor:'pointer', fontSize:'12px', alignItems:'center'}}><FontAwesomeIcon style={{fontSize: '12px'}} icon={faChevronLeft}/> Prev </span>
+                                }
+                                {
+                                    
+                                    [...Array(numOfPages).keys()].map((pag, i)=>{
+                                      
+                                        return <span key={i} onClick={()=>{setCurrentPage(parseInt(pag))}} style={{border:'solid .5px #ed017f', color: currentPage==pag?'white' :'#ed017f', width:'20px', height:'30px', padding:'5px', margin:'10px', borderRadius:'4px', cursor:'pointer', fontSize: '12px', backgroundColor:currentPage==pag?'#ed017f':'white'}}>{pag}</span>
                                     })
                                 }
+                                {
+                                    currentPage < (numOfPages -1)&&
+                                    <span onClick={()=>goToNext()} style={{background:'#ed017f', width:'', height:'30px', padding:'5px', margin:'10px', borderRadius:'4px', color:'white', cursor:'pointer', fontSize:'12px'}}>Next <FontAwesomeIcon style={{fontSize: '12px'}} icon={faChevronRight}/></span>
+                                }
+                                
                             </div>
                         </div>
                     </div>
