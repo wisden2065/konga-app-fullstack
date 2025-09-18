@@ -11,70 +11,30 @@ import React from 'react'
 const Cart = () => {
   
 
+    // addToCart functionality from the shared context
+    const {addToCart, cartItems, setCartItems, pushToCartBasket, currentProd,findProdAndIncrement, findProdAndDecrement} = useContext(ProductContext)
     const {itemDesc} = useContext(ProductContext)
+
     console.log('In the Product Description page')
     console.log(itemDesc[0])
+    console.log(itemDesc[0].id)
     // state for the product description images
     const [activeProdImg, setActiveProdImg] = useState('first') 
-    // state for product quantity on view of a particular product
-    const [ currentProd, setCurrentProd ] = useState({
-                                                id: itemDesc[0]['id'],
-                                                count: 1
-                                            })
+  
     // state for picture thumbnails
     const [currentThumbnail, setCurrentThumbnail] = useState(itemDesc[0].Product_Image[0])
 
-    // addToCart functionality from the shared context
-    const {addToCart, cartItems, setCartItems} = useContext(ProductContext)
- 
+    window.scrollTo(0, 0)
+    // useEffect(()=>{
+    //     console.log('Value of cart from useEffect',cartItems)
+    //     console.log('Value of current prod from useEffect',currentProd)
+    // }, [cartItems, currentProd])
+    
     useEffect(()=>{
-        console.log('Value of cart from useEffect',cartItems)
-        console.log('Value of current prod from useEffect',currentProd)
-    }, [cartItems, currentProd])
+        console.log('Value of cartItems from useEffect',cartItems)
+    }, [cartItems])
+   
 
-    const findProdAndIncrement = (id)=>{
-
-        // increase the number of item for this current product in description page
-        setCurrentProd((preProd)=>({...preProd, ['count']:preProd.count +1}))
-
-        setCartItems((prev)=>({...prev, ['id']:id, ['count']:currentProd['count']}))
-        
-        if(cartItems[id]){
-            console.log('Product found in cart with id', id);
-            setCartItems((prev)=>{
-                return({...prev, ['count']:prev['count']+1})
-            })
-        }
-        else{
-            console.log('Product not yet in cart')
-            setCartItems((prev)=>{({...prev, currentProd})
-            })
-        }
-    }
-
-    const findProdAndDecrement = (id)=>{
-        setCurrentProd((preProd)=>({...preProd, ['count']:preProd['count'] -1}));
-        if(cartItems[id]){
-            console.log('Product found in cart with id', id)
-          
-
-        }
-        else{
-            console.log('Product not yet in cart')
-              setCartItems((prev)=>{
-                return {...prev, currentProd}
-            })
-        }
-    }
-
-    const pushToCartBasket =(id)=>{
-        if(!cartItems[id]){
-            addToCart(id)
-        }
-        else{
-            console.log('Product already exist in cart')
-        }
-    }
    
   return (
           <>
@@ -133,7 +93,7 @@ const Cart = () => {
                               </div>
                               <hr />
                               <div className="add-to-cart">
-                                  <button onClick={()=>{pushToCartBasket(itemDesc[0].id)}}>Add To Cart</button>
+                                  <button onClick={()=>{pushToCartBasket(itemDesc[0].id, currentProd.count)}}>Add To Cart</button>
                                   
                               </div>
                               <hr />

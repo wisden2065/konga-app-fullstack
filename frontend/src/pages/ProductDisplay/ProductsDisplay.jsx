@@ -30,15 +30,21 @@ const Products = ({category}) => {
 
     // holds and sets the state and value of the current product category
     const { activeProdCat, setActiveProdCat } = useContext(ProductContext)
-
+    // console.log(activeProdCat)
     // hold the values of all product list to be rendered in the this component
     // const {product_list} = useContext(ProductContext);   // commented this to implement loading state --uncomment 
 
 
     // initial product array empty on mount
     const [product_list, setProductList] = useState([]);
+
+    // make a copy of the product list for unsorted state in relevance
+    // const [prod_list_copy, setProductListCopy] = useState([...product_list])
+    // const [prod_list_copy, setProductListCopy] = useState([...p])
+
+
     // loading states- simulating lazy loading
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     // extracts the product Category form the url parameter if we have a route like '/category/fashion'
     const {health, laptops, kitchen, kids} = useParams()
@@ -46,7 +52,7 @@ const Products = ({category}) => {
       const PAGE_SIZE = 24;  //size for number of Products per page
       const totalNoOfProducts = product_list.length;
       const numOfPages = Math.ceil(totalNoOfProducts / PAGE_SIZE);
-      console.log("Number of Pages", numOfPages)
+    //   console.log("Number of Pages", numOfPages)
       // state for current page
       const [currentPage, setCurrentPage] = useState(0);
       const start = currentPage * PAGE_SIZE;
@@ -60,20 +66,6 @@ const Products = ({category}) => {
       const goToPrev = ()=>{
           setCurrentPage(prev=>prev -1)
       }
-
-
-    // loads the produscts to the product array
-    useEffect(()=>{
-        setIsLoading(true)
-
-        getProducts()
-            .then((prod)=>{
-                setProductList(prod)
-                setIsLoading(false)
-            })
-        window.scrollTo(0, 200)
-        
-    }, [currentPage])
 
     // finds all the products in the current selected Product brand category 
     const performBrandFiltering=()=>{
@@ -91,12 +83,6 @@ const Products = ({category}) => {
         setCurrentFilteredBrands(filteredBrands)
     })}
 
-//    call the above function anytime a state changes
-    useEffect(()=>{
-        performBrandFiltering() //::function invocation to dynamically update the available brands for a category
-        // isAnyChecked()
-    }, [activeProdCat, product_list])
-
     // Dynamically updated product brands on click of any of the checkboxes in brand categories
     const handleChange =(brand)=>{
         // remove target checkbox from our array of checked list if target is already in the array
@@ -108,16 +94,6 @@ const Products = ({category}) => {
         }
         // anyActiveCheckbox()
     }
-    // find if there is any active checkbox
-   useEffect(()=>{
-        if(checked.length == 0){
-            setActiveCheckBox(false)
-        }
-        else if(checked.length > 0){
-            setActiveCheckBox(true)
-        }
-    }, [checked])
-
     const findBrand =(brand)=>{
     //   only do this when the input search is not empty
         if(brand != ''){
@@ -132,17 +108,82 @@ const Products = ({category}) => {
             performBrandFiltering()
         }
     }
+    // sort product by high -> low -> relevance
+    const sortByPrice = (sort, prod)=>{
 
-  
+        console.log(product_list)
+        console.log(prod)
+        console.log('Setting current product list by state.!')
+        console.log(sort)
 
-    // const [currentProd, setCurrentProd] = useState([product_list.slice(currentPage, PAGE_SIZE)])
+        if(sort == 'high'){
+            const newList = [...prod].sort((a, b)=>{
+                return b.Product_Price - a.Product_Price
+            })
+            // console.log(prod_list_copy)
+            setProductList(newList)
+            return;
+        }
+        else if(sort == 'low'){
+            const    newList = [...prod].sort((a, b)=>{
+                return a.Product_Price - b.Product_Price
+            })
+            // console.log(prod_list_copy)
+            setProductList(newList)
+            return;
+        }
+        else if(sort == 'relevance'){
+            console.log(product_list)
+
+            setProductList(prod)
+            return
+        }
+    } 
+
+    // set products copy on first mount only
+
+    // loads the products to the product array
+    useEffect(()=>{
+        setIsLoading(true)
+
+        // TAKE SOME TIME TO FULFIL
+        getProducts()
+            .then((prod)=>{
+                console.log(prod)
+                setProductList(prod)
+                sortByPrice(sortState, prod)
+                setIsLoading(false)
+                
+            })
+        window.scrollTo(0, 200)
+        
+    }, [sortState])
+
+
     // as soon as currentPage changes we update the UI
     useEffect(()=>{
-
-        // setCurrentProd(currentPage, PAGE_SIZE)
         console.log('Current Page:',currentPage)
-        // console.log('Current Page:',typeof(currentPage.target?.innerHTML))
     },[currentPage])
+
+
+    // call the above function anytime a state changes
+    useEffect(()=>{
+        console.log('4th useEffect...')
+        performBrandFiltering() //::function invocation to dynamically update the available brands for a category
+        // isAnyChecked()
+    }, [activeProdCat, product_list])
+
+    // find if there is any active 
+    useEffect(()=>{
+        console.log('5th useEffect...')
+        if(checked.length == 0){
+            setActiveCheckBox(false)
+        }
+        else if(checked.length > 0){
+            setActiveCheckBox(true)
+        }
+    }, [checked])
+
 
   return (
     <>
@@ -256,7 +297,6 @@ const Products = ({category}) => {
                         </div>
                 </div>
                 </div>
-
             </div>
             <section id="sect">
                 <div className="browseCategory">
@@ -364,7 +404,7 @@ const Products = ({category}) => {
                             <img src={topBanner} alt="" />
                         </div>
                         <div id="productCont">
-                                {product_list.length === 0 || isLoading?
+                                {isLoading?
                                     Array(10)
                                     .fill(0).map((_, i)=>{
                                         // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
@@ -408,34 +448,22 @@ const Products = ({category}) => {
                                                                 return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
                                                             }
                                                             
+                                                            
                                                         }
                                                     })
                                                 }
                                                 return <>{brands}</>
                                         }
-                                    
                                         else{
-                                            if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                                let sortedList;
-                                                        if(sortState == 'relevance'){
-                                                            console.log('sortState:', sortState)
-                                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
-                                                        }
-                                                        else if(sortState == 'high'){
-                                                            console.log('sortState:', sortState)
-                                                            sortedList = product_list.sort((a, b)=>{
-                                                                return a.Product_Price - b.Product_Price
-                                                                
-                                                            })
-                                                            
-                                                            sortedList.map((list, i)=>{
-                                                                return <Product key={list.id} name={list.Product_Name} price={list.Product_Price} category={list.Product_category} image={list.Product_Image[0]}  index={index} id={list.id} />
-                                                            })
-                                                        
-                                                        }
-                                                }
-                                                
+                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
                                         }
+                                    
+                                        // else{
+                                        //     if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                        //             return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
+                                        //         }
+                                                
+                                        // }
                                     })
                             
                             }

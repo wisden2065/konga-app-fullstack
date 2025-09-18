@@ -7,7 +7,8 @@
     z-index: 105;
 }
 #nav-section{
-    background-color: var(--background-dark);
+    /* background-color: var(--background-dark); */
+    background-color: rgb(8, 8, 137);
     max-width: auto;
     height: 55px;
     display: flex;
@@ -49,10 +50,10 @@
 }
 #nav-section a{
     height: 100%;
-    width: 7rem;
+    width: max-content;
     display: flex;
     align-items: center;
-    padding: 1.2rem;
+    padding: 1.2rem 2rem;
     color: var(--neutral-100);
     cursor: pointer;
 
@@ -121,7 +122,7 @@
 }
 #nav-sect-wrapper .nav-icons{
     display: none;
-}
+} 
 #nav-section #cart-cont:hover{
     background-color: var(--text-secondary);
 }
@@ -139,6 +140,7 @@
     align-items: center;
     position: absolute;
     right: 10px;
+    font-size: 12px;
 }
 /* style for second nav */
 #span{
@@ -155,7 +157,8 @@
 }
 #secondNav{
     display: flex;
-    background-color: var(--background-tertiary);
+    /* background-color: var(--background-tertiary); */
+    background-color: #4d8cfa;
     color: var(--neutral-100);
     height: 40px;
     font-size: clamp(9px, 1vw, 12px);
@@ -178,7 +181,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
+    padding: 16px 20px;
     /* position: relative; */
     cursor: pointer;
 }
@@ -187,6 +190,8 @@
 .drop-down-wrapper{
     position: relative;
     display: none;
+    width: 200px !important;
+    background-color: #242424;
 }
 .drop-down-wrapper.show{
     display: block;
@@ -205,8 +210,7 @@
     flex-direction: column;
     position: fixed;
     width: 50%;
-    height: 100vh;
-    background-color: #24e24a;
+    height: 30vh;
     z-index: 10002;
     right: 0;
     top: 0;
@@ -216,6 +220,7 @@
     justify-content: center;
     align-items: center;
     margin: 0;
+    /* width: 300px; */
 }
 drop-down  span{
     text-decoration: none;
@@ -229,12 +234,11 @@ drop-down  span{
     justify-content: space-between;
     /* background-color: #ed017f; */
     align-items: center;
-    width: 150%;
+    width: 70%;
     height: 80px;
     box-shadow: 5px 2px 3px 1px #b1acaf;
     padding: 0 20px;
 }
-.drop-down h2, 
 .drop-down span{
     color: black;
     text-decoration: none;
@@ -243,22 +247,26 @@ drop-down  span{
     gap: 3px;
     align-items: center;
 }
+
 #login span{
     height: 20px;
-    border: solid .5px grey;
+    border: solid .5px var(--tertiary-color);
+    color: var(--tertiary-color);
     padding: 5px;
     border-radius: 3px;
+}
+#login span:hover{
+    border: solid .5px var(--background-dark);
+    color: var(--background-dark);
 }
 #form-container{
     display: flex;
     justify-content: center;
-    /* background-color: #ed017f; */
     width: 100%;
 }
 #form-container form{
     margin-top: 30px;
     width: 90%;
-    /* background-color: #7e2525; */
 }
 .input-wrapper input{
     border: solid .2px;
@@ -267,12 +275,7 @@ drop-down  span{
     padding: 5px 0;
     text-indent: 10px;
 }
-input[type='button']{
-    background-color: #33b27b;
-    color: white;
-    padding: 5px 10px;  
-    border: none;
-}
+
 #hr{
     height: 20px;
     /* background-color: red; */
@@ -490,8 +493,30 @@ input[type='button']{
     height: 350px;
     /* height: 300%; */
     width: 100%;
+}  
+/* user profile */
+.user-profile-cont{
+    position: relative;
 }
+.user-profile{
+  display: none; 
+  position: absolute;
+  top: 100%; right: 0;
+  height: 100px;
+  width: 120%;
+}
+.user-profile-cont:hover .user-profile{
+    display: block;
+    /* color: black; */
 
+}
+#profilePic{
+    height: 30px;
+    width: 30px;
+}
+.user-profile #inner{
+    padding: 0 18px;
+}
 
 
 
@@ -536,6 +561,7 @@ input[type='button']{
     }
     #nav-section a{
         display: none;
+        
     }
     #input-cont{
         display: none;

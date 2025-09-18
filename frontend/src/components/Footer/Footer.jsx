@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom'
 const Footer = () => {
 
     const [ activeFooterTab, setActiveFooterTab ] = useState('home')
+    const cartPage = window.location.pathname.includes('/cart-items')
 
   return (
     <>
@@ -61,13 +62,16 @@ const Footer = () => {
     <div id='footer-section'>
      
         <div id="summary">
-            <div id="sum">
-                <h3 style={{fontSize:'16px'}}>Phones and tablets</h3>
-                <h3 style={{fontSize:'16px'}}>Buy Mobile Phones Online on Konga</h3>
-                <p>Communication and entertainment have been taken to another level with the invention of smartphones and its inbuilt innovative operating systems such as Android, iOS, Windows mobile and Blackberry platforms. With the availability of memory cards, you can store as much information as you want, be it official documents for keeps or those memorable moments you captured in videos and photos You can get to listen to downloaded songs with your mobile phone device and you could say it has replaced some of the portable music players in the market at the moment.</p>
-                <h3 style={{fontSize:'16px'}}>Where to Buy Smarphones in Nigeria</h3>
-                <p>The latest mobile phones & tablets help you capture moments that mean so much to you with the use of video camera, it helps you to work from anywhere and anytime with the availability of internet connection whereby you can work on word and excel documents then afterwards, send these documents as reports via email right on your phone while you are on the go. If you are more of an entertainment personality and not business, you are definitely not left out as modern phones come with powerful inbuilt cameras that can capture clear images in high definition so when your friends are taking all the selfies for the “looking good” moment, you can bring yours to the party as well. </p>
-            </div>
+            {
+                !cartPage&&
+                    <div id="sum">
+                        <h3 style={{fontSize:'16px'}}>Phones and tablets</h3>
+                        <h3 style={{fontSize:'16px'}}>Buy Mobile Phones Online on Konga</h3>
+                        <p>Communication and entertainment have been taken to another level with the invention of smartphones and its inbuilt innovative operating systems such as Android, iOS, Windows mobile and Blackberry platforms. With the availability of memory cards, you can store as much information as you want, be it official documents for keeps or those memorable moments you captured in videos and photos You can get to listen to downloaded songs with your mobile phone device and you could say it has replaced some of the portable music players in the market at the moment.</p>
+                        <h3 style={{fontSize:'16px'}}>Where to Buy Smarphones in Nigeria</h3>
+                        <p>The latest mobile phones & tablets help you capture moments that mean so much to you with the use of video camera, it helps you to work from anywhere and anytime with the availability of internet connection whereby you can work on word and excel documents then afterwards, send these documents as reports via email right on your phone while you are on the go. If you are more of an entertainment personality and not business, you are definitely not left out as modern phones come with powerful inbuilt cameras that can capture clear images in high definition so when your friends are taking all the selfies for the “looking good” moment, you can bring yours to the party as well. </p>
+                    </div>
+             }
         </div>
         <div id="footer-cont">
             <div id="ash-cont-wrapper">

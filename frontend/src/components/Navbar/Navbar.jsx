@@ -3,17 +3,28 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import Logo from '../../assets/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch, faXmark, faL, faEyeSlash, faEye, faUser, faNoteSticky, faCommentDots, faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import {ProductContext} from '../../context/ProductContext'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
+import { UserContext } from '../../context/UserContext'
+import {ClipLoader} from 'react-spinners'
+import { getItem, setItem } from '../../utils/localStorage'
+import { counter } from '@fortawesome/fontawesome-svg-core'
 
 const Navbar = () => {
-    
-    // const [activeProdCat, setActiveProdCat] = useState('all')
+  
+    const [loadingSpinner, setLoadingSpinner] = useState(false)
     const {activeProdCat, setActiveProdCat} = useContext(ProductContext)
-    console.log(activeProdCat)
+
+    // state to hide/show password on login form
+    const [passwordHidden, setPasswordHidden] = useState(true)
     const { cartItems, addToCart, removeFromCart, prodCount } = useContext(ProductContext)
+
+    // Get loggedIn state from context
+    const {loggedIn, setLoggedIn, userData, setUserData} = useContext(UserContext)
+    // console.log(userData)
+
     const navigate = useNavigate()
 
     // ref to container where the text is display on hover of the nav links
@@ -33,21 +44,36 @@ const Navbar = () => {
     // ref to all the side bar p elements in dropdown
     let dropDownSideP = useRef([])
 
+    // ref to inputs on login page 
+    const loginInputs = useRef([]) 
 
 
 
+    // state to hold the value of cart items gotten from localStorage
+    // using the defined setter and getter in utils
+    const [cart, setCart] = useState(()=>{
+                                        let arr = getItem('cart_list') || [];
+                                        return arr;
+                                    })
+    // update state for cart counter in navbar & localstorage when cartItems changes
     useEffect(()=>{
-        console.log(cartItems)
-        // console.log(cartItems.length)
-    }, [cartItems]);
-
+        setItem('cart_list', cart)
+        setCart(cartItems);
+    }, [cartItems])  
+ 
     const toggleDropDown = ()=>{
        console.log(dropdown.current)
        console.log(dropdown.current.classList)
        dropdown.current.classList.toggle('show')
-    }
+    } 
     const closeDropDown =()=>{
         dropdown.current.classList.remove('show')
+        setLoadingSpinner(false)
+        setPasswordErrorMsg('')
+        setEmailErrorMsg('')
+        setServerResErr(false)
+        // remove data from inputs 
+        loginInputs.current.map(e=>e.value = '')
     }
 
     // get all the nav items
@@ -59,7 +85,8 @@ const Navbar = () => {
     //stores dropdownData for product categories to be populated on mount of navbar
     let dropDownData = {};  
 
-    // load data from dropDown.json as soon as navbar mounts & add mouseenter event listener
+    // load data from dropDown.json as soon as navbar mounts & add mouseenter eve
+    // nt listener
     useEffect(()=>{
             async function fetchPrdData(){
                 try{
@@ -75,7 +102,7 @@ const Navbar = () => {
                 catch(err){
                     console.error(err.message)
                 }
-            }
+            } 
             fetchPrdData()
 
             // add an event listener to each of the ref elements in navbar
@@ -86,35 +113,23 @@ const Navbar = () => {
             // allCatBtn.current.onmouseenter =(e)=>(handleMouseEnter(e))
 
             // add event listener to the side bar p elements
+        //    if(dropDownSideP !== null){
             dropDownSideP.current.forEach((elem)=>{
                 // handle display when All categories is hovered
                 elem.onmouseenter= ()=> (handleMouseEnter(elem));
                 
             })
+        //    }
+        //    if(allCatBtn !== null){
+                allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
 
-            allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
-
-            // mouseenter event to all links in second navbar
-            drop.current.forEach((d)=>{
-                d.onmouseenter = (e)=>(handleMouseEnter(e))
-            })
+                // mouseenter event to all links in second navbar
+                drop.current.forEach((d)=>{
+                    d.onmouseenter = (e)=>(handleMouseEnter(e))
+                })
+            // }
         
     }, [])
-
-    // allCat.current.addEventListener('mouseenter', ()=>{
-    //     sideDisplayText.current.innerHTML = generateContent('computers')
-    // })
-
-    
-    // var c = dropDownData[c];
-    // useEffect(()=>{
-    //     if(dropDownData[c]?.image){
-    //         setDrpImg(`/${dropDownData[c].image}`)
-    //     }
-      
-    // }, [currentDropImg, c])
-    // handle menu button 
-
    
     // handle mouseEnter event
     const handleMouseEnter =(ele)=>{
@@ -150,16 +165,15 @@ const Navbar = () => {
     const [currentDropDownImg, setCurrentDropDownImg] = useState(null)
     const [currentClassName,setCurrentClassName] = useState(null)
 
-    useEffect(()=>{
-        // setDrpImg(`/${}`)
-        console.log('In useEffect, className changed')
-        console.log('Current Image:',currentDropDownImg)
-        console.log('Current Class:',currentClassName)
-
-
-        // setCurrentClassName('computers')
-      
-    },[currentClassName, currentDropDownImg])
+    // state for login form
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    // state for form error
+    const [error, setError] = useState(false)
+    const [passwordErrorMsg, setPasswordErrorMsg] = useState('')
+    const [emailErrorMsg, setEmailErrorMsg] = useState('')
+    const [serverResponse, setServerResponse] = useState('')
+    const [serverResErr, setServerResErr] = useState(false)
 
     const handleMenu =(c)=>{
         let className = c;
@@ -200,8 +214,82 @@ const Navbar = () => {
         return html;
     }
    
- 
+    // handle form submission
+    const handleFormSubmit  = (e)=>{
+        e.preventDefault();
+        try{
+            if(email.includes('@gmail.com')|| email.includes('@yahoo.com') ){
+                setEmailErrorMsg('')
+            }
+            else{
+                setEmailErrorMsg('Invalid Email address')
+            }
+            if(password.length >= 5){
+                // call authentication API 
+                setError(false)
+                setPasswordErrorMsg('')
+                setLoadingSpinner(true)
+                loginUser()
+                
+                
+            }
+            else if(password.length < 5){
+                setError(true)
+                setPasswordErrorMsg('Password must be at least 5 characters')
+                setLoadingSpinner(false)
+            }
+
+        }
+        catch(error){
+            console.log(error.message)
+        }
+    }
+    // function to call login or signup
+    const loginUser = async ()=>{
+        try {
+            const res = await fetch('http://localhost:8000/auth/login',
+                {
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                    },
+                    body:JSON.stringify({email, password}),
+                    credentials:'include'  //if this is omitted the browser will ignore the cookies sent by the server side in the res
+                    // mode:'no-cors'
+                }) 
+
+            if(!res.ok){
+                throw new Error('Invalid Credentials') 
+
+            }
+            const data = await res.json()
+            setLoadingSpinner(false)
+            console.log(data)
+            if(data.status==='failed'){
+                setServerResErr(true)
+                setServerResponse(data.reason)
+            }
+            if(data.status==='success'){
+                console.log(data.status)
+                setServerResErr(false)
+                setLoggedIn(true)
+                setUserData(data.userObj)
+                closeDropDown()
+                
+
+            }
+        } catch (error) {
+            // console.log(error)
+        }
+    }
+
+    // state to hold the page
+    let page = 0;
+    
+
+  
   return (
+        // (!location.pathname == '/account/signup')&&
             <div id='nav-sect-wrapper'>
                 <div id="nav-section">
                     <div className='logo-cont'>
@@ -213,25 +301,52 @@ const Navbar = () => {
                         />                                 
                     </div>
                     <div id="input-cont">
-                        <input type="text" placeholder="Search for products, brands and Categories..." className="place" />
+                        <input  type="text" placeholder="Search for products, brands and Categories..." className="place" />
                         <div className="searchCont">
                             <FontAwesomeIcon  icon={faSearch} />
                         </div>
                     </div>
+                    
                     <a href="" className="help">
-                        <span className='help-icon-cont'>
+                        <span className='border border-rounded d-flex justify-content-center align-items-center'>
                             <FontAwesomeIcon icon={faQuestion} style={{color:'white'}} />
                         </span>
                         Help 
                         <FontAwesomeIcon icon={faChevronDown} style={{color:'white'}} />
                     </a>
-                    <a href="#" onClick={()=>{toggleDropDown()}}>
-                        Login / <br /> Signup
-                    </a>
-                    <div id="cart-cont">
+                    {
+                        !loggedIn?
+                        <a href="#" onClick={()=>{toggleDropDown()}}>Login / <br /> Signup</a>
+                        :
+                        <a href="" className='user-profile-cont gap-2'>Hi, {userData?.name.slice(0,1).toUpperCase()+userData?.name.slice(1)} <span className='border border-rounded d-flex justify-content-center align-items-center'><FontAwesomeIcon icon={faUser} /></span>
+                            {/* show on hover when signed in */}
+                            <div className='user-profile bg-primary'>
+                                <div id='inner' className='d-flex align-items-center justify-content-between bg-white ' style={{height:'56px',}}>
+                                    <div id='profilePic' className='rounded rounded-circle bg-black d-flex align-items-center justify-content-center'>
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </div> 
+                                    {userData?.name.slice(0,1).toUpperCase()+userData?.name.slice(1)}
+                                </div>
+                                <div id='inner' className='d-flex align-items-center justify-content-start gap-2 bg-white ' style={{height:'56px',}}>
+                                    <FontAwesomeIcon icon={faNoteSticky} />
+                                    Your Orders 
+                                </div>
+                                <div id='inner' className='d-flex align-items-center justify-content-start gap-2  bg-white ' style={{height:'56px',}}>
+                                    <FontAwesomeIcon icon={faCommentDots} />
+                                    Your History 
+                                </div>
+                                <div id='inner' className='d-flex align-items-center justify-content-start gap-2  bg-white ' style={{height:'56px',}}>
+                                    <FontAwesomeIcon icon={faDoorOpen} />
+                                    Logout 
+                                </div>
+                            </div>
+                        </a>  
+                    }
+                    <div id="cart-cont" onClick={()=>navigate('/cart-items')}>
+                    
                         <FontAwesomeIcon icon={faCartShopping} className='icon'/>
                         My <br />Cart
-                        <span id="span">{prodCount}</span>
+                        <span id="span">{cart.length}</span>
                         {/* <span id="span">{Array.from(cartItems.keys).length}</span> */}
                     </div>
                     <div className='basket-sm'>
@@ -243,33 +358,47 @@ const Navbar = () => {
                         </svg>
                     </div>
                 </div>
-                {/* <!-- dropdown for signup --> */}
-                <div className="drop-down-wrapper" id="drop">
+                {/* <!-- dropdown for signup on click --> */}
+                <div ref={dropdown} className="drop-down-wrapper" id="drop">
                     <div className="drop-down-container">
                         <div className="drop-down">
                             <div id="login">
-                                <div>
-                                    <h2 style={{fontSize:'18px'}}>Login</h2>
-                                </div>
-                                <span id="closeBtn" style={{color:'grey', cursor:'pointer'}} onClick={()=>{closeDropDown()}}>
+                                    <h2 style={{fontSize:'10px,', fontWeight:'600'}}>Login</h2>
+                                <span id="closeBtn" style={{cursor:'pointer'}} onClick={()=>{closeDropDown()}}>
                                     <FontAwesomeIcon icon={faXmark}  />Close
                                 </span>
                             </div>
+                           
                         </div>
+                        {
+                        serverResErr&&
+                            <div class="alert alert-danger  text-center" role="alert">
+                                    {serverResponse}!
+                            </div>
+                        }
                         <div id="form-container">
-                            <form action="">
-                                <div className="input-wrapper">
-                                    <label for="email">Email Address or Phone Number</label> <br/>
-                                    <input type="text" placeholder="Enter email address or phone number" />
+                            <form action="" onSubmit={handleFormSubmit}>
+                                <div className="">
+                                    <label for="email">Email Address or Phone Number</label>
+                                    <input className={`w-100 mh-100 py-2 border border-black  ${error?'border-danger':'border-black'}`} onChange={(e)=>(setEmail(e.target.value))} type="text" placeholder="Enter email address or phone number" required style={{textIndent:'10px'}} ref={(e)=>loginInputs.current[0] = e} />
                                 </div>
+                                <span className='text-danger'>{error? emailErrorMsg:''}</span>
                                 <br />
-                                <div className="input-wrapper">
-                                    <label for="password">Password</label> <br />
-                                    <input type="text" placeholder="Enter Password" />
-                                </div> <br />
-                                <div className="input-wrapper">
-                                    <input type="button" value="Login" />
+                                <div className="w-100">
+                                    <label className='d-flex justify-content-between' for="password">Password <a href='' className='text-decoration-underline'>Forgot Password?</a></label>
+                                    <div className={`position-relative border ${error?"border-danger":"border-black"}`}>
+                                        <input className={`w-100 mh-100 py-2 border-none`} onChange={(e)=>(setPassword(e.target.value))} type={passwordHidden?"password":"text"}  placeholder="Enter Password" required style={{textIndent:'10px'}} ref={(e)=>loginInputs.current[1] = e} />
+                                        <FontAwesomeIcon onClick={()=>setPasswordHidden(!passwordHidden)} icon={passwordHidden?faEyeSlash:faEye} role='button' aria-label='Toggle password visibility' className='position-absolute top-50 end-0 translate-middle-y mx-2' />
+                                    </div>
+                                </div> 
+                                <span className='text-danger'>{error? passwordErrorMsg:''}</span>
+                                <br />  
+                                <div className="">
+                                    <button class={`w-100 btn btn-secondary d-flex align-items-center justify-content-center gap-2`} disabled={loadingSpinner} type="submit">
+                                        Login <ClipLoader size={18} loading={loadingSpinner} />
+                                    </button>
                                 </div>
+                                    <button onClick={()=>{setError(false); setServerResErr(false)}} disabled={loadingSpinner} className='btn mt-2 bg-dark-subtle' type="reset">Reset</button>
                                 <div id="hr">
                                     <hr />
                                     <span className="circle">OR</span>
@@ -279,7 +408,12 @@ const Navbar = () => {
                                     
                                     <span><input className='' type="button" value="Login with Apple" /></span>
                                 </div>
+
                             </form>
+                           
+                        </div>
+                        <div className='text-center'>
+                            Don't have an account?  <NavLink onClick={()=>closeDropDown()} to='/account/signup' className='text-decoration-underline'>Signup</NavLink>
                         </div>
                     </div>
                 </div>
@@ -291,35 +425,35 @@ const Navbar = () => {
                         }
                     }
                 }>
-                        <div className="inner all-cat"
-                                onClick={()=>{
-                                    setActiveProdCat('all');
-                                console.log("Current category:",activeProdCat)
-                            }}
-                            ref={allCatBtn}
-                        >
-                        All category
-                        <FontAwesomeIcon icon={faBars} />
-                        <div className="dropDown-wrapper">
-                            <div className="dropDown">
-                                <div className="items left">
-                                    <p ref={(ele)=>(dropDownSideP.current[0] = ele)} className="computers selected">Computers and Accessories</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[1] = ele)} className="phones">Phones and Tablet</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[2] = ele)} className="electronics">Electronics</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[3] = ele)} className="fashion">Konga Fashion</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[4] = ele)} className="kitchen">Home and Kitchen</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[5] = ele)} className="kids">Baby, kids and Toys</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[6] = ele)} className="beauty">Beauty, Health & Personal Care</p>
-                                    <p ref={(ele)=>(dropDownSideP.current[7] = ele)} className="drinks">Drinks and Groceries</p>
-                                </div>
-                                <div class="items right">
-                                    <div ref={sideDisplayText} class="first" ></div>
-                                    <div ref={imgCont} class="second">
-                                        <img id='img' src={currentDropDownImg} alt="" />
-                                    </div>
+                    <div className="inner all-cat"
+                            onClick={()=>{
+                                setActiveProdCat('all');
+                            console.log("Current category:",activeProdCat)
+                        }}
+                        ref={allCatBtn}
+                    >
+                    All category
+                    <FontAwesomeIcon icon={faBars} />
+                    <div className="dropDown-wrapper">
+                        <div className="dropDown">
+                            <div className="items left">
+                                <p ref={(ele)=>(dropDownSideP.current[0] = ele)} className="computers selected">Computers and Accessories</p>
+                                <p ref={(ele)=>(dropDownSideP.current[1] = ele)} className="phones">Phones and Tablet</p>
+                                <p ref={(ele)=>(dropDownSideP.current[2] = ele)} className="electronics">Electronics</p>
+                                <p ref={(ele)=>(dropDownSideP.current[3] = ele)} className="fashion">Konga Fashion</p>
+                                <p ref={(ele)=>(dropDownSideP.current[4] = ele)} className="kitchen">Home and Kitchen</p>
+                                <p ref={(ele)=>(dropDownSideP.current[5] = ele)} className="kids">Baby, kids and Toys</p>
+                                <p ref={(ele)=>(dropDownSideP.current[6] = ele)} className="beauty">Beauty, Health & Personal Care</p>
+                                <p ref={(ele)=>(dropDownSideP.current[7] = ele)} className="drinks">Drinks and Groceries</p>
+                            </div>
+                            <div class="items right">
+                                <div ref={sideDisplayText} class="first" ></div>
+                                <div ref={imgCont} class="second">
+                                    <img id='img' src={currentDropDownImg} alt="" />
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div className='computers inner drp' 
                         onClick={()=>{
@@ -451,6 +585,7 @@ const Navbar = () => {
                         <span>All Deals</span>
                     </a>
                 </div>
+
              
             </div>
             

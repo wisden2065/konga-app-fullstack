@@ -103,7 +103,7 @@ const Home = () => {
                             <h4><span id='recommended'>Recommended for you</span> <a href="" id='all-recommended'>See All Items</a></h4>
                         </div>
                         <div className='product-cont-wrapper'>
-                            <div className='product-cont'>
+                            <div className='product-cont d-flex flex-wrap'>
                                 <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />

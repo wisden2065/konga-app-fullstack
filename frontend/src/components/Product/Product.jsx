@@ -41,7 +41,7 @@ const Product = ({name, price, category, image, brand, id}) => {
                                 <p><b>{truncateProdName(name, 18)}</b></p>
                                     <div className="prodPrice">
                                         <h3><FontAwesomeIcon icon={faNairaSign} />{price}</h3>
-                                        <p><FontAwesomeIcon icon={faNairaSign} /><s>46,263</s></p>
+                                        <strike className='' style={{fontSize:'12px'}}><FontAwesomeIcon icon={faNairaSign} />46,263</strike>
                                         <span className="prodSpan">-29%</span>
                                     </div>
                                     <p className="p">You save N11,300</p>
