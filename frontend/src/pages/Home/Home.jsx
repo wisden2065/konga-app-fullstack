@@ -12,6 +12,19 @@ import Dealscard from '../../components/DealsCard/Dealscard'
 
 
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/thumbs';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+
+import { Navigation, Pagination, Scrollbar, Autoplay} from 'swiper/modules'
+
+
 const Home = () => {
   return (
     <>
@@ -19,7 +32,32 @@ const Home = () => {
             <div className='carousel-wrapper'>
                 <div className="carousel-cont">
                     <div className='slider'>
-                        <img src={slide1} alt="" />
+                        <Swiper
+                            modules={[Navigation, Pagination, Scrollbar, Autoplay]}
+                            spaceBetween={50}
+                            slidesPerView={1}
+                            navigation= {{
+                                nextEl: '.custom-next',
+                                prevEl: '.custom-prev'}}
+                            pagination={{ clickable: true }}
+                            className='swiper-cont'
+                            autoplay={{delay:2000, 
+                                disableOnInteraction:false
+                            }}
+                        >
+                            <SwiperSlide >
+                                <img className='slider-img' src={slide1} alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src={slide1} alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src={slide1} alt="" />
+                            </SwiperSlide>
+                        </Swiper>
+                        <div className='custom-next'>{'>'}</div>
+                        <div className='custom-prev'>{'<'}</div>
+                        
                     </div>
                     <div className='side-cont'>
                         <div className='side-cont-inner'>

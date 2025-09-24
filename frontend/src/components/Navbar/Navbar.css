@@ -160,10 +160,11 @@
     /* background-color: var(--background-tertiary); */
     background-color: #4d8cfa;
     color: var(--neutral-100);
-    height: 40px;
+    height: 60px;
     font-size: clamp(9px, 1vw, 12px);
-    /* width: 1900px; */
-    /* position: relative; */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-color: black;
 }
 #secondNav > div{
     color: var(--neutral-100);
@@ -177,14 +178,15 @@
     gap: 10px;
 }
 .inner{
-    /* width: 200px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 20px;
+    padding: 20px 30px;
+    white-space: nowrap;
     /* position: relative; */
     cursor: pointer;
 }
+
 
 /* dropdown */
 .drop-down-wrapper{

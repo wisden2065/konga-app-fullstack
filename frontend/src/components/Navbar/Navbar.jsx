@@ -11,6 +11,7 @@ import { UserContext } from '../../context/UserContext'
 import {ClipLoader} from 'react-spinners'
 import { getItem, setItem } from '../../utils/localStorage'
 import { counter } from '@fortawesome/fontawesome-svg-core'
+import DropDownButtons from './DropDownButtons'
 
 const Navbar = () => {
   
@@ -87,6 +88,8 @@ const Navbar = () => {
 
     // load data from dropDown.json as soon as navbar mounts & add mouseenter eve
     // nt listener
+
+    // *****************REFACTORED ****************\\
     useEffect(()=>{
             async function fetchPrdData(){
                 try{
@@ -113,20 +116,19 @@ const Navbar = () => {
             // allCatBtn.current.onmouseenter =(e)=>(handleMouseEnter(e))
 
             // add event listener to the side bar p elements
-        //    if(dropDownSideP !== null){
-            dropDownSideP.current.forEach((elem)=>{
-                // handle display when All categories is hovered
-                elem.onmouseenter= ()=> (handleMouseEnter(elem));
-                
-            })
+            // if(dropDownSideP !== null){
+            // dropDownSideP.current.forEach((elem)=>{
+            //     // handle display when All categories is hovered
+            //     elem.onmouseenter= ()=> (handleMouseEnter(elem));
+            // })
         //    }
         //    if(allCatBtn !== null){
-                allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
+                // allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
 
                 // mouseenter event to all links in second navbar
-                drop.current.forEach((d)=>{
-                    d.onmouseenter = (e)=>(handleMouseEnter(e))
-                })
+                // drop.current.forEach((d)=>{
+                //     d.onmouseenter = (e)=>(handleMouseEnter(e))
+                // })
             // }
         
     }, [])
@@ -287,6 +289,94 @@ const Navbar = () => {
     let page = 0;
     
 
+
+
+    // DATA for last Navbar with dropDown 
+    const items = [
+        {
+            name:"All category", 
+            path:'',
+            icon: (<FontAwesomeIcon icon={faBars} />),
+            class:'inner all-cat',
+                        children: [
+                [
+                    {
+                        name:"Computers and Accessories",
+                        class:"computers selected"
+                    },
+                    {
+                        name:"Phones and Tablet",
+                        class:"phones"
+                    },
+                    {
+                        name:"Electronics",
+                        class:"electronics"
+                    },
+                    {
+                        name:"Phones and Tablet",
+                        class:"phones"
+                    },
+                    {
+                        name:"Konga Fashion",
+                        class:"fashion"
+                    },
+                    {
+                        name:"Home and Kitchen",
+                        class:"kitchen"
+                    },
+                    {
+                        name:"Baby, kids and Toys",
+                        class:"kids"
+                    },
+                    {
+                        name:"Beauty, Health & Personal Care",
+                        class:"beauty"
+                    },
+                    {
+                        name:"Drinks and Groceries",
+                        class:"drinks"
+                    },
+                ]
+
+            ]
+        },
+        {
+            name:"Computer and Accessories", 
+            path:'',
+            class:'computers inner drp',
+        },
+        {
+            name:"Phones and tablets", 
+            path:'',
+            class:'phones inner drp',
+        },
+        {
+            name:"Electronics", 
+            path:'',
+            class:'fashion inner drp',
+        },
+        {
+            name:"Konga fashion", 
+            path:'',
+            class:'kitchen inner drp',
+        },
+        {
+            name:"Home and Kitchen", 
+            path:'',
+            class:'kids inner drp',
+        },
+        {
+            name:"Baby, Kids and Toys", 
+            path:'',
+            class:'kids inner drp',
+        },
+        {
+            name:"Beauty, Health and Personal Care", 
+            path:'',
+            class:'beauty inner drp',
+            
+        },
+]
   
   return (
         // (!location.pathname == '/account/signup')&&
@@ -418,19 +508,13 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div id='secondNav' onClick={
-                    (e)=>{
-                        if(e.target.matches('.inner')){
-                            navigate('/category/products')
-                        }
-                    }
-                }>
-                    <div className="inner all-cat"
-                            onClick={()=>{
-                                setActiveProdCat('all');
-                            console.log("Current category:",activeProdCat)
-                        }}
-                        ref={allCatBtn}
+                    {/* // *****************REFACTORED ****************\\ */}
+                    {/* <div className="inner all-cat"
+                                onClick={()=>{
+                                    setActiveProdCat('all');
+                                console.log("Current category:",activeProdCat)
+                            }}
+                            ref={allCatBtn}
                     >
                     All category
                     <FontAwesomeIcon icon={faBars} />
@@ -532,15 +616,21 @@ const Navbar = () => {
                         ref={(e)=>drop.current[6]=e}
                     >
                         Beauty, Health and Personal Care
-                    </div>
-                    <div className="inputBox">
+                    </div> */}
+                    <DropDownButtons items={items} />
+                 {
+                       <div className="inputBox">
                         < input type="text" placeholder='Search for Products, Brands, Categories' name="" id="" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c4c4c4" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
-                    </div>
+                    </div> 
+                 }
+
+                    {/* REPLACED WITH */}
                     
-                </div>
+                    
+                    
                 <div className='nav-icons' 
                     onClick={()=>{navigate('/category/products')}}
                 >
