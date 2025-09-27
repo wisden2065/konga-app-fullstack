@@ -6,7 +6,7 @@ import slide3 from '../../assets/images/slide3.gif'
 import slide4 from '../../assets/images/slide5.webp'
 import slide5 from '../../assets/images/slide6.gif'
 import slide6  from '../../assets/images/slide7.gif'
-import slide7  from '../../assets/images/slide7.webp'
+import slide7  from '../../assets/images/slide7.gif'
 import {images} from '../../assets/images/index'
 import { spanImages } from '../../assets/images/index'
 import ProdDealCard from '../../components/ProdDealCard/ProdDealCard'
@@ -17,18 +17,27 @@ import { barners } from '../../assets/images/index'
 import Dealscard from '../../components/DealsCard/Dealscard'
 
 
+import { ChevronRight } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 
-// Import Swiper React components
+
+
+// Import Core Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+// Import Core swiper css
 import 'swiper/css';
 import 'swiper/css/thumbs';
+
+
+// import swiper modules
+import { Navigation, Pagination, Scrollbar, Autoplay} from 'swiper/modules'
+
+// Import Swiper modules styles
+
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-
-import { Navigation, Pagination, Scrollbar, Autoplay} from 'swiper/modules'
 
 
 const Home = () => {
@@ -42,10 +51,13 @@ const Home = () => {
                             modules={[Navigation, Pagination, Scrollbar, Autoplay]}
                             spaceBetween={50}
                             slidesPerView={1}
-                            navigation= {{
+                            navigation= {
+                                {
                                 nextEl: '.custom-next',
-                                prevEl: '.custom-prev'}}
-                            pagination={{ clickable: true }}
+                                prevEl: '.custom-prev'}
+                            }
+
+                            pagination={{ clickable: true, type:'bullets', }}
                             className='swiper-cont'
                             autoplay={{delay:2000, 
                                 disableOnInteraction:false
@@ -61,7 +73,7 @@ const Home = () => {
                                 <img className='slider-img' src={slide3} alt="" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <img className='slider-img' src={slide4} alt="" />
+                                <img className='slider-img' src={slide7} alt="" />
                             </SwiperSlide>
                             <SwiperSlide>
                                 <img className='slider-img' src={slide4} alt="" />
@@ -73,8 +85,8 @@ const Home = () => {
                                 <img className='slider-img' src={slide6} alt="" />
                             </SwiperSlide>
                         </Swiper>
-                        <div className='custom-next'>{'>'}</div>
-                        <div className='custom-prev'>{'<'}</div>
+                        <div className='custom-next'>{<ChevronRight />}</div>
+                        <div className='custom-prev'>{<ChevronLeft />}</div>
                         
                     </div>
                     <div className='side-cont'>
