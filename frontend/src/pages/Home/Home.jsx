@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import slide1 from '../../assets/images/slider1.webp'
 import slide2 from '../../assets/images/slide2.gif'
@@ -20,8 +20,6 @@ import Dealscard from '../../components/DealsCard/Dealscard'
 import { ChevronRight } from 'lucide-react'
 import { ChevronLeft } from 'lucide-react'
 
-
-
 // Import Core Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -39,8 +37,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
+import { getProducts } from '../../assets/images/products'
+
 
 const Home = () => {
+
   return (
     <>
         <div id='home-section'>
