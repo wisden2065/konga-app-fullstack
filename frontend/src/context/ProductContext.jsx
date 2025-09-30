@@ -11,6 +11,7 @@ export const ProductContext = createContext(null)
 
 const ProductContextProvider = (props)=>{
 
+    const [allProducts, setAllProducts] = useState([])
     // cartItems now sate gotten from localStorage of empty if not exist
     const [cartItems, setCartItems] = useState(()=>{
         const cartVal = getItem('cart_list') || [];
@@ -136,6 +137,8 @@ const ProductContextProvider = (props)=>{
     
     // const ProductContext = useContext(null);
     const contextValue = {
+        allProducts,
+        setAllProducts,
         product_list,
         cartItems,
         setCartItems,

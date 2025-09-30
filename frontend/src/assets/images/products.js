@@ -625,7 +625,8 @@
             Product_Price: 1450000,
             Product_category: "phones",
             Product_Image: [iphone15Pro, iphone15Pro2, iphone15Pro3],
-            Product_Brand: "Apple"
+            Product_Brand: "Apple",
+            sales:'sponsored'
         },
         {
             id: 2,
@@ -649,7 +650,8 @@
             Product_Price: 950000,
             Product_category: "phones",
             Product_Image: [samsungA05, samsungA052, samsungA053],
-            Product_Brand: "Samsung"
+            Product_Brand: "Samsung",
+            sales:'sponsored'
         },
         {
             id: 5,
@@ -729,7 +731,8 @@
             Product_Price: 150000,
             Product_category: "Accessories",
             Product_Image: [sonnyWH, sonnyWH2, sonnyWH3],
-            Product_Brand: "Sony"
+            Product_Brand: "Sony",
+            sales:'sponsored'
         },
         {
             id: 15,
@@ -809,7 +812,8 @@
             Product_Price: 800000,
             Product_category: "Cameras",
             Product_Image: [nikonZ6, nikonZ62, nikonZ63],
-            Product_Brand: "Nikon"
+            Product_Brand: "Nikon",
+            sales:'sponsored'
         },
         {
             id: 25,
@@ -849,7 +853,8 @@
             Product_Price: 120000,
             Product_category: "Accessories",
             Product_Image: [kindlePaper, kindlePaper2, kindlePaper3],
-            Product_Brand: "Amazon"
+            Product_Brand: "Amazon",
+            sales:'sponsored'
         },
         {
             id: 30,
@@ -1121,7 +1126,8 @@
             Product_Price: 15000,
             Product_category: "fashioning",
             Product_Image: [raymondSuit, raymondSuit2, raymondSuit3],
-            Product_Brand: "Raymond"
+            Product_Brand: "Raymond",
+            
         },
         {
             id: 63,
@@ -1129,7 +1135,8 @@
             Product_Price: 2500,
             Product_category: "fashioning",
             Product_Image: [nikeShort, nikeShort2, nikeShort3],
-            Product_Brand: "Nike"
+            Product_Brand: "Nike",
+            sales:'sponsored'
         },
         {
             id: 64,
@@ -1257,7 +1264,7 @@
             Product_Price: 18000,
             Product_category: "Accessories",
             Product_Image: [gucciBelt, gucciBelt2, gucciBelt3],
-            Product_Brand: "Gucci"
+            Product_Brand: "Gucci",
         },
         {
             id: 80,
@@ -1297,7 +1304,7 @@
             Product_Price: 40000,
             Product_category: "kitchen",
             Product_Image: [kitchenAidMixer, panteneProV2, kitchenAidMixer3],
-            Product_Brand: "KitchenAid"
+            Product_Brand: "KitchenAid",
         },
         {
             id: 85,

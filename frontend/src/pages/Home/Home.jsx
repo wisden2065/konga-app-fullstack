@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import './Home.css'
 import slide1 from '../../assets/images/slider1.webp'
 import slide2 from '../../assets/images/slide2.gif'
@@ -15,7 +15,7 @@ import CategoryImgCard from '../../components/CategoryImgCard/CategoryImgCard'
 import OfficialStores from '../../components/OfficialStores/OfficialStores'
 import { barners } from '../../assets/images/index'
 import Dealscard from '../../components/DealsCard/Dealscard'
-
+import { ProductContext } from '../../context/ProductContext'
 
 import { ChevronRight } from 'lucide-react'
 import { ChevronLeft } from 'lucide-react'
@@ -41,6 +41,31 @@ import { getProducts } from '../../assets/images/products'
 
 
 const Home = () => {
+
+    
+
+    // state to hold products 
+    const [prod, setProd] = useState([])
+    const [isLoading, setIsaLoading] = useState(false)
+
+    // get all products from context 
+    const { allProducts, setAllProducts } = useContext(ProductContext)
+        // fetch products as page mounts 
+    useEffect(()=>{
+        
+        let products = getProducts()
+        setIsaLoading(true)
+        console.log(products)
+        products
+            .then((res)=>{
+                 console.log(res)
+                 setProd(res)
+                 
+                 setIsaLoading(false)
+
+            })
+
+    }, [])
 
   return (
     <>
@@ -125,12 +150,15 @@ const Home = () => {
                         </div>
                         <div className='product-cont-wrapper'>
                             <div className='product-cont'>
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                {/* <ProdDealCard /> */}
-                                {/* <ProdDealCard /> */}
+                                {
+                                    // console.log(allProducts)
+                                    prod?.filter((prod)=>prod.sales === "sponsored").map((prod, i)=>{
+                                        return <ProdDealCard isLoading={isLoading} name={prod.Product_Name} img={prod.Product_Image[0]} price={prod.Product_Price} />
+                                    })
+
+                                }
+                                
+
                             </div>
                         </div>
                     </div>
@@ -173,11 +201,11 @@ const Home = () => {
                         </div>
                         <div className='product-cont-wrapper'>
                             <div className='product-cont d-flex flex-wrap'>
+                                {/* <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
+                                <ProdDealCard /> */}
                                 {/* <ProdDealCard /> */}
                             </div>
                         </div>

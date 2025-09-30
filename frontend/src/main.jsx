@@ -7,10 +7,12 @@ import ProductContextProvider from './context/ProductContext.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <ProductContextProvider>
-      <App />
-    </ProductContextProvider>
-  </BrowserRouter>
+  <ProductContextProvider>
+    <BrowserRouter>
+      <ProductContextProvider>
+        <App />
+      </ProductContextProvider>
+    </BrowserRouter>
+  </ProductContextProvider>
     
 )
