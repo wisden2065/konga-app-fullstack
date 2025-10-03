@@ -3,16 +3,17 @@ import './SponsoredProdCard.css'
 import { prodThumbnails } from '../../assets/images'
 import { faNairaSign } from '@fortawesome/free-solid-svg-icons'
 
-const SponsoredProdCar = () => {
+const SponsoredProdCar = ({name, img, price}) => {
+
   return (
     <a href="" className='sponsored-prod-card-cont'>
         <section className='prod-cont'>
-            <img src={prodThumbnails.starlink} alt='' />
-            <p>Professional Measuring Wheel.</p>
+            <img src={img} alt='' />
+            <p>{name}</p>
             <div className='prod-prices'>
                 <span className='discounted-price d-flex align-items-center'>
                       <FontAwesomeIcon icon={faNairaSign} />
-                      <b>123,000</b>
+                      <b>{price}</b>
                 </span>
                 <span className='original-price d-flex align-items-center'>
                       <FontAwesomeIcon icon={faNairaSign} />

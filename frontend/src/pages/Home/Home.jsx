@@ -151,8 +151,12 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='product-cont'>
                                 {
-                                    // console.log(allProducts)
-                                    prod?.filter((prod)=>prod.sales === "sponsored").map((prod, i)=>{
+                                    isLoading?
+                                    Array(6).fill(0).map((prod, i)=>{
+                                        return <ProdDealCard key={i} isLoading={isLoading} />
+                                    })
+                                    :
+                                    prod.filter((prod)=>prod.sales === "today").map((prod, i)=>{
                                         return <ProdDealCard isLoading={isLoading} name={prod.Product_Name} img={prod.Product_Image[0]} price={prod.Product_Price} />
                                     })
 
@@ -170,11 +174,11 @@ const Home = () => {
                         </div>
                         <div className='product-cont-wrapper'>
                             <div className='sponsored-product-cont'>
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
-                                <SponsoredProdCard />
+                                {
+                                    prod.filter((prod)=>prod.sales === "sponsored").map((prod, i)=>{
+                                        return <SponsoredProdCard name={prod.Product_Name} img={prod.Product_Image[0]} price={prod.Product_Price} />
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
@@ -201,11 +205,11 @@ const Home = () => {
                         </div>
                         <div className='product-cont-wrapper'>
                             <div className='product-cont d-flex flex-wrap'>
-                                {/* <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
                                 <ProdDealCard />
-                                <ProdDealCard /> */}
+                                <ProdDealCard />
+                                <ProdDealCard />
                                 {/* <ProdDealCard /> */}
                             </div>
                         </div>

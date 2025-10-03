@@ -626,7 +626,7 @@
             Product_category: "phones",
             Product_Image: [iphone15Pro, iphone15Pro2, iphone15Pro3],
             Product_Brand: "Apple",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 2,
@@ -651,7 +651,7 @@
             Product_category: "phones",
             Product_Image: [samsungA05, samsungA052, samsungA053],
             Product_Brand: "Samsung",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 5,
@@ -732,7 +732,7 @@
             Product_category: "Accessories",
             Product_Image: [sonnyWH, sonnyWH2, sonnyWH3],
             Product_Brand: "Sony",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 15,
@@ -813,7 +813,7 @@
             Product_category: "Cameras",
             Product_Image: [nikonZ6, nikonZ62, nikonZ63],
             Product_Brand: "Nikon",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 25,
@@ -854,7 +854,7 @@
             Product_category: "Accessories",
             Product_Image: [kindlePaper, kindlePaper2, kindlePaper3],
             Product_Brand: "Amazon",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 30,
@@ -1136,7 +1136,7 @@
             Product_category: "fashioning",
             Product_Image: [nikeShort, nikeShort2, nikeShort3],
             Product_Brand: "Nike",
-            sales:'sponsored'
+            sales:'today'
         },
         {
             id: 64,
@@ -1160,7 +1160,8 @@
             Product_Price: 3500,
             Product_category: "Women's Clothing",
             Product_Image: [h_and_mJeans, h_and_mJeans2, h_and_mJeans3],
-            Product_Brand: "H&M"
+            Product_Brand: "H&M",
+            sales: "sponsored"
         },
         {
             id: 67,
@@ -1168,7 +1169,8 @@
             Product_Price: 12000,
             Product_category: "fashion",
             Product_Image: [nikeAirMAx, nikeAirMAx2, nikeAirMAx3],
-            Product_Brand: "Nike"
+            Product_Brand: "Nike",
+            sales: "sponsored"
         },
         {
             id: 68,
@@ -1208,7 +1210,8 @@
             Product_Price: 6000,
             Product_category: "fashion",
             Product_Image: [clarksLeather, clarksLeather2, clarksLeather3],
-            Product_Brand: "Clarks"
+            Product_Brand: "Clarks",
+            sales: "sponsored"
         },
         {
             id: 73,
@@ -1376,7 +1379,8 @@
             Product_Price: 100000,
             Product_category: "kitchen",
             Product_Image: [lgDoubleDoor, lgDoubleDoor2, lgDoubleDoor3],
-            Product_Brand: "LG"
+            Product_Brand: "LG",
+            sales: "sponsored"
         },
         {
             id: 94,
@@ -1520,7 +1524,8 @@
             Product_Price: 1500,
             Product_category: "kids",
             Product_Image: [monoPoly, monoPoly2, monoPoly3],
-            Product_Brand: "Monopoly"
+            Product_Brand: "Monopoly",
+            sales: "sponsored"
         },
         {
             id: 112,
@@ -1576,7 +1581,8 @@
             Product_Price: 1500,
             Product_category: "kids",
             Product_Image: [manhattanToyRattle, manhattanToyRattle2, manhattanToyRattle3],
-            Product_Brand: "Manhattan Toy"
+            Product_Brand: "Manhattan Toy",
+            sales: "sponsored"
         },
         {
             id: 119,
@@ -1608,7 +1614,8 @@
             Product_Price: 15000,
             Product_category: "kids",
             Product_Image: [legoTechnicCar, legoTechnicCar2, legoTechnicCar3],
-            Product_Brand: "LEGO"
+            Product_Brand: "LEGO",
+            sales: "sponsored"
         },
         {
             id: 123,
@@ -1648,7 +1655,8 @@
             Product_Price: 2500,
             Product_category: "health",
             Product_Image: [ceraveCleanser, ceraveCleanser2, ceraveCleanser3],
-            Product_Brand: "CeraVe"
+            Product_Brand: "CeraVe",
+            sales: "sponsored"
         },
         {
             id: 128,
@@ -1672,7 +1680,8 @@
             Product_Price: 3000,
             Product_category: "health",
             Product_Image: [cosrxSnailEssence, cosrxSnailEssence2, cosrxSnailEssence3],
-            Product_Brand: "COSRX"
+            Product_Brand: "COSRX",
+            sales: "sponsored"
         },
         {
             id: 131,

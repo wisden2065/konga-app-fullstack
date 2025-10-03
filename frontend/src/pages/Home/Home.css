@@ -161,7 +161,6 @@
     font-size: small;
 }
 .product-cont-wrapper{
-    padding: 20px;
     /* overflow-x: scroll; */
     /* background-color: aquamarine; */
 }
@@ -182,7 +181,7 @@
     grid-auto-rows: row;
     column-gap: 15px;
     row-gap: 15px;
-    padding: 20px;
+    padding: 10px 0;
     overflow-x: scroll;
 }
 
