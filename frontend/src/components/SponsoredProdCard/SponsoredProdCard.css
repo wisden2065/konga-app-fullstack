@@ -1,11 +1,16 @@
 .sponsored-prod-card-cont{
     background-color: var(--neutral-100);
-    /* background-color: aquamarine; */
-    /* width: max-content; */
+    /* width: max-content; */ 
 
-    padding: 20px;
+    padding: 10px;
     box-shadow: var(--box-shadow-light);
     
+}
+.prod-cont{
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
 }
 .sponsored-product-head{
     background-color: transparent;
@@ -22,8 +27,16 @@
     box-shadow: var(--box-shadow-dark)
 }
 .prod-cont img{
+    height: 200px;
+    width: 100%;
+}
+.hell-no{
     height: 100%;
     width: 100%;
+}
+.prod-cont .desc{
+    margin-top: auto;
+
 }
 .prod-prices{
     display: flex;

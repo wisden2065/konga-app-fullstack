@@ -837,7 +837,8 @@
             Product_Price: 2000000,
             Product_category: "Gaming",
             Product_Image: [alienwareAurora, alienwareAurora2, alienwareAurora3],
-            Product_Brand: "Alienware"
+            Product_Brand: "Alienware",
+            sales: "recommended"
         },
         {
             id: 28,
@@ -845,7 +846,8 @@
             Product_Price: 700000,
             Product_category: "Tablets",
             Product_Image: [samsungTabUltra, samsungTabUltra2, samsungTabUltra3],
-            Product_Brand: "Samsung"
+            Product_Brand: "Samsung",
+            sales: "recommended"
         },
         {
             id: 29,
@@ -870,7 +872,8 @@
             Product_Price: 750000,
             Product_category: "electronics",
             Product_Image: [sonyBravia, sonyBravia2, sonyBravia3],
-            Product_Brand: "Sony"
+            Product_Brand: "Sony",
+            sales: "recommended"
         },
         {
             id: 32,
@@ -878,7 +881,8 @@
             Product_Price: 1100000,
             Product_category: "laptops",
             Product_Image: [huaweiMateBook, huaweiMateBook2, huaweiMateBook3],
-            Product_Brand: "Huawei"
+            Product_Brand: "Huawei",
+            sales: "recommended"
         },
         {
             id: 33,
@@ -942,7 +946,8 @@
             Product_Price: 850000,
             Product_category: "laptops",
             Product_Image: [lenovoLegion5, lenovoLegion52, lenovoLegion53],
-            Product_Brand: "Lenovo"
+            Product_Brand: "Lenovo",
+            sales: "recommended"
         },
         {
             id: 41,
@@ -990,7 +995,8 @@
             Product_Price: 95000,
             Product_category: "Gaming",
             Product_Image: [xbox, xbox2, xbox3],
-            Product_Brand: "Microsoft"
+            Product_Brand: "Microsoft",
+            sales: "recommended"
         },
         {
             id: 47,
@@ -998,15 +1004,16 @@
             Product_Price: 1400000,
             Product_category: "laptops",
             Product_Image: [lgGram, lgGram2, lgGram],
-            Product_Brand: "LG"
-        },
+            Product_Brand: "LG",
+        },  
         {
             id: 48,
             Product_Name: "Corsair K95 RGB Platinum Keyboard",
             Product_Price: 75000,
             Product_category: "Accessories",
             Product_Image: [corsairKeyboard, corsairKeyboard2, corsairKeyboard3],
-            Product_Brand: "Corsair"
+            Product_Brand: "Corsair",
+            sales: "sponsored"
         },
         {
             id: 49,

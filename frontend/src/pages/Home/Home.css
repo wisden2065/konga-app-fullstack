@@ -182,7 +182,7 @@
     column-gap: 15px;
     row-gap: 15px;
     padding: 10px 0;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .category-img .category-img-wrapper{
@@ -190,6 +190,7 @@
     grid-template-columns: repeat(6, 1fr); */
     background-color: var(--neutral-100);
     /* padding: 0 20px; */
+    
 }
 .category-img-wrapper .category-cont{
     padding: 0 20px;

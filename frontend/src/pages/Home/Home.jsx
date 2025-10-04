@@ -149,7 +149,7 @@ const Home = () => {
                             <h4><span>Today's Deals</span> <a href="">See All Items</a></h4>
                         </div>
                         <div className='product-cont-wrapper'>
-                            <div className='product-cont'>
+                            <div className='product-cont pt-2' >
                                 {
                                     isLoading?
                                     Array(6).fill(0).map((prod, i)=>{
@@ -161,8 +161,6 @@ const Home = () => {
                                     })
 
                                 }
-                                
-
                             </div>
                         </div>
                     </div>
@@ -175,6 +173,11 @@ const Home = () => {
                         <div className='product-cont-wrapper'>
                             <div className='sponsored-product-cont'>
                                 {
+                                    isLoading?
+                                    Array(7).fill(0).map((a, i)=>{
+                                        return <SponsoredProdCard isLoading={isLoading}/>
+                                    })
+                                    :
                                     prod.filter((prod)=>prod.sales === "sponsored").map((prod, i)=>{
                                         return <SponsoredProdCard name={prod.Product_Name} img={prod.Product_Image[0]} price={prod.Product_Price} />
                                     })
@@ -205,12 +208,17 @@ const Home = () => {
                         </div>
                         <div className='product-cont-wrapper'>
                             <div className='product-cont d-flex flex-wrap'>
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                <ProdDealCard />
-                                {/* <ProdDealCard /> */}
+                                {
+                                    isLoading?
+                                    Array(6).fill(0).map((prod, i)=>{
+                                        return <ProdDealCard key={i} isLoading={isLoading} />
+                                    })
+                                    :
+                                    prod.filter((prod)=>prod.sales === "recommended").map((prod, i)=>{
+                                        return <ProdDealCard isLoading={isLoading} name={prod.Product_Name} img={prod.Product_Image[0]} price={prod.Product_Price} />
+                                    })
+
+                                }
                             </div>
                         </div>
                     </div>

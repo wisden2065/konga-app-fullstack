@@ -18,6 +18,8 @@
 .deals-card-cont li{
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .deals-card-cont li img{
     width: 100%;
@@ -32,6 +34,7 @@
 }
 .deals-card-cont li span{
     color: var(--text-tertiary);
+    margin-top: auto;
 }
 
 

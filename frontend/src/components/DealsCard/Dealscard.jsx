@@ -8,7 +8,7 @@ const Dealscard = () => {
     <div id='deals-card-cont-wrapper'>
          <ul className='deals-card-cont'>
             {dealsProduct.map((product, index)=>{
-                return <li  key={index}>
+                return <li  key={index} className='main-wrap'>
                             <img src={product['Product Image']} alt="" />
                             <h3>{product['Product Name']}</h3>
                             <p>{product['Product Desc']}</p>
