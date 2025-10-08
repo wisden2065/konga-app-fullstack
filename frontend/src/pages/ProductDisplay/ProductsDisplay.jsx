@@ -69,13 +69,14 @@ const Products = ({category}) => {
 
     // finds all the products in the current selected Product brand category 
     const performBrandFiltering=()=>{
+        console.log('filtering brands')
 
         const filteredBrands = new Set();
         product_list.map((prod)=>{
-            if(prod.Product_category == health){
-                // filteredBrands.add(prod.Product_Brand)
-                console.log('Yes param is health!')
-            }
+            // if(prod.Product_category == "health"){
+            //     // filteredBrands.add(prod.Product_Brand)
+            //     console.log('Yes param is health!')
+            // }
             if(prod.Product_category == activeProdCat || activeProdCat == 'all' ){
                 filteredBrands.add(prod.Product_Brand);
             }
@@ -160,6 +161,7 @@ const Products = ({category}) => {
     }, [sortState])
 
 
+
     // as soon as currentPage changes we update the UI
     useEffect(()=>{
         console.log('Current Page:',currentPage)
@@ -168,9 +170,15 @@ const Products = ({category}) => {
 
     // call the above function anytime a state changes
     useEffect(()=>{
-        console.log('4th useEffect...')
-        performBrandFiltering() //::function invocation to dynamically update the available brands for a category
-        // isAnyChecked()
+        setIsLoading(true)
+        setTimeout(()=>{
+            console.log('4th useEffect...')
+            console.log(activeProdCat)
+            performBrandFiltering() //::function invocation to dynamically update the available brands for a category
+            // isAnyChecked()
+            setIsLoading(false)
+        }, 2000)
+        
     }, [activeProdCat, product_list])
 
     // find if there is any active 
@@ -194,7 +202,6 @@ const Products = ({category}) => {
                 <title>Product Display - Apple</title>
                 <link rel="canonical" href="http://mysite.com/example" />
             </Helmet>
-
             <div className='all-products-cont'>
             <div className='current-prod-active position-relative'>
                 <div className='' id="innerPhone" >
@@ -404,70 +411,33 @@ const Products = ({category}) => {
                             <img src={topBanner} alt="" />
                         </div>
                         <div id="productCont">
-                                {isLoading?
-                                    Array(10)
-                                    .fill(0).map((_, i)=>{
-                                        // return <Product key={i} name={<Skeleton/>} price={<Skeleton/>}  image={<Skeleton />} id={<Skeleton/>}/>
-                                        return  <div key={i}>
-                                                    <div>
-                                                        <div className="prodImg">
-                                                            {/* {<Skeleton />} */}
-                                                        </div>
-                                                        <div className='prodDesc'>
-                                                            <p>{<Skeleton />}</p>
-                                                            <div className="prodPrice">
-                                                                <h3>{<Skeleton />}</h3>
-                                                                <p>{<Skeleton />}</p>
-                                                            </div>
-                                                            <p className="soldBy">{<Skeleton />}</p>
-                                                            <div className="ratingCont">
-                                                                <div>
-                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                    <FontAwesomeIcon icon={<Skeleton />} style={{color: '#dedede'}} />
-                                                                </div>
-                                                                <p>{<Skeleton />}</p>
-                                                            </div>
-                                                            <div className="prodBtn">{<Skeleton />}</div>
-                                                        </div>
-                                                    </div>  
-                                                </div>
-                                    })
-                                    :
-                                    product_list.slice(start, end).map((prod, index)=>{
+                                {
+
+                                    product_list.map((prod, index)=>{
                                         if(isActiveCheckBox){
                                                 // const brand = [...checked]
                                                 let brands
-                                                if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
+                                                if( activeProdCat === 'all' || activeProdCat === prod.Product_category ){
                                                     brands = checked.map((b, i)=>{
                                                         if(prod.Product_Brand==b){
                                                             // render product based on sortState- if sortState filter is off, that is; == 'relevance'
                                                             if(sortState == 'relevance'){
-                                                                return <Product key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
+                                                                return <Product isLoading={isLoading} key={i} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
                                                             }
-                                                            
-                                                            
                                                         }
                                                     })
                                                 }
                                                 return <>{brands}</>
                                         }
                                         else{
-                                            return <Product key={index} name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
+                                            if(activeProdCat == 'all' || activeProdCat == prod.Product_category){
+                                                return <Product isLoading={isLoading} key={index}  name={prod.Product_Name} price={prod.Product_Price}  image={prod.Product_Image[0]} index={index} id={prod.id} />
+                                            }
+                                            
                                         }
-                                    
-                                        // else{
-                                        //     if( activeProdCat == 'all' || activeProdCat == prod.Product_category ){
-                                        //             return <Product key={index} name={prod.Product_Name} price={prod.Product_Price} category={prod.Product_category} image={prod.Product_Image[0]}  index={index} id={prod.id} />
-                                        //         }
-                                                
-                                        // }
                                     })
                             
                             }
-                                
                         </div>
                         <div>
                             <div className='d-flex justify-content-center align-items-center'>

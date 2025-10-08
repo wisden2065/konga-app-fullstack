@@ -8,7 +8,7 @@
 }
 #nav-section{
     /* background-color: var(--background-dark); */
-    background-color: rgb(8, 8, 137);
+    background-color: rgb(128, 126, 126);
     max-width: auto;
     height: 55px;
     display: flex;
@@ -141,7 +141,7 @@
     position: absolute;
     right: 10px;
     font-size: 12px;
-}
+} 
 /* style for second nav */
 #span{
     background-color: var(--neutral-200);
@@ -158,7 +158,7 @@
 #secondNav{
     display: flex;
     /* background-color: var(--background-tertiary); */
-    background-color: #4d8cfa;
+    background-color: #136d42;
     color: var(--neutral-100);
     height: 60px;
     font-size: clamp(9px, 1vw, 12px);
@@ -177,6 +177,7 @@
     display: flex;
     gap: 10px;
 }
+
 .inner{
     display: flex;
     justify-content: center;
@@ -187,17 +188,9 @@
     cursor: pointer;
 }
 
-
 /* dropdown */
-.drop-down-wrapper{
-    position: relative;
-    display: none;
-    width: 200px !important;
-    background-color: #242424;
-}
-.drop-down-wrapper.show{
-    display: block;
-}
+
+
 .drop-down-wrapper::before{
     content: '';
     background-color: rgba(0, 0, 0, 0.85);
@@ -224,6 +217,7 @@
     margin: 0;
     /* width: 300px; */
 }
+
 drop-down  span{
     text-decoration: none;
     border: solid .5px rgb(94, 92, 92);
@@ -630,6 +624,7 @@ drop-down  span{
         display: inline-block;
     }
 }
+
 @media(min-width:799px) and (max-width:1110px){
     #nav-section a{
         font-size: clamp(9px, 1vw, 10px);
@@ -719,6 +714,7 @@ drop-down  span{
         display: flex;
         gap: 8px;
     }
+
     .inner{
         /* width: 200px; */
         display: flex;

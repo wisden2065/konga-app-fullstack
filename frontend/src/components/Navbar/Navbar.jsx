@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Navbar.css'
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logo2.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faChevronDown, faBars, faQuestion, faSearch, faXmark, faL, faEyeSlash, faEye, faUser, faNoteSticky, faCommentDots, faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import {ProductContext} from '../../context/ProductContext'
@@ -109,27 +109,27 @@ const Navbar = () => {
             fetchPrdData()
 
             // add an event listener to each of the ref elements in navbar
-            navItems.current.forEach((element)=>{
+            // navItems.current.forEach((element)=>{
               
-            })
+            // })
             // add a hover listener to all categories
             // allCatBtn.current.onmouseenter =(e)=>(handleMouseEnter(e))
 
             // add event listener to the side bar p elements
-            // if(dropDownSideP !== null){
-            // dropDownSideP.current.forEach((elem)=>{
-            //     // handle display when All categories is hovered
-            //     elem.onmouseenter= ()=> (handleMouseEnter(elem));
-            // })
+        //     if(dropDownSideP !== null){
+        //     dropDownSideP.current.forEach((elem)=>{
+        //         // handle display when All categories is hovered
+        //         elem.onmouseenter= ()=> (handleMouseEnter(elem));
+        //     })
         //    }
         //    if(allCatBtn !== null){
-                // allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
+        //         allCatBtn.current.onmouseenter = ()=> (handleMenu('computers'))
 
-                // mouseenter event to all links in second navbar
-                // drop.current.forEach((d)=>{
-                //     d.onmouseenter = (e)=>(handleMouseEnter(e))
-                // })
-            // }
+        //         // mouseenter event to all links in second navbar
+        //         drop.current.forEach((d)=>{
+        //             d.onmouseenter = (e)=>(handleMouseEnter(e))
+        //         })
+        //     }
         
     }, [])
    
@@ -297,6 +297,7 @@ const Navbar = () => {
             name:"All category", 
             path:'',
             icon: (<FontAwesomeIcon icon={faBars} />),
+            category: 'all',
             class:'inner all-cat',
                         children: [
                 [
@@ -344,39 +345,46 @@ const Navbar = () => {
             name:"Computer and Accessories", 
             path:'',
             class:'computers inner drp',
+            category: 'laptops'
         },
         {
             name:"Phones and tablets", 
             path:'',
             class:'phones inner drp',
+            category: 'phones'
         },
         {
             name:"Electronics", 
             path:'',
             class:'fashion inner drp',
+            category: 'electronics'
         },
         {
             name:"Konga fashion", 
             path:'',
             class:'kitchen inner drp',
+            category: 'fashion'
         },
         {
             name:"Home and Kitchen", 
             path:'',
-            class:'kids inner drp',
+            class:'kitchen inner drp',
+            category: 'kitchen'
         },
         {
             name:"Baby, Kids and Toys", 
             path:'',
             class:'kids inner drp',
+            category: 'kids'
         },
         {
             name:"Beauty, Health and Personal Care", 
             path:'',
             class:'beauty inner drp',
+            category: 'health'
             
         },
-]
+    ]  
   
   return (
         // (!location.pathname == '/account/signup')&&
@@ -617,7 +625,7 @@ const Navbar = () => {
                     >
                         Beauty, Health and Personal Care
                     </div> */}
-                    <DropDownButtons items={items} />
+                    <DropDownButtons items={items} mouse={handleMenu} />
                  {
                        <div className="inputBox">
                         < input type="text" placeholder='Search for Products, Brands, Categories' name="" id="" />

@@ -1,8 +1,15 @@
-import React, { Children, useRef, useState } from 'react'
+import React, { Children, useContext, useRef, useState } from 'react'
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../../context/ProductContext';
 
-const DropDownButtons = ({label,icon, items, delay= 200}) => {
+const DropDownButtons = ({label,icon, items, delay= 200, mouse}) => {
 
+    const navigate = useNavigate();
+
+    // get active prod category
+
+    const { activeProdCat, setActiveProdCat } = useContext(ProductContext) 
 
     // state to check if button is Open
     const [isOpen, setIsOpen] = useState(false)
@@ -36,7 +43,7 @@ const DropDownButtons = ({label,icon, items, delay= 200}) => {
     >
         {
             items.map((item)=>{
-                return <div className={item.class}>
+                return <div className={item.class} onClick={(e)=>setActiveProdCat(item.category)} >
                           {
                             item.icon&&item.icon
                           }                            
@@ -54,16 +61,15 @@ const DropDownButtons = ({label,icon, items, delay= 200}) => {
                                             })
                                             }
                                         </div>
-                                
+                                        <div className='items right'>
+                                        </div>     
                                     </div>
-                                </div>
-                                
+                                </div>                    
                             )
                           }
                        </div>
             })
-        }
-        
+        } 
     </div>
   )
 }

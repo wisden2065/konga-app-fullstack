@@ -9,7 +9,7 @@ import Skeleton from 'react-loading-skeleton'
 
 
 
-const Product = ({name, price, category, image, brand, id}) => {
+const Product = ({name, price, category, image, brand, id, isLoading}) => {
     const [cartItemCount, setCartItemCount] = useState(0);
     const { activeProdCat, setActiveProdCat} = useContext(ProductContext);
     const { addToCart, removeFromCart} = useContext(ProductContext);
@@ -21,7 +21,33 @@ const Product = ({name, price, category, image, brand, id}) => {
             return prodName.length > maxLength? prodName.substring(0, maxLength) + '...' : prodName;
         }
 
-        return <div onClick={(e)=>{
+        if(isLoading){
+            return (<div>
+                    <div className="productItem" >
+                                <div className="saveProduct"></div>
+                                <div className="prodImg">
+                                     {<Skeleton />}
+                                </div>
+                                <div className='prodDesc'>
+                                    <div className="prodPrice">
+                                        <strike className='' style={{fontSize:'12px'}}></strike>
+                                    </div>
+                                    <p className="p"><Skeleton /></p>
+                                    <hr/>
+                                    <p className="soldBy"><span><Skeleton /></span></p>
+                                    <div className="ratingCont">
+                                        <div>
+                                            <Skeleton />
+                                        </div>
+                                        <p><Skeleton /></p>
+                                    </div>
+                                    <div className="prodBtn"><Skeleton /></div>
+                              </div>
+                    </div>  
+               </div>)
+        }
+        
+        return (<div onClick={(e)=>{
                                 console.log(e.target)
                                 if(e.target.matches('.btn')){
                                     e.stopPropagation()
@@ -60,7 +86,7 @@ const Product = ({name, price, category, image, brand, id}) => {
                                     <div className="prodBtn"><button className='btn'>Add To Cart</button></div>
                               </div>
                     </div>  
-               </div>
+               </div>)
             
         
 }
